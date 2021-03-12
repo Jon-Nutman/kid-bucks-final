@@ -5,6 +5,8 @@ import { Counter } from "./features/counter/Counter"
 import { Users } from "./features/users/Users"
 import { LoginSignup } from "./features/auth/LoginSignup"
 import ParentDashboardPage from "./features/parent/ParentDashboardPage"
+import ChildDashboardPage from "./features/child/ChildDashboardPage"
+
 
 export default function App() {
   return (
@@ -38,6 +40,9 @@ export default function App() {
           </Route>
           <Route path="/parent-dashboard">
             <ParentDashboardPage />
+          </Route>
+          <Route path="/child-dashboard">
+            <ChildDashboardPage />
           </Route>
           <AuthRoute path="/protected">
             <h2>test</h2>
