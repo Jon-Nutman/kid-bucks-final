@@ -1,12 +1,12 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import AuthRoute from "./features/auth/AuthRoute"
-import { Counter } from "./features/counter/Counter"
-import { Users } from "./features/users/Users"
-import { LoginSignup } from "./features/auth/LoginSignup"
-import ParentDashboardPage from "./features/parent/ParentDashboardPage"
-import ChildDashboardPage from "./features/child/ChildDashboardPage"
-
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import AuthRoute from "./features/auth/AuthRoute";
+import { Counter } from "./features/counter/Counter";
+import { Users } from "./features/users/Users";
+import { LoginSignup } from "./features/auth/LoginSignup";
+import ParentDashboardPage from "./features/parent/ParentDashboardPage";
+import ChildDashboardPage from "./features/child/ChildDashboardPage";
+import Register from "./features/register/Register";
 
 export default function App() {
   return (
@@ -35,6 +35,9 @@ export default function App() {
           <Route path="/login">
             <LoginSignup />
           </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
           <Route path="/users">
             <Users />
           </Route>
@@ -50,5 +53,5 @@ export default function App() {
         </Switch>
       </div>
     </Router>
-  )
+  );
 }
