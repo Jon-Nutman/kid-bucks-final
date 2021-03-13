@@ -17,10 +17,12 @@ export default function ChildTab() {
       <AddPrizeModal />
     </TabPane>
     <TabPane tab="Child 2" key="2">
-      Content of Tab Pane 2
+      <AddGoalModal />
+      <AddPrizeModal />
     </TabPane>
     <TabPane tab="Child 3" key="3">
-      Content of Tab Pane 3
+      <AddGoalModal />
+      <AddPrizeModal />
     </TabPane>
   </Tabs>,
   </div>
