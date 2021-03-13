@@ -9,10 +9,10 @@
 }
 
 .avatar {
-  padding-top: 20px;
+  padding-top: 0px;
   margin: 10px;
   width: 100px;
-  height: 85px;
+  height:100px;
   color: azure;
   background-color: rgb(37, 16, 81);
   border-radius: 50%;
