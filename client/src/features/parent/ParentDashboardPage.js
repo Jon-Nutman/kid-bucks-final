@@ -1,9 +1,9 @@
 import React from 'react'
-
+import AddChildModal from './AddChildModal'
 export default function ParentDashboardPage() {
     return (
         <div>
-            Dashboard Page
+            <AddChildModal />
         </div>
     )
 }
