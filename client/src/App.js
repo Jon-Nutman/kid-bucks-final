@@ -7,6 +7,7 @@ import { LoginSignup } from "./features/auth/LoginSignup";
 import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
 import Register from "./features/register/Register";
+import 'antd/dist/antd.css';
 
 export default function App() {
   return (
