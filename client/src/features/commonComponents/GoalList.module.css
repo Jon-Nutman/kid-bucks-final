@@ -1,0 +1,10 @@
+.pointGoalAvatar{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: #FFF;
+    border-radius: 50%;
+    font-size: 32px;
+    text-align: center;
+    text-justify: center;
+}
