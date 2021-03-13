@@ -1,21 +1,18 @@
-import React , { useState } from 'react'
+import React from 'react'
 import { Input, Form, InputNumber, Button } from 'antd';
-import SwitchablePicker from './SwitchablePicker'
 
 const { TextArea } = Input;
 
-
-export default function AddGoalModal() {
+export default function AddPrizeModal() {
     return (
         <div>
-            <h1>Add Goal Modal</h1>
+            <h1>Add Prize Modal</h1>
             <Form>
-                <Input placeholder='Add Goal Here'/>
+                <Input placeholder='Add Prize Name Here'/>
                 <InputNumber placeholder='Points' />
-                <SwitchablePicker />
                 <TextArea rows={4} placeholder='description...' />
                 <Button type="primary" htmlType="submit">
-            Add Goal
+            Add Prize
           </Button>
             </Form>
         </div>
