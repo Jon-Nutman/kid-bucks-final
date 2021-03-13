@@ -2,12 +2,12 @@ import React from "react"
 import { Form, Input, InputNumber, Button } from "antd"
 
 const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
+  // labelCol: {
+  //   span: 8,
+  // },
+  // wrapperCol: {
+  //   span: 16,
+  // },
 }
 const validateMessages = {
   required: "${label} is required!",
@@ -27,7 +27,7 @@ export default function AddChildModal() {
     <div>
       <h1>Add Child</h1>
       <Form
-        {...layout}
+        // {...layout}
         name="nest-messages"
         onFinish={onFinish}
         validateMessages={validateMessages}
@@ -41,8 +41,8 @@ export default function AddChildModal() {
             },
           ]}
         >
-          <Input />
-          <Form.Item
+      <Input />
+      <Form.Item
             label="Username"
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
