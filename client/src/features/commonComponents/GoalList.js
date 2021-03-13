@@ -54,11 +54,11 @@ export default function GoalList(props) {
       pageSize: 3,
     }}
     dataSource={goals}
-    footer={
-      <div>
-        <b>Kid Coin</b> Set goals. Set rewards. Achieve your goals. Cash out. Repeat.
-      </div>
-    }
+    // footer={
+    //   <div>
+    //     <b>Kid Coin</b> Set goals. Set rewards. Achieve your goals. Cash out. Repeat.
+    //   </div>
+    // }
     renderItem={item => (
       <List.Item
         key={item.title}
