@@ -1,0 +1,22 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  padding-top: 20px;
+  margin: 10px;
+  width: 100px;
+  height: 85px;
+  color: azure;
+  background-color: rgb(37, 16, 81);
+  border-radius: 50%;
+  text-align: center;
+  text-justify: center;
+  font-size: 48pt;
+}
