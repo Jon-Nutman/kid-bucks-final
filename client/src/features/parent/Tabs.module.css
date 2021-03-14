@@ -1,11 +1,11 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-  }
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 
-  .componentContainer{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-  }
+.componentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
