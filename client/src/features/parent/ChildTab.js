@@ -3,6 +3,7 @@ import { Tabs } from 'antd'
 import AddGoalModal from './AddGoalModal'
 import AddPrizeModal from './AddPrizeModal'
 import GoalList from '../commonComponents/GoalList'
+import PrizesList from '../commonComponents/PrizesList'
 import styles from "./Tabs.module.css"
 
 const { TabPane } = Tabs;
@@ -22,6 +23,8 @@ export default function ChildTab() {
       </div>
       <div>
       <AddPrizeModal />
+      <h1>Prize List</h1>
+      <PrizesList />
       </div>
     </TabPane>
     <TabPane className={styles.componentContainer} tab="Child 2" key="2">
@@ -32,6 +35,8 @@ export default function ChildTab() {
       </div>
       <div>
       <AddPrizeModal />
+      <h1>Prize List</h1>
+      <PrizesList />
     </div>
     </TabPane>
     <TabPane className={styles.componentContainer} tab="Child 3" key="3">
@@ -42,6 +47,8 @@ export default function ChildTab() {
       </div>
       <div>
       <AddPrizeModal />
+      <h1>Prize List</h1>
+      <PrizesList />
       </div>
     </TabPane>
   </Tabs>,
