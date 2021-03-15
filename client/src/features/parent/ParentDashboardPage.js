@@ -6,7 +6,7 @@ import { Tabs } from "antd"
 import styles from "./ParentDashboard.module.css"
 export default function ParentDashboardPage() {
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.addChild}>
         <AddChildModal />
       </div>
