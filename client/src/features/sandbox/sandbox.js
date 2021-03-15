@@ -1,7 +1,7 @@
 import React from "react"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
-import SwitchablePicker from "../parent/SwitchablePicker"
+
 
 const { TextArea } = Input
 
@@ -34,7 +34,7 @@ export default function ModalTest() {
 
   return (
     <div>
-      <Button onClick={openModal}>Add Child +</Button>
+      <Button onClick={openModal}>Add Prize +</Button>
 
       <Modal
         isOpen={modalIsOpen}
@@ -44,17 +44,14 @@ export default function ModalTest() {
         contentLabel="Example Modal"
       >
           <div>
-      <h1>Add Goal Modal</h1>
       <Form>
-        <Input placeholder="Add Goal Here" />
+        <Input placeholder="Add Prize Name Here" />
         <InputNumber placeholder="Points" />
-        <SwitchablePicker />
         <TextArea rows={4} placeholder="description..." />
       </Form>
     </div>
-        
         <Button type type="primary" htmlType="submit" onClick={closeModal}>
-          Add Goal
+          Add Prize
         </Button>
       </Modal>
     </div>
