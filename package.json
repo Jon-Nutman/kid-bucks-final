@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.13.1",
-    "concurrently": "^6.0.0"
+    "concurrently": "^6.0.0",
+    "react-modal": "^3.12.1"
   }
 }

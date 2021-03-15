@@ -8,6 +8,7 @@ import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
 import Register from "./features/register/Register";
 import 'antd/dist/antd.css';
+import ModalTest from "./features/sandbox/sandbox";
 
 export default function App() {
   return (
@@ -47,6 +48,9 @@ export default function App() {
           </Route>
           <Route path="/child-dashboard">
             <ChildDashboardPage />
+          </Route>
+          <Route path="/sandbox">
+            <ModalTest/>
           </Route>
           <AuthRoute path="/protected">
             <h2>test</h2>
