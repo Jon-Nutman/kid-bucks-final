@@ -8,3 +8,22 @@
     text-align: center;
     text-justify: center;
 }
+
+.goalListWrap{
+    display: flex;
+    width: 66vw;
+    margin: 4px;
+    padding: 2px;
+}
+
+.goalCard{
+
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw;
+    height:fit-content;
+    min-height: 40px;
+}

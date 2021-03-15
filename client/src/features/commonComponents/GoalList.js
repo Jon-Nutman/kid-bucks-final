@@ -8,7 +8,7 @@ export default function GoalList() {
   const goals = [
     {
       title: "Clean Your Room",
-      points: 5,
+      points: 10,
     },
     {
       title: "Wash Yo Self",
@@ -20,20 +20,19 @@ export default function GoalList() {
     },
     {
       title: "Complete Asych Homework",
-      points: 5,
+      points: 15,
     },
   ];
   return (
-    <div className="goalList">
+    <div className="goalListWrap">
       {goals.map((goal) => (
-        <div className={styles.goalListContainer}>
+        <div className={styles.goalContainer}>
+          <div className={styles.goalCard}>
           <div className={styles.goalTitle}>
             {goal.title}
           </div>
-          <div className={styles.goalPoints}>
-            {goal.points}
+          <div className={styles.pointGoalAvatar}>{goal.points}</div>
           </div>
-          <div className={styles.pointGoalAvatar}></div>
         </div>
       ))}
     </div>
