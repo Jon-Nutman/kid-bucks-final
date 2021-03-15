@@ -25,7 +25,9 @@ export default function AddChildModal() {
   }
   return (
     <div>
-      <h1>Add Child</h1>
+     <Button >
+            Add Child +
+          </Button>
       <Form
         // {...layout}
         name="nest-messages"
