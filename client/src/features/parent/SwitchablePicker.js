@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { DatePicker, TimePicker, Select, Space } from 'antd';
+import React, { useState } from "react"
+import { DatePicker, TimePicker, Select, Space } from "antd"
 
-const { Option } = Select;
+const { Option } = Select
 
 function PickerWithType({ type, onChange }) {
-  if (type === 'time') return <TimePicker onChange={onChange} />;
-  if (type === 'date') return <DatePicker onChange={onChange} />;
-  return <DatePicker picker={type} onChange={onChange} />;
+  if (type === "time") return <TimePicker onChange={onChange} />
+  if (type === "date") return <DatePicker onChange={onChange} />
+  return <DatePicker picker={type} onChange={onChange} />
 }
 
 export default function SwitchablePicker() {
-  const [type, setType] = useState('time');
+  const [type, setType] = useState("time")
   return (
     <Space>
       <Select value={type} onChange={setType}>
@@ -21,7 +21,7 @@ export default function SwitchablePicker() {
         <Option value="quarter">Quarter</Option>
         <Option value="year">Year</Option>
       </Select>
-      <PickerWithType type={type} onChange={value => console.log(value)} />
+      <PickerWithType type={type} onChange={(value) => console.log(value)} />
     </Space>
-  );
+  )
 }
