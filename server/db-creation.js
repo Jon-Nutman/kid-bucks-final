@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ["goals", "prizes", "prize_bins","parents_users", "users"]
+const tables = ["goals", "prizes", "prize_bins","users"]
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -23,19 +23,16 @@ async function main() {
       await conn.schema.dropTable(table)
     }
   }
+  // https://stackoverflow.com/questions/7573590/can-a-foreign-key-be-null-and-or-duplicate
+  // https://stackoverflow.com/questions/58068929/migration-in-knex-js-cannot-set-foreign-key-on-nullable-field
   await conn.schema.createTable(`users`, (table) => {
     table.increments("id")
     table.string("username", 45)
     table.string("password", 128)
     table.string("salt", 20)
     table.boolean("is_admin")
-  })
-  await conn.schema.createTable(`parents_users`, (table) => {
-    table.increments("id")
-    table.integer("parent_id").unsigned()
+    table.integer("parent_id").unsigned().nullable()
     table.foreign("parent_id").references("users.id").onDelete("cascade")
-    table.integer("child_id").unsigned()
-    table.foreign("child_id").references("users.id").onDelete("cascade")
   })
   await conn.schema.createTable(`goals`, (table) => {
     table.increments("id")
@@ -84,6 +81,7 @@ async function main() {
     password: sha512("test" + salt),
     salt: salt,
     is_admin: false,
+    parent_id: 1
   })
   await conn("users").insert({
     id:3,
@@ -91,15 +89,9 @@ async function main() {
     password: sha512("test" + salt),
     salt: salt,
     is_admin: false,
+    parent_id: 1
   })
-  await conn("parents_users").insert({
-    parent_id: 1,
-    child_id: 2,
-  })
-  await conn("parents_users").insert({
-    parent_id: 1,
-    child_id: 3,
-  })
+  
   function getDateAWeekFromNow() {
     const now = new Date();
     now.setDate(now.getDate() + 7)
