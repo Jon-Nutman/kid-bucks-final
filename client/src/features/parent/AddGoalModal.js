@@ -35,17 +35,22 @@ export default function AddGoalModal(props) {
   const [todoPoints, setTodoPoints] = useState("")
   const [todoDescription, setTodoDescription] = useState("")
   const [todos, setTodos] = useState({})
+  const [type, setType] = useState("time")
+  const [time, setTime] = useState()
 
   function handleSubmit(e) {
     e.preventDefault()
-    // props.MakeTodoObject(todoTitle, todoPoints, todoDescription)
-    setTodos({
-      title: { todoTitle },
-      points: { todoPoints },
-      description: { todoDescription },
-    })
+    const obj = {
+      title: todoTitle,
+      points: todoPoints,
+      description: todoDescription,
+      deadline: time,
+    }
+    console.log(obj)
+
+    // request.post(someurl, obj)
   }
-  console.log(todos)
+
   return (
     <div>
       <Button onClick={openModal}>Add Goal +</Button>
@@ -64,19 +69,17 @@ export default function AddGoalModal(props) {
               onChange={(e) => setTodoTitle(e.target.value)}
               placeholder="What do you want you minion to accomplish?"
             />
-            <div>{todoTitle}</div>
-            <Input
-              onChange={(e) => setTodoPoints(e.target.value)}
+            <InputNumber
+              onChange={setTodoPoints}
               placeholder="How many points is this goal worth?"
             />
-            <div>{todoPoints}</div>
-            <SwitchablePicker />
+
+            <SwitchablePicker type={type} onChange={setType} />
             <TextArea
               onChange={(e) => setTodoDescription(e.target.value)}
               rows={4}
               placeholder="Instructions..."
             />
-            <div>{todoDescription}</div>
           </Form>
         </div>
         <Button type="primary" onClick={handleSubmit}>
@@ -89,5 +92,3 @@ export default function AddGoalModal(props) {
     </div>
   )
 }
-
-
