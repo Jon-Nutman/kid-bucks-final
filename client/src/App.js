@@ -4,6 +4,7 @@ import AuthRoute from "./features/auth/AuthRoute";
 import { Counter } from "./features/counter/Counter";
 import { Users } from "./features/users/Users";
 import { LoginSignup } from "./features/auth/LoginSignup";
+import LoginTab from "./features/auth/LoginTab";
 import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
 import Register from "./features/register/Register";
@@ -35,11 +36,12 @@ export default function App() {
             <Counter />
           </Route>
           <Route path="/login">
-            <LoginSignup />
+            <LoginTab />
           </Route>
           <Route path="/register">
             <Register />
           </Route>
+
           <Route path="/users">
             <Users />
           </Route>
@@ -50,7 +52,7 @@ export default function App() {
             <ChildDashboardPage />
           </Route>
           <Route path="/sandbox">
-            <ModalTest/>
+            <ModalTest />
           </Route>
           <AuthRoute path="/protected">
             <h2>test</h2>
