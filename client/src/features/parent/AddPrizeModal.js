@@ -16,7 +16,7 @@ const customStyles = {
   },
 }
 
-export default function ModalTest() {
+export default function AddPrizeModal() {
   
   var subtitle
   const [modalIsOpen, setIsOpen] = React.useState(false)
