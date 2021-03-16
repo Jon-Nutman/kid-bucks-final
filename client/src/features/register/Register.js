@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import styles from "./Register.module.css";
 // import validator from "validator";
 
 export default function Register() {
@@ -61,11 +62,11 @@ export default function Register() {
 
   return (
     <div>
-      <form className="theForm" onSubmit={handleSubmit}>
+      <form className={styles.theForm} onSubmit={handleSubmit}>
         <label
           htmlFor="name"
           className={
-            firstNameError ? "text-label text-label-red" : "text-label"
+            styles.firstNameError ? "text-label text-label-red" : "text-label"
           }
         >
           <h4>First Name: {firstNameError}</h4>
@@ -80,7 +81,9 @@ export default function Register() {
 
         <label
           htmlFor="lastname"
-          className={lastNameError ? "text-label text-label-red" : "text-label"}
+          className={
+            styles.lastNameError ? "text-label text-label-red" : "text-label"
+          }
         >
           <h4>Last Name: {lastNameError}</h4>
         </label>
@@ -94,7 +97,9 @@ export default function Register() {
 
         <label
           htmlFor="username"
-          className={userNameError ? "text-label text-label-red" : "text-label"}
+          className={
+            styles.userNameError ? "text-label text-label-red" : "text-label"
+          }
         >
           <h4>Username: {userNameError}</h4>
         </label>
@@ -108,7 +113,9 @@ export default function Register() {
 
         <label
           htmlFor="password"
-          className={passwordError ? "text-label text-label-red" : "text-label"}
+          className={
+            styles.passwordError ? "text-label text-label-red" : "text-label"
+          }
         >
           <h4>Password: {passwordError}</h4>
         </label>
@@ -122,7 +129,9 @@ export default function Register() {
         <label
           htmlFor="confirmpassword"
           className={
-            confirmPasswordError ? "text-label text-label-red" : "text-label"
+            styles.confirmPasswordError
+              ? "text-label text-label-red"
+              : "text-label"
           }
         >
           <h4>Confirm password: {confirmPasswordError}</h4>
@@ -136,7 +145,9 @@ export default function Register() {
 
         <label
           htmlFor="email"
-          className={emailError ? "text-label text-label-red" : "text-label"}
+          className={
+            styles.emailError ? "text-label text-label-red" : "text-label"
+          }
         >
           <h4>Email: {emailError}</h4>
         </label>
