@@ -9,6 +9,7 @@ function createSalt(len = 20) {
   }
   return str
 }
+
 // const sha512 = require('js-sha512')
 // const conn = require('./db')
 // const { createSalt } = require('./utils/auth')
@@ -33,6 +34,8 @@ async function main() {
     table.increments("id")
     table.string("title", 45)
     table.string("description", 250)
+    table.timestamp("created_at").defaultTo(conn.fn.now())
+    table.timestamp("deadline")
     table.integer("points").unsigned()
     table.enu("status", ["complete", "not_started", "active"])
     table.integer("parent_id").unsigned()
@@ -75,6 +78,15 @@ async function main() {
     salt: salt,
     is_admin: false,
   })
+  function getDateAWeekFromNow() {
+    const now = new Date();
+    now.setDate(now.getDate() + 7)
+    const dd = now.getDate()
+    const mm = now.getMonth()
+    const y = now.getFullYear()
+    return y + '-' + mm + '-' + dd
+  }
+  const deadline = getDateAWeekFromNow()
   await conn("goals").insert({
     id: 1,
     title: "wash and dress",
@@ -84,6 +96,12 @@ async function main() {
     parent_id: 1,
     child_id: 2,
     order: 0,
+    deadline: deadline
+  })
+  await conn("prize_bins").insert({
+    id: 1,
+    user_id: 1,
+    user_id: 2,
   })
   await conn("prizes").insert({
     id: 1,
@@ -92,11 +110,6 @@ async function main() {
     description: "1000 robux",
     prize_thumbnail: "https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg",
     prize_bin_id: 1,
-  })
-  await conn("prize_bins").insert({
-    id: 1,
-    user_id: 1,
-    user_id: 2,
   })
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
