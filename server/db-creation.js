@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ["goals", "prizes", "prize_bins","users"]
+const tables = ["goals", "prizes", "prize_bins","parents_users", "users"]
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -29,6 +29,13 @@ async function main() {
     table.string("password", 128)
     table.string("salt", 20)
     table.boolean("is_admin")
+  })
+  await conn.schema.createTable(`parents_users`, (table) => {
+    table.increments("id")
+    table.integer("parent_id").unsigned()
+    table.foreign("parent_id").references("users.id").onDelete("cascade")
+    table.integer("child_id").unsigned()
+    table.foreign("child_id").references("users.id").onDelete("cascade")
   })
   await conn.schema.createTable(`goals`, (table) => {
     table.increments("id")
@@ -77,6 +84,21 @@ async function main() {
     password: sha512("test" + salt),
     salt: salt,
     is_admin: false,
+  })
+  await conn("users").insert({
+    id:3,
+    username: "child 2",
+    password: sha512("test" + salt),
+    salt: salt,
+    is_admin: false,
+  })
+  await conn("parents_users").insert({
+    parent_id: 1,
+    child_id: 2,
+  })
+  await conn("parents_users").insert({
+    parent_id: 1,
+    child_id: 3,
   })
   function getDateAWeekFromNow() {
     const now = new Date();
