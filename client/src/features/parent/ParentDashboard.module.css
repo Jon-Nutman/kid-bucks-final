@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.container{
+
+}
+
 .addChild {
   display: flex;
   justify-content: center;

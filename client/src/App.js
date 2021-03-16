@@ -8,8 +8,8 @@ import LoginTab from "./features/auth/LoginTab";
 import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
 import Register from "./features/register/Register";
-import "antd/dist/antd.css";
-import ModalTest from "./features/sandbox/sandbox";
+import 'antd/dist/antd.css';
+import ModalTest from "./features/sandbox/Sandbox";
 
 export default function App() {
   return (
