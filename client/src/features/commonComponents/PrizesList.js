@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { List, Avatar, Space } from "antd";
 import { store } from "./ProviderCommon";
 import styles from "./PrizesList.module.css";
+import Checkbox from "./componentParts/CmpntCheckbox.js";
 
 export default function PrizeList(props) {
   const prizes = [
@@ -33,6 +34,7 @@ export default function PrizeList(props) {
               <img src={prize.avatar} alt="prize image" />
             </span> */}
             <div className={styles.prizeCard}>
+              <Checkbox />
               <span>{prize.title}</span>
               <div className={styles.pointPrizeAvatar}>{prize.points}</div>
             </div>

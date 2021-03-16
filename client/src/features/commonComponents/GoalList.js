@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { List, Avatar, Space } from "antd";
 import { store } from "./ProviderCommon";
 import styles from "./GoalList.module.css";
+import Checkbox from "./componentParts/CmpntCheckbox"
 
 export default function GoalList() {
   const goals = [
@@ -23,11 +24,13 @@ export default function GoalList() {
       points: 15,
     },
   ];
+
   return (
     <div className="goalListWrap">
       {goals.map((goal) => (
         <div className={styles.goalContainer}>
           <div className={styles.goalCard}>
+          <Checkbox />
           <div className={styles.goalTitle}>
             {goal.title}
           </div>
