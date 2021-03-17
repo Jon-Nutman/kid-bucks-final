@@ -42,16 +42,13 @@ export default function AddGoalModal(props) {
   function handleSubmit(e) {
     e.preventDefault()
     const obj = {
-      id: 1,
       title: todoTitle,
       description: todoDescription,
-      created_at: 'ur mums house',
-      deadline: 'March 4',
+      deadline: '01-20-2020',
       points: todoPoints,
-      status: 'not started',
-      parent_id: '1',
-      child_id: '2',
-      order: 'idk',
+      status: 'not_started',
+      parent_id: 1,
+      child_id: 2,
     }
     console.log(obj)
 

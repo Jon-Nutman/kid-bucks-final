@@ -1,17 +1,18 @@
 import express from 'express'
-import conn from '../db.js'
+import knex from '../db.js'
 const router = express.Router()
 
 // POST REQ
 
 router.post("/goals", async (req, res) => {
-    const { id, title, description, created_at, deadline, points, status, parent_id, child_id, order } = req.body
-    await knex.raw(
+  console.log(req.body)
+    const { title, description, points, deadline , status, parent_id, child_id} = req.body
+   await knex.raw(
       `
-  INSERT INTO goals (id, title, description, created_at, deadline, points, status, parent_id, child_id, order)
-  VALUES (?,?,?,?,?,?,?,?,?,?);
+  INSERT INTO goals (title, description, deadline, points, status, parent_id, child_id)
+  VALUES (?,?,?,?,?,?,?);
   `,
-      [id, title, description, created_at, deadline, points, status, parent_id, child_id, order]
+      [title, description, deadline, points, status, parent_id, child_id]
     )
     res.json({ message: "Your minions have been informed about their tasks"})
   })
