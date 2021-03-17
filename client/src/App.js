@@ -8,7 +8,7 @@ import LoginTab from "./features/auth/LoginTab";
 import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
 import Register from "./features/register/Register";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import ModalTest from "./features/sandbox/Sandbox";
 
 export default function App() {
@@ -18,13 +18,13 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Register/Log-in</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/users">Parents</Link>
             </li>
             <li>
-              <Link to="/protected">Protected</Link>
+              <Link to="/child-dashboard">Kiddos</Link>
             </li>
           </ul>
         </nav>
@@ -33,7 +33,7 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <Counter />
+            <Register />
           </Route>
           <Route path="/login">
             <LoginTab />
@@ -43,7 +43,7 @@ export default function App() {
           </Route>
 
           <Route path="/users">
-            <Users />
+            <ParentDashboardPage />
           </Route>
           <Route path="/parent-dashboard">
             <ParentDashboardPage />
