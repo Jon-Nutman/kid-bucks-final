@@ -16,9 +16,6 @@ export default function LoginTab() {
     <div>
       <Tabs onChange={callback} type="card">
         <TabPane className={styles.componentContainer} tab="Login" key="1">
-          {/* <div>
-            <Register />
-          </div> */}
           <LoginSignup />
         </TabPane>
         <TabPane className={styles.componentContainer} tab="Sign up" key="2">
