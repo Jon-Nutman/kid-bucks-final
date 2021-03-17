@@ -109,7 +109,6 @@ async function main() {
     is_admin: false,
     parent_id: 1
   })
-  
   function getDateAWeekFromNow() {
     const now = new Date();
     now.setDate(now.getDate() + 7);
