@@ -9,19 +9,19 @@ function PickerWithType({ type, onChange }) {
   return <DatePicker picker={type} onChange={onChange} />
 }
 
-export default function SwitchablePicker() {
-  const [type, setType] = useState("time")
+export default function SwitchablePicker(props) {
+  // const [type, setType] = useState("time")
+  // console.log("p", props)
   return (
     <Space>
-      <Select value={type} onChange={setType}>
+      <Select value={props.type} onChange={props.onChange}>
         <Option value="time">Time</Option>
         <Option value="date">Date</Option>
-        <Option value="week">Week</Option>
-        <Option value="month">Month</Option>
-        <Option value="quarter">Quarter</Option>
-        <Option value="year">Year</Option>
       </Select>
-      <PickerWithType type={type} onChange={(value) => console.log(value)} />
+      <PickerWithType
+        type={props.type}
+        onChange={(value) => console.log(value)}
+      />
     </Space>
   )
 }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
 
@@ -31,6 +31,21 @@ export default function AddPrizeModal() {
   function closeModal() {
     setIsOpen(false)
   }
+  const [prizeTitle, setPrizeTitle] = useState("")
+  const [prizePoints, setPrizePoints] = useState("")
+  const [prizeDescription, setPrizeDescription] = useState("")
+  const [prizes, setPrizes] = useState({})
+
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    setPrizes({
+      title: prizeTitle,
+      points: prizePoints,
+      description: prizeDescription,
+    })
+    console.log(prizes)
+  }
 
   return (
     <div>
@@ -46,13 +61,16 @@ export default function AddPrizeModal() {
           <div>
             <h1>Add Prize</h1>
       <Form>
-        <Input placeholder="Add Prize Name Here" />
-        <InputNumber placeholder="Points" />
-        <TextArea rows={4} placeholder="description..." />
+        <Input onChange={(e) => setPrizeTitle(e.target.value)} placeholder="Add Prize Name Here" />
+        <Input onChange={(e) => setPrizePoints(e.target.value)} placeholder="Points" />
+        <TextArea onChange={(e) => setPrizeDescription(e.target.value)} rows={4} placeholder="description..." />
       </Form>
     </div>
-        <Button type type="primary" htmlType="submit" onClick={closeModal}>
+        <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
           Add Prize
+        </Button>
+        <Button type type="primary" htmlType="submit" onClick={closeModal}>
+         Close
         </Button>
       </Modal>
     </div>
