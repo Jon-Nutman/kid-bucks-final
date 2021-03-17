@@ -1,0 +1,9 @@
+.completeBtn{
+    width: 10vw;
+
+}
+
+.completeBtn:hover{
+    color:white;
+    background-color:black;
+}
