@@ -44,7 +44,7 @@ export default function AddGoalModal(props) {
       title: todoTitle,
       points: todoPoints,
       description: todoDescription,
-      deadline: time,
+      deadline: 'March 4',
     }
     console.log(obj)
 
