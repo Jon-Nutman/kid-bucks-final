@@ -43,8 +43,7 @@ export default function AddPrizeModal() {
       title: prizeTitle,
       points: prizePoints,
       description: prizeDescription,
-      // prize_thumbnail: 'placehold.it/250x250',
-      // prize_bin_id: 1
+      prize_thumbnail: 'https://placedog.net/500',
     }
     console.log(obj)
 
