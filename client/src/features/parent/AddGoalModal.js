@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
 import SwitchablePicker from "./SwitchablePicker"
+import request from "../../utils/request" 
 
 const { TextArea } = Input
 
@@ -42,13 +43,18 @@ export default function AddGoalModal(props) {
     e.preventDefault()
     const obj = {
       title: todoTitle,
-      points: todoPoints,
       description: todoDescription,
-      deadline: 'March 4',
+      deadline: '01-20-2020',
+      points: todoPoints,
+      status: 'not_started',
+      parent_id: 1,
+      child_id: 2,
     }
     console.log(obj)
 
-    // request.post(someurl, obj)
+    request.post('/goals', obj)
+
+
   }
 
   return (
