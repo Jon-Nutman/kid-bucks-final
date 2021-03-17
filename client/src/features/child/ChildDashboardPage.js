@@ -14,7 +14,9 @@ export default function ChildDashboardPage() {
       <div className={styles.childDashContain}>
         <div className={styles.goalListChildContain}>
           <GoalList />
-          <GoalCompleteBtn />
+          <div className={styles.goalCompleteBtn}>
+            <GoalCompleteBtn />
+          </div>
         </div>
         <div className={styles.prizeBinContain}>
           <PrzBnPointBalance />
