@@ -46,7 +46,6 @@ async function main() {
     table.foreign("parent_id").references("users.id").onDelete("cascade");
     table.integer("child_id").unsigned();
     table.foreign("child_id").references("users.id").onDelete("cascade");
-    table.integer("order").unsigned();
   });
   await conn.schema.createTable(`prize_bins`, (table) => {
     table.increments("id");
@@ -126,7 +125,6 @@ async function main() {
     status: "not_started",
     parent_id: 1,
     child_id: 2,
-    order: 0,
     deadline: deadline,
   });
   await conn("prize_bins").insert({
