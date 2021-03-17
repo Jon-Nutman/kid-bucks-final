@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./Register.module.css";
+import { Form, Input, Button } from "antd";
 // import validator from "validator";
 
 export default function Register() {
@@ -62,20 +63,20 @@ export default function Register() {
 
   return (
     <div>
-      <form className={styles.theForm} onSubmit={handleSubmit}>
+      <Form className={styles.theForm} onSubmit={handleSubmit}>
         <label
           htmlFor="name"
           className={
             styles.firstNameError ? "text-label text-label-red" : "text-label"
           }
         >
-          <h4>First Name: {firstNameError}</h4>
+          <h4> {firstNameError}</h4>
         </label>
-        <input
+        <Input
           id="firstname"
           type="text"
           name="name"
-          placeholder=""
+          placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
 
@@ -85,13 +86,13 @@ export default function Register() {
             styles.lastNameError ? "text-label text-label-red" : "text-label"
           }
         >
-          <h4>Last Name: {lastNameError}</h4>
+          <h4>{lastNameError}</h4>
         </label>
-        <input
+        <Input
           id="name"
           type="text"
           name="name"
-          placeholder=""
+          placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
 
@@ -101,13 +102,13 @@ export default function Register() {
             styles.userNameError ? "text-label text-label-red" : "text-label"
           }
         >
-          <h4>Username: {userNameError}</h4>
+          <h4>{userNameError}</h4>
         </label>
-        <input
+        <Input
           id="username"
           type="text"
           name="username"
-          placeholder=""
+          placeholder="Create username"
           onChange={(e) => setUserName(e.target.value)}
         />
 
@@ -117,12 +118,13 @@ export default function Register() {
             styles.passwordError ? "text-label text-label-red" : "text-label"
           }
         >
-          <h4>Password: {passwordError}</h4>
+          <h4>{passwordError}</h4>
         </label>
-        <input
+        <Input
           id="password"
           type="text"
           name="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -134,12 +136,13 @@ export default function Register() {
               : "text-label"
           }
         >
-          <h4>Confirm password: {confirmPasswordError}</h4>
+          <h4>{confirmPasswordError}</h4>
         </label>
-        <input
+        <Input
           id="confirm-password"
           type="text"
           name="confirm-password"
+          placeholder="Confirm password"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
@@ -149,19 +152,21 @@ export default function Register() {
             styles.emailError ? "text-label text-label-red" : "text-label"
           }
         >
-          <h4>Email: {emailError}</h4>
+          <h4>{emailError}</h4>
         </label>
-        <input
+        <Input
           id="email"
           type="email"
           name="email"
-          placeholder=""
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button id="mybtn" type="submit">
-          Submit
-        </button>
-      </form>
+        <div>
+          <Button id="mybtn" type="submit">
+            Submit
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 }
