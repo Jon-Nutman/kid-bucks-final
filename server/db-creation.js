@@ -23,13 +23,17 @@ async function main() {
       await conn.schema.dropTable(table);
     }
   }
+  // https://stackoverflow.com/questions/7573590/can-a-foreign-key-be-null-and-or-duplicate
+  // https://stackoverflow.com/questions/58068929/migration-in-knex-js-cannot-set-foreign-key-on-nullable-field
   await conn.schema.createTable(`users`, (table) => {
-    table.increments("id");
-    table.string("username", 45);
-    table.string("password", 128);
-    table.string("salt", 20);
-    table.boolean("is_admin");
-  });
+    table.increments("id")
+    table.string("username", 45)
+    table.string("password", 128)
+    table.string("salt", 20)
+    table.boolean("is_admin")
+    table.integer("parent_id").unsigned().nullable()
+    table.foreign("parent_id").references("users.id").onDelete("cascade")
+  })
   await conn.schema.createTable(`goals`, (table) => {
     table.increments("id");
     table.string("title", 45);
@@ -95,7 +99,16 @@ async function main() {
     password: sha512("test" + salt),
     salt: salt,
     is_admin: false,
-  });
+    parent_id: 1
+  })
+  await conn("users").insert({
+    id:3,
+    username: "child 2",
+    password: sha512("test" + salt),
+    salt: salt,
+    is_admin: false,
+    parent_id: 1
+  })
   function getDateAWeekFromNow() {
     const now = new Date();
     now.setDate(now.getDate() + 7);
