@@ -1,17 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Tabs } from "antd";
 import request from "../../utils/request";
-import LoginTab from "./LoginTab";
-import Register from "../register/Register";
-import styles from "./LoginSignup.module.css";
 import { Form, Input, Button } from "antd";
-
-const { TabPane } = Tabs;
-function callback(key) {
-  console.log(key);
-}
 
 export function LoginSignup() {
   const [username, setUsername] = useState("");
@@ -24,23 +15,35 @@ export function LoginSignup() {
       history.push("/protected");
     });
   };
+  function handleClick() {
+    setUsername("");
+    setPassword("");
+  }
+
   return (
     <>
-      <div>{/* <LoginTab /> */}</div>
       <Form onSubmit={handleSubmit}>
         <Input
+          value={username}
           type="text"
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <Input
+          value={password}
           type="text"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
-          <Button type="submit">submit</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            Submit
+          </Button>
         </div>
       </Form>
     </>
