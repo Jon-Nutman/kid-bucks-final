@@ -2,6 +2,8 @@ import express from 'express'
 import './config.js'
 import userRoutes from './routes/users.js'
 import authRoutes from './routes/auth.js'
+import goalsRoutes from './routes/goals.js'
+import prizesRoutes from './routes/prizes.js'
 import attachUser from './middleware/user.js'
 const app = express()
 const PORT = 3001
@@ -12,6 +14,8 @@ app.use(attachUser)
 
 app.use('/api', userRoutes)
 app.use('/api', authRoutes)
+app.use('/api', goalsRoutes)
+app.use('/api', prizesRoutes)
 
 // // body, params, query
 // app.get('/api/users', (request, response) => {
