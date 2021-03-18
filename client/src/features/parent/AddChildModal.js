@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import ReactDOM from "react-dom"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
+import request from "../../utils/request" 
 
 const layout = {
   // labelCol: {
@@ -24,7 +25,7 @@ const validateMessages = {
 
 export default function AddChild() {
 
-  const [childName, setchildName] = useState("")
+  const [childName, setChildName] = useState("")
   const [childUsername, setUsername] = useState("")
   const [childPassword, setPassword] = useState("")
   
@@ -41,9 +42,7 @@ export default function AddChild() {
     }
     console.log(obj)
 
-    // request.post('/users', obj)
-
-
+    request.post('/users', obj)
   }
 
   return (
@@ -58,6 +57,7 @@ export default function AddChild() {
             validateMessages={validateMessages}
           >
             <Form.Item
+            
               name={["user", "name"]}
               label="Name"
               rules={[
@@ -66,17 +66,18 @@ export default function AddChild() {
                 },
               ]}
             >
-              <Input />
+              <Input onChange={(e) => setChildName(e.target.value)} />
             </Form.Item>
 
             <Form.Item
+            
               label="Username"
               name="username"
               rules={[
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input />
+              <Input onChange={(e) => setUsername(e.target.value)} />
             </Form.Item>
             <Form.Item
               label="Password"
@@ -85,7 +86,7 @@ export default function AddChild() {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password />
+              <Input.Password onChange={(e) => setPassword(e.target.value)}  />
             </Form.Item>
 
             <Form.Item
@@ -106,7 +107,7 @@ export default function AddChild() {
             ></Form.Item>
           </Form>
         </div>
-        <Button type='submit' type="primary" htmlType="submit">
+        <Button onClick={handleSubmit} type='submit' type="primary" htmlType="submit">
           Add Child
         </Button>
      

@@ -45,6 +45,7 @@ export default function AddPrizeModal() {
       description: prizeDescription,
     })
     console.log(prizes)
+    
   }
 
   return (
