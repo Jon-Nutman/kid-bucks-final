@@ -43,9 +43,10 @@ export default function AddPrizeModal() {
       title: prizeTitle,
       points: prizePoints,
       description: prizeDescription,
-      rize_thumbnail: 'https://placedog.net/500',
-    })
-    console.log(prizes
+      prize_thumbnail: 'https://placedog.net/500',
+    }
+    console.log(obj)
+   
 
     request.post('/prizes', obj)
 
