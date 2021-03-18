@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
-
+import request from "../../utils/request" 
 
 const { TextArea } = Input
 
@@ -39,13 +39,16 @@ export default function AddPrizeModal() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    setPrizes({
+    const obj = {
       title: prizeTitle,
       points: prizePoints,
       description: prizeDescription,
+      rize_thumbnail: 'https://placedog.net/500',
     })
-    console.log(prizes)
-    
+    console.log(prizes
+
+    request.post('/prizes', obj)
+
   }
 
   return (
