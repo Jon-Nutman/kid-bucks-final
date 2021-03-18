@@ -18,10 +18,6 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  function resetForm() {
-    setFirstName("");
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (firstName === "") {
@@ -61,6 +57,15 @@ export default function Register() {
     // }
   }
 
+  function handleClick() {
+    setFirstName("");
+    setLastName("");
+    setUserName("");
+    setPassword("");
+    setConfirmPassword("");
+    setEmail("");
+  }
+
   return (
     <div>
       <Form className={styles.theForm} onSubmit={handleSubmit}>
@@ -73,7 +78,7 @@ export default function Register() {
           <h4> {firstNameError}</h4>
         </label>
         <Input
-          id="firstname"
+          value={firstName}
           type="text"
           name="name"
           placeholder="First Name"
@@ -89,7 +94,7 @@ export default function Register() {
           <h4>{lastNameError}</h4>
         </label>
         <Input
-          id="name"
+          value={lastName}
           type="text"
           name="name"
           placeholder="Last Name"
@@ -105,7 +110,7 @@ export default function Register() {
           <h4>{userNameError}</h4>
         </label>
         <Input
-          id="username"
+          value={userName}
           type="text"
           name="username"
           placeholder="Create username"
@@ -121,7 +126,7 @@ export default function Register() {
           <h4>{passwordError}</h4>
         </label>
         <Input
-          id="password"
+          value={password}
           type="text"
           name="password"
           placeholder="Password"
@@ -139,7 +144,7 @@ export default function Register() {
           <h4>{confirmPasswordError}</h4>
         </label>
         <Input
-          id="confirm-password"
+          value={confirmPassword}
           type="text"
           name="confirm-password"
           placeholder="Confirm password"
@@ -155,14 +160,19 @@ export default function Register() {
           <h4>{emailError}</h4>
         </label>
         <Input
-          id="email"
+          value={email}
           type="email"
           name="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <div>
-          <Button id="mybtn" type="submit">
+          <Button
+            type="submit"
+            onClick={() => {
+              handleClick();
+            }}
+          >
             Submit
           </Button>
         </div>

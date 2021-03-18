@@ -1,43 +1,44 @@
 // 1. imports
-import { useSelector, useDispatch } from 'react-redux'
-import request, { AuthService } from '../../utils/request'
+import { useSelector, useDispatch } from "react-redux";
+import request, { AuthService } from "../../utils/request";
 
 // 2. action definitions
-const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
-const LOGIN_PENDING = 'auth/LOGIN_PENDING'
-const LOGOUT = 'auth/LOGOUT'
+const LOGIN_SUCCESS = "auth/LOGIN_SUCCESS";
+const LOGIN_PENDING = "auth/LOGIN_PENDING";
+const LOGOUT = "auth/LOGOUT";
 
 // 3. initial state
 const initialState = {
-  example: '',
+  example: "",
   // on load get if user is authenticated
   isAuthenticated: AuthService.isAuthenticated(),
   pending: false,
-}
+};
 
 // 4. reducer
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_PENDING:
-      return { ...state, pending: true }
+      return { ...state, pending: true };
     case LOGIN_SUCCESS:
-      return { ...state, isAuthenticated: true, pending: false }
+      return { ...state, isAuthenticated: true, pending: false };
     case LOGOUT:
-      return { ...state, isAuthenticated: false, pending: false }
+      return { ...state, isAuthenticated: false, pending: false };
     default:
-      return state
+      return state;
   }
-}
+};
 
 function loginUser(username, password) {
   return (dispatch) => {
     return request.login(username, password).then((resp) => {
+      console.log("testing");
       dispatch({
         type: LOGIN_SUCCESS,
-      })
-    })
-  }
+      });
+    });
+  };
 }
 
 function logoutUser() {
@@ -45,9 +46,9 @@ function logoutUser() {
     return request.logout().then((resp) => {
       dispatch({
         type: LOGOUT,
-      })
-    })
-  }
+      });
+    });
+  };
 }
 
 function signupUser(username, password) {
@@ -55,22 +56,22 @@ function signupUser(username, password) {
     return request.signup(username, password).then((resp) => {
       dispatch({
         type: LOGOUT,
-      })
-    })
-  }
+      });
+    });
+  };
 }
 
 // 6. custom hook
 export function useAuth() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(
     (appState) => appState.auth.isAuthenticated
-  )
-  const login = (username, password) => dispatch(loginUser(username, password))
+  );
+  const login = (username, password) => dispatch(loginUser(username, password));
   const signup = (username, password) =>
-    dispatch(signupUser(username, password))
-  const logout = () => dispatch(logoutUser())
-  const testProtected = () => request.get('/dashboard')
+    dispatch(signupUser(username, password));
+  const logout = () => dispatch(logoutUser());
+  const testProtected = () => request.get("/dashboard");
 
-  return { login, logout, signup, isAuthenticated, testProtected }
+  return { login, logout, signup, isAuthenticated, testProtected };
 }

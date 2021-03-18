@@ -18,13 +18,13 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Register/Log-in</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/users">Parents</Link>
+              <Link to="/users">Users</Link>
             </li>
             <li>
-              <Link to="/child-dashboard">Kiddos</Link>
+              <Link to="/protected">Protected</Link>
             </li>
           </ul>
         </nav>
@@ -33,7 +33,7 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <Register />
+            <Counter />
           </Route>
           <Route path="/login">
             <LoginTab />
@@ -43,14 +43,14 @@ export default function App() {
           </Route>
 
           <Route path="/users">
-            <ParentDashboardPage />
+            <Users />
           </Route>
-          <Route path="/parent-dashboard">
+          <AuthRoute path="/parent-dashboard">
             <ParentDashboardPage />
-          </Route>
-          <Route path="/child-dashboard">
+          </AuthRoute>
+          <AuthRoute path="/child-dashboard">
             <ChildDashboardPage />
-          </Route>
+          </AuthRoute>
           <Route path="/sandbox">
             <ModalTest />
           </Route>
