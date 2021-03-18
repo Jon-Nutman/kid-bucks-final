@@ -18,13 +18,13 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Login</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/parent-dashboard">Pavlovs</Link>
             </li>
             <li>
-              <Link to="/protected">Protected</Link>
+              <Link to="/child-dashboard">and the Dogs</Link>
             </li>
           </ul>
         </nav>
@@ -33,7 +33,7 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <Counter />
+          <LoginTab />
           </Route>
           <Route path="/login">
             <LoginTab />

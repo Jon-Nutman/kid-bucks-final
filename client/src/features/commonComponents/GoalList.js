@@ -8,7 +8,7 @@ console.log(props.goals)
 
   return (
     <div className="goalListWrap">
-      {/* {props.goals.map(goal => (
+      {props.goals.map(goal => (
         <GoalItem 
         key={'goal-' + goal.id} 
         className={styles.goalContainer} 
@@ -16,7 +16,7 @@ console.log(props.goals)
         onDelete={props.onDelete}
         onStatusChange={props.onStatusChange}
         />
-      ))} */}
+      ))}
     </div>
   );
 }
