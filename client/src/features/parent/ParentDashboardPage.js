@@ -7,9 +7,6 @@ import styles from "./ParentDashboard.module.css"
 export default function ParentDashboardPage() {
   return (
     <div className={styles.container}>
-      <div className={styles.addChild}>
-        <AddChildModal />
-      </div>
       <div>
         <ChildTab />
       </div>

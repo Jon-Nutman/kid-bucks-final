@@ -1,18 +1,59 @@
-import React from "react"
+
+import React from 'react'
 import { Tabs } from "antd"
-import AddGoalModal from "./AddGoalModal"
-import AddPrizeModal from "./AddPrizeModal"
+import AddGoalModal from "../parent/AddGoalModal"
+import AddPrizeModal from "../parent/AddPrizeModal"
 import GoalList from "../commonComponents/GoalList"
 import PrizesList from "../commonComponents/PrizesList"
-import styles from "./Tabs.module.css"
+import styles from "../parent/Tabs.module.css"
+import AddChild from './AddChildModal'
 
 const { TabPane } = Tabs
 
+const onFinish = (values) => {
+  console.log(values)
+}
 function callback(key) {
   console.log(key)
 }
+const validateMessages = {
+  required: "${label} is required!",
+  types: {
+    email: "${label} is not a valid email!",
+    number: "${label} is not a valid number!",
+  },
+  number: {
+    range: "${label} must be between ${min} and ${max}",
+  },
+}
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+}
 export default function ChildTab() {
+  const [modalIsOpen, setIsOpen] = React.useState(false)
+  function openModal() {
+    setIsOpen(true)
+  }
+  function handleSubmit(e) {
+    e.preventDefault()
+    const obj = {
+      name:''
+      
+    }
+    console.log(obj)
+
+    // request.post('/goals', obj)
+
+
+  }
   return (
     <div>
       <Tabs onChange={callback} type="card">
@@ -40,16 +81,9 @@ export default function ChildTab() {
             <PrizesList />
           </div>
         </TabPane>
-        <TabPane className={styles.componentContainer} tab="Child 3" key="3">
+        <TabPane className={styles.componentContainer} tab="+" key="3">
           <div>
-            <AddGoalModal />
-            <h1>Goal List</h1>
-            <GoalList />
-          </div>
-          <div>
-            <AddPrizeModal />
-            <h1>Prize List</h1>
-            <PrizesList />
+        <AddChild />
           </div>
         </TabPane>
       </Tabs>
@@ -57,3 +91,4 @@ export default function ChildTab() {
     </div>
   )
 }
+
