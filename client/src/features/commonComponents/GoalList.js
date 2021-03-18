@@ -1,14 +1,14 @@
-import React from "react";
-import { List, Avatar, Space } from "antd";
-import styles from "./GoalList.module.css";
-import GoalItem from './goals/GoalItem'
+import React from "react"
+import { List, Avatar, Space } from "antd"
+import styles from "./GoalList.module.css"
+import GoalItem from "./goals/GoalItem"
 
 export default function GoalList(props) {
-console.log(props.goals)
+  console.log(props.goals)
 
   return (
     <div className="goalListWrap">
-      {props.goals.map(goal => (
+      {/* {props.goals.map(goal => (
         <GoalItem 
         key={'goal-' + goal.id} 
         className={styles.goalContainer} 
@@ -16,7 +16,7 @@ console.log(props.goals)
         onDelete={props.onDelete}
         onStatusChange={props.onStatusChange}
         />
-      ))}
+      ))} */}
     </div>
-  );
+  )
 }
