@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import ReactDOM from "react-dom"
 import Modal from "react-modal"
 import { Form, Input, InputNumber, Button } from "antd"
@@ -22,52 +22,37 @@ const validateMessages = {
   },
 }
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-}
+export default function AddChild() {
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-//   Modal.setAppElement('#yourAppElement')
+  const [childName, setchildName] = useState("")
+  const [childUsername, setUsername] = useState("")
+  const [childPassword, setPassword] = useState("")
+  
 
-export default function ModalTest() {
   const onFinish = (values) => {
     console.log(values)
   }
-  var subtitle
-  const [modalIsOpen, setIsOpen] = React.useState(false)
-  function openModal() {
-    setIsOpen(true)
-  }
+  function handleSubmit(e) {
+    e.preventDefault()
+    const obj = {
+      name: childName,
+      username: childUsername, 
+      password: childPassword,
+    }
+    console.log(obj)
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-  }
+    // request.post('/users', obj)
 
-  function closeModal() {
-    setIsOpen(false)
+
   }
 
   return (
     <div>
-      <Button onClick={openModal}>Add Child +</Button>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
+      <h1>Add a Child</h1>
+      <p>Fill out this form to create an account for your child. </p>
         <div>
           <Form
-            // {...layout}
+            {...layout}
             name="nest-messages"
             onFinish={onFinish}
             validateMessages={validateMessages}
@@ -121,10 +106,10 @@ export default function ModalTest() {
             ></Form.Item>
           </Form>
         </div>
-        <Button type type="primary" htmlType="submit" onClick={closeModal}>
-          Submit
+        <Button type='submit' type="primary" htmlType="submit">
+          Add Child
         </Button>
-      </Modal>
+     
     </div>
   )
 }
