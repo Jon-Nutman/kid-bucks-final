@@ -1,18 +1,19 @@
-import { useEffect } from "react";
-import { useContext } from "react";
-import { List, Avatar, Space } from "antd";
-import { store } from "./ProviderCommon";
-import styles from "./PrizesList.module.css";
-import Checkbox from "./componentParts/CmpntCheckbox.js";
-import { addPrizeToCart, selectPrizes, prizesAsync } from './prizeBin/prizeSlice';
-import { useSelector, useDispatch } from "react-redux";
-
-
+import { useEffect } from 'react'
+import { useContext } from 'react'
+import { List, Avatar, Space } from 'antd'
+import { store } from './ProviderCommon'
+import styles from './PrizesList.module.css'
+import Checkbox from './componentParts/CmpntCheckbox.js'
+import {
+  addPrizeToCart,
+  selectPrizes,
+  prizesAsync,
+} from './prizeBin/prizeSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function PrizeList(props) {
-
-  const prizes = useSelector(selectPrizes);
-  const dispatch = useDispatch();
+  const prizes = useSelector(selectPrizes)
+  const dispatch = useDispatch()
 
   console.log(prizes)
 
@@ -59,5 +60,5 @@ export default function PrizeList(props) {
         ))}
       </ul>
     </div>
-  );
+  )
 }
