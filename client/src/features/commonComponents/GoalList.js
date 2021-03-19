@@ -1,11 +1,11 @@
-import React from "react";
-import { List, Avatar, Space } from "antd";
-import styles from "./GoalList.module.css";
-import GoalItem from './goals/GoalItem'
+import React from "react"
+import { List, Avatar, Space } from "antd"
+import styles from "./GoalList.module.css"
+import GoalItem from "./goals/GoalItem"
 
 
 export default function GoalList(props) {
-console.log(props.goals)
+  console.log(props.goals)
 
   return (
     <div className={styles.goalListWrap}>
@@ -19,5 +19,5 @@ console.log(props.goals)
         />
       ))} */}
     </div>
-  );
+  )
 }
