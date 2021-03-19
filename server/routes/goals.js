@@ -1,28 +1,36 @@
-import express from 'express'
-import knex from '../db.js'
+import express from "express"
+import knex from "../db.js"
 const router = express.Router()
 
 // parent_id: req.user
 // child_id: childId
 // ?status=
-router.get('/goals/:childId', async (req, res) => {
+router.get("/goals/:childId", async (req, res) => {
   const childId = req.params.childId
-  res.json({ message: 'here are your goals' })
+  console.log(childId)
+  const goals = await knex.raw(
+    `
+    SELECT * FROM goals
+    WHERE child_id=?
+    `,
+    [childId]
+  )
+  res.json(goals.rows)
 })
 
-router.delete('/goals/:goalId', async (req, res) => {
+router.delete("/goals/:goalId", async (req, res) => {
   const goalId = req.params.goalId
-  res.json({ message: 'example' })
+  res.json({ message: "example" })
 })
 
-router.patch('/goals/:goalId', async (req, res) => {
+router.patch("/goals/:goalId", async (req, res) => {
   const goalId = req.params.goalId
-  res.json({ message: 'your goal has been updated' })
+  res.json({ message: "your goal has been updated" })
 })
 
 // POST REQ
 
-router.post('/goals', async (req, res) => {
+router.post("/goals", async (req, res) => {
   console.log(req.body)
   const {
     title,
@@ -30,7 +38,6 @@ router.post('/goals', async (req, res) => {
     points,
     deadline,
     status,
-    parent_id,
     child_id,
   } = req.body
   await knex.raw(
@@ -38,8 +45,8 @@ router.post('/goals', async (req, res) => {
     INSERT INTO goals (title, description, deadline, points, status, parent_id, child_id)
     VALUES (?,?,?,?,?,?,?);
     `,
-    [title, description, deadline, points, status, parent_id, child_id]
+    [title, description, deadline, points, status, req.user.id, child_id]
   )
-  res.json({ message: 'Your minions have been informed about their tasks' })
+  res.json({ message: "Your minions have been informed about their tasks" })
 })
 export default router
