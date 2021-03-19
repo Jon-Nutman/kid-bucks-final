@@ -3,6 +3,17 @@ import Checkbox from '../componentParts/CmpntCheckbox'
 import styles from "./GoalItem.module.css"
 
 export default function GoalItem(props) {
+
+  // const obj = {
+  //   title: todoTitle,
+  //   description: todoDescription,
+  //   deadline: '01-20-2020',
+  //   points: todoPoints,
+  //   status: 'not_started',
+  //   parent_id: 1,
+  //   child_id: 2,
+  // }
+  
   const goal = props.goal;
   return (
     <div className={styles.goalCard}>

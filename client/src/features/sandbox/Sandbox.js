@@ -1,7 +1,7 @@
 
 
 
-import { Form, Input, InputNumber, Button } from "antd"
+import { Form, Input, InputNumber } from "antd"
 import React from 'react'
 import { Tabs } from "antd"
 import AddGoalModal from "../parent/AddGoalModal"
@@ -9,7 +9,7 @@ import AddPrizeModal from "../parent/AddPrizeModal"
 import GoalList from "../commonComponents/GoalList"
 import PrizesList from "../commonComponents/PrizesList"
 import styles from "../parent/Tabs.module.css"
-import ModalTest from '../parent/AddChildModal'
+// import ModalTest from '../parent/AddChildModal'
 const { TabPane } = Tabs
 
 const onFinish = (values) => {

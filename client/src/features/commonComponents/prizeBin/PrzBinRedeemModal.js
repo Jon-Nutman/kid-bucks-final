@@ -1,8 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import Modal from "react-modal";
-import { Form, Input, InputNumber, Button } from "antd";
+import { Button } from "antd";
 import styles from "./PrzBinRedeemModal.module.css";
+import PrizeCart from "./PrizeCart";
 
 export default function PrzBinRedeemModal() {
   const customStyles = {
@@ -16,9 +17,9 @@ export default function PrzBinRedeemModal() {
     },
   };
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
+  // const onFinish = (values) => {
+  //   console.log(values);
+  // };
   var subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
@@ -44,7 +45,7 @@ export default function PrzBinRedeemModal() {
       prize_bin_id: 1,
     },
     {
-      id: 1,
+      id: 2,
       points: 5,
       title: "robux",
       description: "1000 robux",
@@ -53,7 +54,7 @@ export default function PrzBinRedeemModal() {
       prize_bin_id: 1,
     },
     {
-      id: 1,
+      id: 3,
       points: 5,
       title: "robux",
       description: "1000 robux",
@@ -74,41 +75,7 @@ export default function PrzBinRedeemModal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <ul>
-          {prizeCart.map((prize) => (
-            <li className={styles.prizeCartPrize}>
-              <img className={styles.imgThumb} src={prize.prize_thumbnail} />
-              <div className={styles.prizeCartpTag}>
-                <p>{prize.title}</p>
-                <br />
-              </div>
-              <button
-                className={styles.delBtn}
-                onClick={() =>
-              //  dispatch(removeFromPrizeCart(prize))}
-              console.log("they want to delete this prize")}
-              >
-                X
-              </button>
-              <button
-                className={styles.btn}
-                onClick={() => 
-                  // dispatch(decrePrize(prize))}
-                  console.log("they want less of this prize")}
-              >
-                -
-              </button>
-              <button
-                className={styles.btn}
-                onClick={() => 
-                  // dispatch(increProduct(prize))}
-                  console.log("they want more of this prize")}
-              >
-                +
-              </button>
-            </li>
-          ))}
-        </ul>
+        <PrizeCart />
         <Button type type="primary" htmlType="submit" onClick={closeModal}>
           Submit
         </Button>

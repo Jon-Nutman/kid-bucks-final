@@ -16,4 +16,19 @@ router.post("/prizes", async (req, res) => {
   )
   res.json({ message: "Your minions have been informed about their rewards" })
 })
+
+router.get("/prizes", async (req,res) => {
+  // console.log(req.user.id)
+  const prizes = await knex.raw(
+    
+    `
+    SELECT * FROM prizes
+    WHERE id = ?
+
+    `,
+    [1]
+  )
+res.json(prizes.rows)
+})
+
 export default router

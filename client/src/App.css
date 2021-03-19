@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 div{
   margin: 10px;
   padding: 10px;
@@ -22,6 +29,6 @@ form {
 }
 
 button {
-  margin: 5px;
+  margin: 15px;
   padding: 10px;
 }
