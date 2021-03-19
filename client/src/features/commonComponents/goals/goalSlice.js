@@ -1,5 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// const obj = {
+//   title: todoTitle,
+//   description: todoDescription,
+//   deadline: '01-20-2020',
+//   points: todoPoints,
+//   status: 'not_started',
+//   parent_id: 1,
+//   child_id: 2,
+// }
+
 export const goalSlice = createSlice({
   name: 'goal',
   initialState: {

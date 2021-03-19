@@ -11,9 +11,7 @@
 
 .goalListWrap{
     display: flex;
-    width: 66vw;
-    margin: 4px;
-    padding: 2px;
+    margin: 10px;
 }
 
 .goalCard{

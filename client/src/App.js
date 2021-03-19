@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AuthRoute from "./features/auth/AuthRoute";
-import { Counter } from "./features/counter/Counter";
+// import { Counter } from "./features/counter/Counter";
 import { Users } from "./features/users/Users";
-import { LoginSignup } from "./features/auth/LoginSignup";
+// import { LoginSignup } from "./features/auth/LoginSignup";
 import LoginTab from "./features/auth/LoginTab";
 import ParentDashboardPage from "./features/parent/ParentDashboardPage";
 import ChildDashboardPage from "./features/child/ChildDashboardPage";
@@ -21,10 +21,10 @@ export default function App() {
               <Link to="/">Login</Link>
             </li>
             <li>
-              <Link to="/parent-dashboard">Pavlovs</Link>
+              <Link to="/parent-dashboard">Pavlov</Link>
             </li>
             <li>
-              <Link to="/child-dashboard">and the Dogs</Link>
+              <Link to="/child-dashboard">Dogs</Link>
             </li>
           </ul>
         </nav>

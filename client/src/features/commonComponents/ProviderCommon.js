@@ -46,7 +46,7 @@ function todoReducer(state, action) {
 
     case "COMPLETED":
       const completedTodos = [
-        ...state.todos.filter((todo) => todo.isComplete == true),
+        ...state.todos.filter((todo) => todo.isComplete === true),
       ]
       return { ...state, todos: completedTodos }
 

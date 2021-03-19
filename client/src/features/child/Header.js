@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import styles from './Header.module.css'
+import styles from "./Header.module.css";
 
 export default function Header() {
   const [userName, setUserName] = useState("Kiddo");
@@ -9,7 +9,10 @@ export default function Header() {
     <>
       <div className={styles.header}>
         <div className={styles.avatar}>K</div>
-        <h2>Hello, {userName}, You are ready to achieve!</h2>
+        <div className={styles.headerGreet}>
+          <h2>Hey {userName}!</h2>
+          <h3>You are ready to achieve.</h3>
+        </div>
       </div>
     </>
   );
