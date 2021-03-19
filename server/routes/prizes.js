@@ -5,17 +5,17 @@ const router = express.Router()
 // prizes that belong to prize bin
 router.get('/prize-bins/:childId', async (req, res) => {
   const childId = req.params.childId
-  req.json({ message: 'example' })
+  res.json({ message: 'example' })
 })
 
 router.delete('/prizes/:prizeId', async (req, res) => {
   const prizId = req.params.prizeId
-  req.json({ message: 'example' })
+  res.json({ message: 'example' })
 })
 
 router.patch('/prizes/:prizeId', async (req, res) => {
   const prizeId = req.params.prizeId
-  req.json({ message: 'example' })
+  res.json({ message: 'example' })
 })
 
 // POST REQ
