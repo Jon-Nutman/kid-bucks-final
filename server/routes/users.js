@@ -12,4 +12,8 @@ router.get('/test-user', async (request, response) => {
   response.json(request.user)
 })
 
+router.delete('/users/child/:childId', async (request, response) => {
+  response.json({ message: 'child deleted' })
+})
+
 export default router
