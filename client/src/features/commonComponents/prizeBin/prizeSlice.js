@@ -8,21 +8,19 @@ export const prizeSlice = createSlice({
   },
   reducers: {
     setPrizes: (state, action) => {
-        state.prize = action.payload;
-      },
-      // state.prizes.push(newPrize)
+      state.prizes = action.payload
     },
-});
+    // state.prizes.push(newPrize)
+  },
+})
 
 export const { setPrizes } = prizeSlice.actions
 
 export const prizesAsync = () => (dispatch) => {
-  request.get('/prizes')
-    .then((response) => {
-      dispatch(setPrizes(response.data));
-    console.log(response.data)
-    });
-};
+  request.get('/prizes').then((response) => {
+    dispatch(setPrizes(response.data))
+  })
+}
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
