@@ -7,7 +7,7 @@ const router = express.Router()
 // ?status=
 router.get('/goals/:childId', async (req, res) => {
   const childId = req.params.childId
-  res.json({ message: 'example' })
+  res.json({ message: 'here are your goals' })
 })
 
 router.delete('/goals/:goalId', async (req, res) => {
@@ -17,7 +17,7 @@ router.delete('/goals/:goalId', async (req, res) => {
 
 router.patch('/goals/:goalId', async (req, res) => {
   const goalId = req.params.goalId
-  res.json({ message: 'example' })
+  res.json({ message: 'your goal has been updated' })
 })
 
 // POST REQ

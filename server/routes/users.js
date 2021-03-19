@@ -16,4 +16,10 @@ router.delete('/users/child/:childId', async (request, response) => {
   response.json({ message: 'child deleted' })
 })
 
+// router.patch('/users/child/:childId', async (request, response) => {
+//   const childlId = req.params.childId
+//   response.json({ message: 'child updated' })
+// })
+
+
 export default router
