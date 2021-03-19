@@ -15,7 +15,7 @@ router.delete('/prizes/:prizeId', async (req, res) => {
 
 router.patch('/prizes/:prizeId', async (req, res) => {
   const prizeId = req.params.prizeId
-  res.json({ message: 'example' })
+  res.json({ message: 'your prize has been updated' })
 })
 
 // POST REQ
