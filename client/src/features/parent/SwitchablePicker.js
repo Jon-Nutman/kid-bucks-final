@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { DatePicker, TimePicker, Select, Space } from "antd"
+import React, { useState } from 'react'
+import { DatePicker, TimePicker, Select, Space } from 'antd'
 
 const { Option } = Select
 
 function PickerWithType({ type, onChange }) {
-  if (type === "time") return <TimePicker onChange={onChange} />
-  if (type === "date") return <DatePicker onChange={onChange} />
+  if (type === 'time') return <TimePicker onChange={onChange} />
+  if (type === 'date') return <DatePicker onChange={onChange} />
   return <DatePicker picker={type} onChange={onChange} />
 }
 

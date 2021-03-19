@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 
 export default function handleLogout() {
   logout().then(() => {
-    history.push("/login");
-  });
+    history.push('/login')
+  })
   return (
     <Link className={styles.navLink} onClick={handleLogout}>
       Logout
     </Link>
-  );
+  )
 }

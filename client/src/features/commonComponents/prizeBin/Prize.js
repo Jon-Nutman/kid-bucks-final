@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import styles from './PrzBinRedeemModal.module.css';
-import { useDispatch } from "react-redux";
-import { addPrizeToCart, selectPrizes } from './prizeCartSlice';
-
+import React, { useState } from 'react'
+import styles from './PrzBinRedeemModal.module.css'
+import { useDispatch } from 'react-redux'
+import { addPrizeToCart, selectPrizes } from './prizeCartSlice'
 
 export default function Prize(props) {
+  const dispatch = useDispatch()
 
-    
-
-    const dispatch = useDispatch();
-
-
-      return (
+  return (
     <ul className={styles.prizeCard}>
       <li key={props.id}>
-        <img className={styles.imgThumb} src={props.prize.img.normal} />{" "}
-        <br />
+        <img className={styles.imgThumb} src={props.prize.img.normal} /> <br />
         <p>{props.prize.title}</p> <br />
         {<p className={styles.yellowline}></p>}
         {<span className={styles.points}>{props.prize.points}</span>} <br />
@@ -23,9 +17,9 @@ export default function Prize(props) {
           className={styles.addBtn}
           onClick={() => dispatch(addPrizeToCart(props.prize))}
         >
-        Add Prize
+          Add Prize
         </button>
       </li>
     </ul>
-  );
+  )
 }

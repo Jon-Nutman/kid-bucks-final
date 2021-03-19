@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./PrzBnPointBalance.module.css";
+import React from 'react'
+import styles from './PrzBnPointBalance.module.css'
 
 export const PrzBnPointBalance = () => {
   return (
@@ -9,5 +9,5 @@ export const PrzBnPointBalance = () => {
         <h1 className={styles.balance}>50 pts</h1>
       </div>
     </>
-  );
-};
+  )
+}

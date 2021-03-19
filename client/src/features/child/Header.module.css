@@ -14,7 +14,7 @@
   /* flex-grow: 1; */
   margin: 24px 24px 24px 8px;
   width: 100px;
-  height:100px;
+  height: 100px;
   color: azure;
   background-color: rgb(37, 16, 81);
   border-radius: 50%;
@@ -24,7 +24,6 @@
 }
 
 .headerGreet {
-  
   flex-grow: 3;
   margin: 16px;
 }

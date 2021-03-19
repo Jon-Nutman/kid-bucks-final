@@ -1,19 +1,19 @@
-import React, { useState } from "react"
-import Modal from "react-modal"
-import { Form, Input, InputNumber, Button } from "antd"
-import SwitchablePicker from "./SwitchablePicker"
-import request from "../../utils/request" 
+import React, { useState } from 'react'
+import Modal from 'react-modal'
+import { Form, Input, InputNumber, Button } from 'antd'
+import SwitchablePicker from './SwitchablePicker'
+import request from '../../utils/request'
 
 const { TextArea } = Input
 
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   },
 }
 
@@ -32,11 +32,11 @@ export default function AddGoalModal(props) {
     setIsOpen(false)
   }
 
-  const [todoTitle, setTodoTitle] = useState("")
-  const [todoPoints, setTodoPoints] = useState("")
-  const [todoDescription, setTodoDescription] = useState("")
+  const [todoTitle, setTodoTitle] = useState('')
+  const [todoPoints, setTodoPoints] = useState('')
+  const [todoDescription, setTodoDescription] = useState('')
   const [todos, setTodos] = useState({})
-  const [type, setType] = useState("time")
+  const [type, setType] = useState('time')
   const [time, setTime] = useState()
 
   function handleSubmit(e) {
@@ -53,8 +53,6 @@ export default function AddGoalModal(props) {
     console.log(obj)
 
     request.post('/goals', obj)
-
-
   }
 
   return (

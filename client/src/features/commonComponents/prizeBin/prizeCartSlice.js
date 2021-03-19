@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 export const prizeCartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState: {
-    cart:[],
+    cart: [],
     total: 0,
-    totalPoints:0,
+    totalPoints: 0,
   },
 
   reducers: {
@@ -15,17 +15,17 @@ export const prizeCartSlice = createSlice({
     // immutable state based off those changes
 
     addPrizeToCart: (state, action) => {
-      const prize = { ...action.payload };
-      const foundPrize = state.cart.find((item) => item.id === prize.id);
+      const prize = { ...action.payload }
+      const foundPrize = state.cart.find((item) => item.id === prize.id)
 
       if (!foundPrize) {
-        state.cart.push({ ...prize, qty: 1 });
-        state.total += 1;
+        state.cart.push({ ...prize, qty: 1 })
+        state.total += 1
         state.totalPoints += prize.points
-        console.log("test");
+        console.log('test')
       } else {
-        foundPrize.qty = foundPrize.qty + 1;
-        state.total += 1;
+        foundPrize.qty = foundPrize.qty + 1
+        state.total += 1
         state.totalPoints += foundPrize.price
       }
       //   console.log(state.total);
@@ -33,27 +33,31 @@ export const prizeCartSlice = createSlice({
       // const logger=(v) =>consloe.log(JSON.parse(JSON.stringify(v)))
     },
     decrement: (state, action) => {
-        const prize = { ...action.payload };
-        const foundPrize = state.cart.find((item) => item.id == prize.id);
-        foundPrize.qty -=1;  
-        state.totalPoints -= prize.price
-      },
-      increment: (state, action) => {
-        const prize = { ...action.payload };
-        const foundPrize = state.cart.find((item) => item.id == prize.id);
-        foundPrize.qty +=1; 
-        state.totalPoints += prize.price 
-      },
+      const prize = { ...action.payload }
+      const foundPrize = state.cart.find((item) => item.id == prize.id)
+      foundPrize.qty -= 1
+      state.totalPoints -= prize.price
+    },
+    increment: (state, action) => {
+      const prize = { ...action.payload }
+      const foundPrize = state.cart.find((item) => item.id == prize.id)
+      foundPrize.qty += 1
+      state.totalPoints += prize.price
+    },
     removePrize: (state, action) => {
-      
-      const removePrize = action.payload;
-      console.log(removePrize);
-      state.cart = state.cart.filter((item) => item.id != removePrize.id);
+      const removePrize = action.payload
+      console.log(removePrize)
+      state.cart = state.cart.filter((item) => item.id != removePrize.id)
     },
   },
-});
+})
 
-export const { addPrizeToCart, removePrize ,decrement,increment} = prizeCartSlice.actions;
+export const {
+  addPrizeToCart,
+  removePrize,
+  decrement,
+  increment,
+} = prizeCartSlice.actions
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -69,9 +73,9 @@ export const { addPrizeToCart, removePrize ,decrement,increment} = prizeCartSlic
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCart = (state) => state.cart.cart;
+export const selectCart = (state) => state.cart.cart
 export const selectTotal = (state) => state.total.total
 export const selecttotalPoints = (state) => state.total.totalPrice
 // export const selectCartVisibility = (state) => state.cartV.cartVisibility;
 
-export default prizeCartSlice.reducer;
+export default prizeCartSlice.reducer

@@ -1,11 +1,10 @@
-
 import React from 'react'
-import { Tabs } from "antd"
-import AddGoalModal from "../parent/AddGoalModal"
-import AddPrizeModal from "../parent/AddPrizeModal"
-import GoalList from "../commonComponents/GoalList"
-import PrizesList from "../commonComponents/PrizesList"
-import styles from "../parent/Tabs.module.css"
+import { Tabs } from 'antd'
+import AddGoalModal from '../parent/AddGoalModal'
+import AddPrizeModal from '../parent/AddPrizeModal'
+import GoalList from '../commonComponents/GoalList'
+import PrizesList from '../commonComponents/PrizesList'
+import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 
 const { TabPane } = Tabs
@@ -17,24 +16,24 @@ function callback(key) {
   console.log(key)
 }
 const validateMessages = {
-  required: "${label} is required!",
+  required: '${label} is required!',
   types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!',
   },
   number: {
-    range: "${label} must be between ${min} and ${max}",
+    range: '${label} must be between ${min} and ${max}',
   },
 }
 
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   },
 }
 export default function ChildTab() {
@@ -45,14 +44,11 @@ export default function ChildTab() {
   function handleSubmit(e) {
     e.preventDefault()
     const obj = {
-      name:''
-      
+      name: '',
     }
     console.log(obj)
 
     // request.post('/goals', obj)
-
-
   }
   return (
     <div>
@@ -83,7 +79,7 @@ export default function ChildTab() {
         </TabPane>
         <TabPane className={styles.componentContainer} tab="+" key="3">
           <div>
-        <AddChild />
+            <AddChild />
           </div>
         </TabPane>
       </Tabs>
@@ -91,4 +87,3 @@ export default function ChildTab() {
     </div>
   )
 }
-

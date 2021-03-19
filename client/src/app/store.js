@@ -12,6 +12,5 @@ export default configureStore({
     auth: authReducer,
     goal: goalReducer,
     prize: prizeReducer,
-
   },
 })

@@ -1,29 +1,27 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-  }
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
 
 h1 {
-    letter-spacing: 1px;
-    margin: 5px;
-  }
+  letter-spacing: 1px;
+  margin: 5px;
+}
 
 h4 {
-    margin: 5px;
-    text-transform: uppercase;
-  }
+  margin: 5px;
+  text-transform: uppercase;
+}
 
-  .balanceWrapper{
-
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
+.balanceWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

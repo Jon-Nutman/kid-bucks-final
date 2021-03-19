@@ -13,17 +13,17 @@ import { createSlice } from '@reduxjs/toolkit'
 export const goalSlice = createSlice({
   name: 'goal',
   initialState: {
-    goals: []
+    goals: [],
   },
   reducers: {
     addGoal: (state, action) => {
       const newGoal = {
         id: Date.now(),
         description: action.payload,
-        completed: false
+        completed: false,
       }
-      state.goals.push( newGoal)
-    }
+      state.goals.push(newGoal)
+    },
   },
 })
 

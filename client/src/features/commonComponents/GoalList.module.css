@@ -1,27 +1,26 @@
-.pointGoalAvatar{
-    width: 50px;
-    height: 50px;
-    background-color: blue;
-    color: #FFF;
-    border-radius: 50%;
-    font-size: 32px;
-    text-align: center;
-    text-justify: center;
+.pointGoalAvatar {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 32px;
+  text-align: center;
+  text-justify: center;
 }
 
-.goalListWrap{
-    display: flex;
-    margin: 10px;
+.goalListWrap {
+  display: flex;
+  margin: 10px;
 }
 
-.goalCard{
-
-    padding: 5px;
-    margin: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 30vw;
-    height:fit-content;
-    min-height: 40px;
+.goalCard {
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30vw;
+  height: fit-content;
+  min-height: 40px;
 }

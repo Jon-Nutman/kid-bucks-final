@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import ReactDOM from "react-dom"
-import Modal from "react-modal"
-import { Form, Input, InputNumber, Button } from "antd"
-import request from "../../utils/request"
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import Modal from 'react-modal'
+import { Form, Input, InputNumber, Button } from 'antd'
+import request from '../../utils/request'
 
 const layout = {
   // labelCol: {
@@ -13,20 +13,20 @@ const layout = {
   // },
 }
 const validateMessages = {
-  required: "${label} is required!",
+  required: '${label} is required!',
   types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!',
   },
   number: {
-    range: "${label} must be between ${min} and ${max}",
+    range: '${label} must be between ${min} and ${max}',
   },
 }
 
 export default function AddChild() {
-  const [childName, setChildName] = useState("")
-  const [childUsername, setUsername] = useState("")
-  const [childPassword, setPassword] = useState("")
+  const [childName, setChildName] = useState('')
+  const [childUsername, setUsername] = useState('')
+  const [childPassword, setPassword] = useState('')
 
   const onFinish = (values) => {
     console.log(values)
@@ -40,7 +40,7 @@ export default function AddChild() {
     }
     console.log(obj)
 
-    request.post("/registration/child", obj)
+    request.post('/registration/child', obj)
   }
 
   return (
@@ -55,7 +55,7 @@ export default function AddChild() {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={["user", "name"]}
+            name={['user', 'name']}
             label="Name"
             rules={[
               {
@@ -69,24 +69,24 @@ export default function AddChild() {
           <Form.Item
             label="Username"
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input onChange={(e) => setUsername(e.target.value)} />
           </Form.Item>
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
 
           <Form.Item
-            name={["user", "age"]}
+            name={['user', 'age']}
             label="Age(optional)"
             rules={[
               {
-                type: "number",
+                type: 'number',
                 min: 0,
                 max: 99,
               },

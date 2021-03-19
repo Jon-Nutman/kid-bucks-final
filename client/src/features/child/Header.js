@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import styles from "./Header.module.css";
+import React from 'react'
+import { useState } from 'react'
+import styles from './Header.module.css'
 
 export default function Header() {
-  const [userName, setUserName] = useState("Kiddo");
+  const [userName, setUserName] = useState('Kiddo')
 
   return (
     <>
@@ -15,5 +15,5 @@ export default function Header() {
         </div>
       </div>
     </>
-  );
+  )
 }
