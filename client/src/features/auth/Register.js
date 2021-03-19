@@ -1,54 +1,61 @@
-import React from "react";
-import { useState } from "react";
-import styles from "./Register.module.css";
-import { Form, Input, Button } from "antd";
+import React from 'react'
+import { useState } from 'react'
+import styles from './Register.module.css'
+import { Form, Input, Button } from 'antd'
+import { useAuth } from './auth'
+import { useHistory } from 'react-router-dom'
 // import validator from "validator";
 
-export default function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [firstNameError, setFirstNameError] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [lastNameError, setLastNameError] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userNameError, setUserNameError] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+export default function Register(props) {
+  const { signup } = useAuth()
+  const history = useHistory()
+  const [firstName, setFirstName] = useState('')
+  const [firstNameError, setFirstNameError] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [lastNameError, setLastNameError] = useState('')
+  const [userName, setUserName] = useState('')
+  const [userNameError, setUserNameError] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPasswordError, setConfirmPasswordError] = useState('')
+  const [email, setEmail] = useState('')
+  const [emailError, setEmailError] = useState('')
 
   function handleSubmit(e) {
-    e.preventDefault();
-    if (firstName === "") {
-      setFirstNameError("must be entered");
+    console.log('a')
+    if (firstName === '') {
+      setFirstNameError('must be entered')
     } else {
-      setFirstNameError("");
+      setFirstNameError('')
     }
-    e.preventDefault();
-    if (lastName === "") {
-      setLastNameError("must be entered");
+    if (lastName === '') {
+      setLastNameError('must be entered')
     } else {
-      setLastNameError("");
+      setLastNameError('')
     }
-    e.preventDefault();
-    if (userName === "") {
-      setUserNameError("must be entered");
+
+    if (userName === '') {
+      setUserNameError('must be entered')
     } else {
-      setUserNameError("");
+      setUserNameError('')
     }
-    e.preventDefault();
-    if (password === "") {
-      setPasswordError("must be entered");
+
+    if (password === '') {
+      setPasswordError('must be entered')
     } else {
-      setPasswordError("");
+      setPasswordError('')
     }
-    e.preventDefault();
+
     if (confirmPassword !== password) {
-      setConfirmPasswordError("passwords must match");
+      setConfirmPasswordError('passwords must match')
     } else {
-      setConfirmPasswordError("");
+      setConfirmPasswordError('')
     }
+
+    signup(userName, password).then(() => {
+      props.onSignup()
+    })
     // e.preventDefault();
     // if (validator.isEmail(email)) {
     //   setEmailError("");
@@ -58,21 +65,21 @@ export default function Register() {
   }
 
   function handleClick() {
-    setFirstName("");
-    setLastName("");
-    setUserName("");
-    setPassword("");
-    setConfirmPassword("");
-    setEmail("");
+    setFirstName('')
+    setLastName('')
+    setUserName('')
+    setPassword('')
+    setConfirmPassword('')
+    setEmail('')
   }
 
   return (
     <div>
-      <Form className={styles.theForm} onSubmit={handleSubmit}>
+      <Form className={styles.theForm} onFinish={handleSubmit}>
         <label
           htmlFor="name"
           className={
-            styles.firstNameError ? "text-label text-label-red" : "text-label"
+            styles.firstNameError ? 'text-label text-label-red' : 'text-label'
           }
         >
           <h4> {firstNameError}</h4>
@@ -88,7 +95,7 @@ export default function Register() {
         <label
           htmlFor="lastname"
           className={
-            styles.lastNameError ? "text-label text-label-red" : "text-label"
+            styles.lastNameError ? 'text-label text-label-red' : 'text-label'
           }
         >
           <h4>{lastNameError}</h4>
@@ -104,7 +111,7 @@ export default function Register() {
         <label
           htmlFor="username"
           className={
-            styles.userNameError ? "text-label text-label-red" : "text-label"
+            styles.userNameError ? 'text-label text-label-red' : 'text-label'
           }
         >
           <h4>{userNameError}</h4>
@@ -120,7 +127,7 @@ export default function Register() {
         <label
           htmlFor="password"
           className={
-            styles.passwordError ? "text-label text-label-red" : "text-label"
+            styles.passwordError ? 'text-label text-label-red' : 'text-label'
           }
         >
           <h4>{passwordError}</h4>
@@ -137,8 +144,8 @@ export default function Register() {
           htmlFor="confirmpassword"
           className={
             styles.confirmPasswordError
-              ? "text-label text-label-red"
-              : "text-label"
+              ? 'text-label text-label-red'
+              : 'text-label'
           }
         >
           <h4>{confirmPasswordError}</h4>
@@ -154,7 +161,7 @@ export default function Register() {
         <label
           htmlFor="email"
           className={
-            styles.emailError ? "text-label text-label-red" : "text-label"
+            styles.emailError ? 'text-label text-label-red' : 'text-label'
           }
         >
           <h4>{emailError}</h4>
@@ -167,16 +174,9 @@ export default function Register() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <div>
-          <Button
-            type="submit"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            Submit
-          </Button>
+          <Button htmlType="submit">Submit</Button>
         </div>
       </Form>
     </div>
-  );
+  )
 }
