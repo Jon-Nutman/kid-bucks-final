@@ -6,16 +6,18 @@ const router = express.Router()
 
 router.post("/prizes", async (req, res) => {
   console.log(req.body)
-  const { title, description, points, prize_thumbnail } = req.body
+  const { title, description, points, prize_thumbnail, status } = req.body
   await knex.raw(
     `
-  INSERT INTO prizes (title, description, points, prize_thumbnail)
+  INSERT INTO prizes (title, description, points, prize_thumbnail, status)
   VALUES (?,?,?,?);
   `,
-    [title, description, points, prize_thumbnail]
+    [title, description, points, prize_thumbnail, status]
   )
   res.json({ message: "Your minions have been informed about their rewards" })
 })
+
+// GET REQ's
 
 router.get("/prizes", async (req,res) => {
   // console.log(req.user.id)
@@ -30,5 +32,25 @@ router.get("/prizes", async (req,res) => {
   )
 res.json(prizes.rows)
 })
+
+router.get("/prizes-redeemed", async (req, res) => {
+
+  console.log(req.body)
+
+  const prizes = await knex.raw(
+
+    `
+    SELECT * FROM prizes
+    WHERE prizes.status='redeemed'
+    `
+  )
+  res.json({ message: "Its time to pay the minions" })
+})
+
+// DELETE REQ's
+
+
+
+
 
 export default router
