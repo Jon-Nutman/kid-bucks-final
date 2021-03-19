@@ -1,39 +1,27 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import AuthRoute from "./features/auth/AuthRoute";
-// import { Counter } from "./features/counter/Counter";
-import { Users } from "./features/users/Users";
-// import { LoginSignup } from "./features/auth/LoginSignup";
-import LoginTab from "./features/auth/LoginTab";
-import ParentDashboardPage from "./features/parent/ParentDashboardPage";
-import ChildDashboardPage from "./features/child/ChildDashboardPage";
-import Register from "./features/register/Register";
-import "antd/dist/antd.css";
-import ModalTest from "./features/sandbox/Sandbox";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+import AuthRoute from './features/auth/AuthRoute'
+import { Users } from './features/users/Users'
+import LoginTab from './features/auth/LoginTab'
+import ParentDashboardPage from './features/parent/ParentDashboardPage'
+import ChildDashboardPage from './features/child/ChildDashboardPage'
+import Register from './features/auth/Register'
+import 'antd/dist/antd.css'
+import ModalTest from './features/sandbox/Sandbox'
+import Navbar from './features/commonComponents/Navbar'
 
 export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Login</Link>
-            </li>
-            <li>
-              <Link to="/parent-dashboard">Pavlov</Link>
-            </li>
-            <li>
-              <Link to="/child-dashboard">Dogs</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-          <LoginTab />
+            <LoginTab />
           </Route>
           <Route path="/login">
             <LoginTab />
@@ -60,5 +48,5 @@ export default function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }

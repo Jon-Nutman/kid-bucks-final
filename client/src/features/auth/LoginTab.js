@@ -1,29 +1,29 @@
-import React from "react";
-import { Tabs } from "antd";
-import styles from "./LoginSignup.module.css";
-import Register from "../register/Register";
-import { LoginSignup } from "./LoginSignup";
+import React, { useState } from 'react'
+import { Tabs } from 'antd'
+import styles from './LoginSignup.module.css'
+import Register from './Register'
+import { LoginSignup } from './LoginSignup'
 // import styles from "./Tabs.module.css"
 
-const { TabPane } = Tabs;
-
-function callback(key) {
-  console.log(key);
-}
+const { TabPane } = Tabs
 
 export default function LoginTab() {
+  const [tab, setTab] = useState('1')
+  function onTabChange(key) {
+    setTab(key)
+  }
   return (
     <div>
-      <Tabs onChange={callback} type="card">
+      <Tabs activeKey={tab} onChange={onTabChange} type="card">
         <TabPane className={styles.componentContainer} tab="Login" key="1">
           <LoginSignup />
         </TabPane>
         <TabPane className={styles.componentContainer} tab="Sign up" key="2">
           <div>
-            <Register />
+            <Register onSignup={() => setTab('1')} />
           </div>
         </TabPane>
       </Tabs>
     </div>
-  );
+  )
 }

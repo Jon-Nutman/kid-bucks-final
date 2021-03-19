@@ -1,27 +1,26 @@
-import React from "react";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import request from "../../utils/request";
-import { Form, Input, Button } from "antd";
-import { useAuth } from "./auth";
+import React from 'react'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import request from '../../utils/request'
+import { Form, Input, Button } from 'antd'
+import { useAuth } from './auth'
 
 export function LoginSignup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-  const { login } = useAuth();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const history = useHistory()
+  const { login } = useAuth()
 
   const handleSubmit = (e) => {
-    console.log("submitted", password, username);
-
+    console.log('submitted', password, username)
     // e.preventDefault();
     login(username, password).then((r) => {
-      history.push("/parent-dashboard");
-    });
-  };
+      history.push('/parent-dashboard')
+    })
+  }
   function handleClick() {
-    setUsername("");
-    setPassword("");
+    setUsername('')
+    setPassword('')
   }
 
   return (
@@ -52,5 +51,5 @@ export function LoginSignup() {
         </Form.Item>
       </Form>
     </>
-  );
+  )
 }
