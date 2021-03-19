@@ -9,7 +9,6 @@ import { createSalt } from '../utils/auth.js'
 router.post('/registration/child', async (req, res) => {
   const { username, password } = req.body
   const userId = req.user.id
-  console.log(req.body)
   const salt = createSalt(20)
   const hashedPassword = sha512(password + salt)
   const checkIfUserExistsSql = `SELECT * FROM users WHERE username = ?;`
@@ -29,6 +28,10 @@ router.post('/registration/child', async (req, res) => {
       userId,
       false,
     ])
+    // childId...
+    // const addPrizeBinSQL = `INSERT INTO prize_bins (user_id) VALUES (?)`
+    // conn.raw(addPrizeBinSQL, [childId])
+    // prizeBin addition based on newChild
     res.status(201).json({ message: 'user successfully created' })
   }
 })

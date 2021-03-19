@@ -5,12 +5,14 @@ import authRoutes from './routes/auth.js'
 import goalsRoutes from './routes/goals.js'
 import prizesRoutes from './routes/prizes.js'
 import attachUser from './middleware/user.js'
+import logger from './middleware/logger.js'
 const app = express()
 const PORT = 3001
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(attachUser)
+app.use(logger)
 
 app.use('/api', userRoutes)
 app.use('/api', authRoutes)

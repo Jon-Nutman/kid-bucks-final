@@ -1,10 +1,26 @@
-import express from "express"
-import knex from "../db.js"
+import express from 'express'
+import knex from '../db.js'
 const router = express.Router()
+
+// prizes that belong to prize bin
+router.get('/prize-bins/:childId', async (req, res) => {
+  const childId = req.params.childId
+  res.json({ message: 'example' })
+})
+
+router.delete('/prizes/:prizeId', async (req, res) => {
+  const prizId = req.params.prizeId
+  res.json({ message: 'example' })
+})
+
+router.patch('/prizes/:prizeId', async (req, res) => {
+  const prizeId = req.params.prizeId
+  res.json({ message: 'example' })
+})
 
 // POST REQ
 
-router.post("/prizes", async (req, res) => {
+router.post('/prizes', async (req, res) => {
   console.log(req.body)
   const { title, description, points, prize_thumbnail } = req.body
   await knex.raw(
@@ -14,13 +30,12 @@ router.post("/prizes", async (req, res) => {
   `,
     [title, description, points, prize_thumbnail]
   )
-  res.json({ message: "Your minions have been informed about their rewards" })
+  res.json({ message: 'Your minions have been informed about their rewards' })
 })
 
-router.get("/prizes", async (req,res) => {
+router.get('/prizes', async (req, res) => {
   // console.log(req.user.id)
   const prizes = await knex.raw(
-    
     `
     SELECT * FROM prizes
     WHERE id = ?
@@ -28,7 +43,10 @@ router.get("/prizes", async (req,res) => {
     `,
     [1]
   )
-res.json(prizes.rows)
+  res.json(prizes.rows)
 })
+
+// prize requested placeholder
+router.get('/prizes/requested', async (req, res) => {})
 
 export default router
