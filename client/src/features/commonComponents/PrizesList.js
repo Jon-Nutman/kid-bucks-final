@@ -11,14 +11,14 @@ import {
 } from './prizeBin/prizeSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
-export default function PrizeList(props) {
+export default function PrizeList(id) {
   const prizes = useSelector(selectPrizes)
   const dispatch = useDispatch()
 
-  console.log(prizes)
+  console.table(prizes)
 
   useEffect(() => {
-    dispatch(prizesAsync())
+    dispatch(prizesAsync(id))
   }, [])
   // const prizes = [
   //   {
@@ -47,7 +47,7 @@ export default function PrizeList(props) {
     <div className="prizeListWrap">
       <ul className={styles.prizesUl}>
         {prizes.map((prize) => (
-          <li key={prize.id} className={styles.li}>
+          <li key={prize.prize_bin_id} className={styles.li}>
             {/* <span>
               <img src={prize.avatar} alt="prize image" />
             </span> */}
