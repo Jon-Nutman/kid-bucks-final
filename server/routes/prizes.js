@@ -18,12 +18,6 @@ router.get("/prize-bins/:childId", async (req, res) => {
   res.json(prize_bins.rows);
 });
 
-// select u.username, p.prizename, p.points from prizebin pb
-// join prize p on pb.prize_id = p.prize_id
-// join users u on pb.user_id = u.user_id
-
-
-// this delete is not deleting the prizes from the database.  SQL works in beekeeper.
 router.delete("/prizes/:prizeId", async (req, res) => {
   const prizeId = req.params.prizeId;
   await knex.raw(
@@ -62,10 +56,8 @@ router.get("/prizes/", async (req, res) => {
   const prizes = await knex.raw(
     `
     SELECT * FROM prizes
-    WHERE id = ?
-
     `,
-    [childId]
+    []
   );
   res.json(prizes.rows);
 });

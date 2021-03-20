@@ -2,9 +2,6 @@ import express from "express"
 import knex from "../db.js"
 const router = express.Router()
 
-// parent_id: req.user
-// child_id: childId
-// ?status=
 router.get("/goals/:childId", async (req, res) => {
   const childId = req.params.childId
   console.log(childId)

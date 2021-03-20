@@ -17,7 +17,7 @@ export const prizeSlice = createSlice({
 export const { setPrizes } = prizeSlice.actions
 
 export const prizesAsync = (id) => (dispatch) => {
-  request.get('/prize-bins/'+id).then((response) => {
+  request.get('/prizes').then((response) => {
     dispatch(setPrizes(response.data))
   })
 }

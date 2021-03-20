@@ -1,35 +1,49 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-// const obj = {
-//   title: todoTitle,
-//   description: todoDescription,
-//   deadline: '01-20-2020',
-//   points: todoPoints,
-//   status: 'not_started',
-//   parent_id: 1,
-//   child_id: 2,
-// }
+import request from '../../../utils/request'
 
 export const goalSlice = createSlice({
   name: 'goal',
   initialState: {
-    goals: [],
+    goals: []
   },
   reducers: {
-    addGoal: (state, action) => {
-      const newGoal = {
-        id: Date.now(),
-        description: action.payload,
-        completed: false,
-      }
-      state.goals.push(newGoal)
-    },
+    setGoals: (state, action) => {
+      state.goals = action.payload
+    }
   },
 })
 
-console.log(goalSlice)
+export const { setGoals } = goalSlice.actions
 
-export const { addGoal } = goalSlice.actions
+export const getGoals = () => dispatch => {
+  request.get('/goals').then(resp => {
+    console.log('%c FROM the GET request 👇', 'color: purple; font-size: 30px')
+    dispatch(setGoals(resp.data))
+  })
+}
+
+export const deleteGoal = (id) => async dispatch => {
+  await request.delete('/api/goals/' + id)
+  dispatch(getGoals())
+}
+
+export const updateGoalStatus = (id, status) => async dispatch => {
+  const newStatus = status == 'completed' ? 'active' : 'completed'
+  await request.patch('/api/goals/' + id, {status: newStatus})
+  dispatch(getGoals())
+}
+
+// notice how I can use object shorthand to simplify sending up the same name!
+export const updateGoalDescription = (id, title) => async dispatch => {
+  alert(title)
+  await request.patch('/api/goals/' + id, {title})
+  dispatch(getGoals())
+}
+
+export const updateGoal = (id, status) => async dispatch => {
+  await request.update('/api/goals/' + id, {status: status})
+  dispatch(getGoals())
+}
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
