@@ -31,7 +31,7 @@ export default function ChildDashboardPage() {
         <div className={styles.prizeBinContain}>
           <PrzBnPointBalance />
           <div className={styles.prizeListContainer}>
-            <PrizesList />
+            <PrizesList id={goals.child_id}/>
           </div>
           <div className={styles.przRedemption}>
             <PrzBinRedeemModal />
