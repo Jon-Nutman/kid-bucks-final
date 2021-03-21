@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ['goals', 'prizes', 'prize_bins', 'users', 'prize_redemption']
+const tables = ['goals', 'prizes', 'prize_bins', 'users']
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -31,6 +31,7 @@ async function main() {
     table.string('password', 128)
     table.string('salt', 20)
     table.boolean('is_admin')
+    table.integer('total_points').nullable()
     table.integer('parent_id').unsigned().nullable()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
   })
@@ -69,16 +70,16 @@ async function main() {
   })
 
   // DOTTIES NOTES: The table below will allow as a relationship table 
-  // so that parents can see what prizes their children want to redeem
+  // so that parents can see what prizes their children want to redeem.
 
-
-  // await conn.schema.createTable(`prize_redemption`, (table) => {
-  //   table.increments('id')
-  //   table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
-  //   table
-  //     .foreign("prizes_id")
-  //     .references("prizes.id")
-  //     .onDelete("cascade");
+  await conn.schema.createTable(`prizes_redemption`, (table) => {
+    table.increments('id')
+    table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
+    table.integer('prize_id').unsigned()
+    table
+      .foreign("prizes_id")
+      .references("prizes.id")
+      .onDelete("cascade");
 
 
   // this is a big thing.  Just notes for now.
@@ -152,6 +153,11 @@ async function main() {
       'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
     prize_bin_id: 1,
   })
+  await conn('prizes_redemption').insert({
+    id: 1,
+    prizes_id: 1,
+  })
+  
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
 }
