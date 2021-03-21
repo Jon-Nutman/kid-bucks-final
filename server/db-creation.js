@@ -31,6 +31,7 @@ async function main() {
     table.string('password', 128)
     table.string('salt', 20)
     table.boolean('is_admin')
+    table.integer('total_points').nullable()
     table.integer('parent_id').unsigned().nullable()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
   })
@@ -60,6 +61,7 @@ async function main() {
     table.string('title', 128)
     table.string('description', 250)
     table.string('prize_thumbnail', 255)
+    table.boolean('prizes_persist')
     table.integer('prize_bin_id').unsigned()
     table
       .foreign('prize_bin_id')
@@ -69,15 +71,14 @@ async function main() {
 
   // DOTTIES NOTES: The table below will allow as a relationship table 
   // so that parents can see what prizes their children want to redeem
-
-
-  // await conn.schema.createTable(`prize_redemption`, (table) => {
-  //   table.increments('id')
-  //   table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
-  //   table
-  //     .foreign("prizes_id")
-  //     .references("prizes.id")
-  //     .onDelete("cascade");
+  await conn.schema.createTable(`prizes_redemption`, (table) => {
+    table.increments('id')
+    table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
+    table.integer('prize_id').unsigned()
+    table
+      .foreign("prizes_id")
+      .references("prizes.id")
+      .onDelete("cascade");
 
 
   // this is a big thing.  Just notes for now.
