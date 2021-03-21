@@ -60,6 +60,7 @@ async function main() {
     table.string('title', 128)
     table.string('description', 250)
     table.string('prize_thumbnail', 255)
+    table.boolean('prizes_persist')
     table.integer('prize_bin_id').unsigned()
     table
       .foreign('prize_bin_id')
