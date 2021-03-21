@@ -73,6 +73,7 @@ async function main() {
   await conn.schema.createTable(`prizes_redemption`, (table) => {
     table.increments('id')
     table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
+    table.integer('prize_id').unsigned()
     table
       .foreign("prizes_id")
       .references("prizes.id")
