@@ -41,7 +41,7 @@ async function main() {
     table.timestamp('created_at').defaultTo(conn.fn.now())
     table.timestamp('deadline')
     table.integer('points').unsigned()
-    table.enu('status', ['not_complete', 'complete', 'reported', 'redeemed'])
+    table.enu('status', ['complete', 'not_started', 'active'])
     table.integer('parent_id').unsigned()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
     table.integer('child_id').unsigned()
@@ -133,7 +133,7 @@ async function main() {
     title: 'wash and dress',
     description: 'Wash your face, brush your teeth, dress your best.',
     points: 5,
-    status: 'not_complete',
+    status: 'not_started',
     parent_id: 1,
     child_id: 2,
     deadline: deadline,
