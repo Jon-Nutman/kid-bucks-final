@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ['goals', 'prizes', 'prize_bins', 'users']
+const tables = ['goals', 'prizes', 'prize_bins', 'users', 'prize_redemption']
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -66,6 +66,19 @@ async function main() {
       .references('prize_bins.id')
       .onDelete('cascade')
   })
+
+  // DOTTIES NOTES: The table below will allow as a relationship table 
+  // so that parents can see what prizes their children want to redeem
+
+
+  // await conn.schema.createTable(`prize_redemption`, (table) => {
+  //   table.increments('id')
+  //   table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
+  //   table
+  //     .foreign("prizes_id")
+  //     .references("prizes.id")
+  //     .onDelete("cascade");
+
 
   // this is a big thing.  Just notes for now.
 

@@ -1,4 +1,5 @@
 import express from "express";
+import db from "../db.js";
 import knex from "../db.js";
 const router = express.Router();
 
@@ -8,20 +9,15 @@ router.get("/prize-bins/:childId", async (req, res) => {
   console.log(childId);
   const prize_bins = await knex.raw(
     `
-      SELECT p.title, p.description, p.points, u.id as child_id, pb.id as prize_bin_id from prize_bins pb		
-      INNER JOIN users u ON pb.user_id= u.id
-      INNER JOIN prizes p ON pb.id= p.prize_bin_id
-      WHERE u.id = ?
+    SELECT p.title, p.description, p.status, p.points, p.prize_thumbnail, u.is_admin, u.id as child_id, pb.id as prize_bin_id from prize_bins pb	
+    INNER JOIN users u ON pb.user_id= u.id
+    INNER JOIN prizes p ON pb.id= p.prize_bin_id
+    WHERE u.id = ?
     `,
     [childId]
   );
   res.json(prize_bins.rows);
 });
-
-// select u.username, p.prizename, p.points from prizebin pb
-// join prize p on pb.prize_id = p.prize_id
-// join users u on pb.user_id = u.user_id
-
 
 // this delete is not deleting the prizes from the database.  SQL works in beekeeper.
 router.delete("/prizes/:prizeId", async (req, res) => {
@@ -35,9 +31,12 @@ router.delete("/prizes/:prizeId", async (req, res) => {
   res.json({ message: `your prize number ${prizeId} was deleted` });
 });
 
-//not sure what we are patching with the prizes.
 router.patch("/prizes/:prizeId", async (req, res) => {
+
+  const prizePropertiesToUpdate = req.body;
   const prizeId = req.params.prizeId;
+  const updatePrize = 
+  await db.table("prizes").where({ id: prizeId }).update(prizePropertiesToUpdate);
   res.json({ message: "your prize has been updated" });
 });
 
@@ -70,7 +69,7 @@ router.get("/prizes/", async (req, res) => {
   res.json(prizes.rows);
 });
 
-// prize requested placeholder
+// prize requested/redeemed placeholder
 router.get("/prizes/requested", async (req, res) => {
 
 
