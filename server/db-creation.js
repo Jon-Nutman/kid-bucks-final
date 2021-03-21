@@ -31,6 +31,7 @@ async function main() {
     table.string('password', 128)
     table.string('salt', 20)
     table.boolean('is_admin')
+    table.integer('total_points').nullable()
     table.integer('parent_id').unsigned().nullable()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
   })
