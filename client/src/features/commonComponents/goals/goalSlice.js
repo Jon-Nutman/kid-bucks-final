@@ -15,8 +15,8 @@ export const goalSlice = createSlice({
 
 export const { setGoals } = goalSlice.actions
 
-export const getGoals = () => dispatch => {
-  request.get('/goals').then(resp => {
+export const getGoals = () => async dispatch => {
+  await request.get('/goals').then(resp => {
     console.log('%c FROM the GET request 👇', 'color: purple; font-size: 30px')
     dispatch(setGoals(resp.data))
   })

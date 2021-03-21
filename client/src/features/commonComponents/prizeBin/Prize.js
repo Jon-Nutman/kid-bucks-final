@@ -8,11 +8,10 @@ export default function Prize(props) {
 
   return (
     <ul className={styles.prizeCard}>
-      <li key={props.id}>
+      <li>
         <img className={styles.imgThumb} src={props.prize.img.normal} /> <br />
         <p>{props.prize.title}</p> <br />
-        {<p className={styles.yellowline}></p>}
-        {<span className={styles.points}>{props.prize.points}</span>} <br />
+        <span className={styles.points}>{props.prize.points}</span> <br />
         <button
           className={styles.addBtn}
           onClick={() => dispatch(addPrizeToCart(props.prize))}

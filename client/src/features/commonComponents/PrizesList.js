@@ -44,10 +44,10 @@ export default function PrizeList(id) {
   // ];
 
   return (
-    <div className="prizeListWrap">
+    <div className={styles.prizeListWrap}>
       <ul className={styles.prizesUl}>
         {prizes.map((prize) => (
-          <li key={prize.prize_bin_id} className={styles.li}>
+          <li key={'prizeBin-' + Date.now()} className={styles.li}>
             {/* <span>
               <img src={prize.avatar} alt="prize image" />
             </span> */}

@@ -22,7 +22,7 @@ export default function GoalList(props) {
 
   return (
     <div className={styles.goalListWrap}>
-      {props.goals.map(goal => (
+      {goals.map(goal => (
         <GoalItem 
         key={'goal-' + goal.id} 
         className={styles.goalContainer} 

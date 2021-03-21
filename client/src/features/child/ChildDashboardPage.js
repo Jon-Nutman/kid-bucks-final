@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { selectGoals } from '../commonComponents/goals/goalSlice'
+import { selectPrizes } from '../commonComponents/prizeBin/prizeSlice'
 import Header from './Header'
+import goalItem from '../commonComponents/goals/GoalItem'
 import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
@@ -11,6 +13,7 @@ import styles from './ChildDashboardPage.module.css'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
+  const prizes = useSelector(selectPrizes)
   // selectGoals == state.goal.goals
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function ChildDashboardPage() {
       <Header />
       <div className={styles.childDashContain}>
         <div className={styles.goalListChildContain}>
-          <GoalList goals={goals} />
+          <GoalList id={goals.child_id} />
           <div className={styles.goalCompleteBtn}>
             <GoalCompleteBtn />
           </div>
@@ -31,7 +34,7 @@ export default function ChildDashboardPage() {
         <div className={styles.prizeBinContain}>
           <PrzBnPointBalance />
           <div className={styles.prizeListContainer}>
-            <PrizesList id={goals.child_id}/>
+            <PrizesList id={prizes.prize_bin_id}/>
           </div>
           <div className={styles.przRedemption}>
             <PrzBinRedeemModal />
