@@ -9,7 +9,7 @@ router.get('/users', async (request, response) => {
 })
 
 router.get('/users-children', async (request, response) => {
-  const parentId = request.users.id
+  const parentId = request.user.id
   const usersChildren = await conn.raw(`SELECT * FROM users
   WHERE is_admin = false AND parent_id = ?;`,
   [parentId])

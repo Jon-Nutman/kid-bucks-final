@@ -39,7 +39,7 @@ const customStyles = {
   },
 }
 export default function ChildTab() {
-  const yourChildren = request.get('/users')
+  const yourChildren = request.get('/users-children')
   console.log(yourChildren)
   
   return (
