@@ -8,6 +8,7 @@ const db = knex({
     password: '',
     database: 'kid_coin_db',
   },
+
   // debug: true,
 })
 

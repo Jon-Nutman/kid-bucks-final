@@ -49,8 +49,13 @@ export default function ChildTab() {
   function openModal() {
     setIsOpen(true)
   }
+  function handleRequest() {
+    // request.get('/')
+    // request.post('/', {})
+  }
   return (
     <div>
+      <button onClick={handleRequest}>make request...</button>
       <Tabs onChange={callback} type="card">
         <TabPane className={styles.componentContainer} tab="Child 1" key="1">
           <div>

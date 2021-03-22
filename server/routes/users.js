@@ -13,11 +13,11 @@ router.get('/test-user', async (request, response) => {
 })
 
 router.delete('/users/child/:childId', async (request, response) => {
-  const childId = req.params.childId
+  const childId = request.params.childId
   await conn.raw(
     `
     DELETE FROM users 
-    WHERE child_id=?;
+    WHERE id=?;
     `,
     [childId]
   )
@@ -28,6 +28,5 @@ router.delete('/users/child/:childId', async (request, response) => {
 //   const childlId = req.params.childId
 //   response.json({ message: 'child updated' })
 // })
-
 
 export default router
