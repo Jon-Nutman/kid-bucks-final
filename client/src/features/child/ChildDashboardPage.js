@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { selectGoals } from '../commonComponents/goals/goalSlice'
 import Header from './Header'
 import GoalList from '../commonComponents/GoalList'
@@ -8,9 +8,15 @@ import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
 import { PrzBnPointBalance } from './PrzBnPointBalance'
 import styles from './ChildDashboardPage.module.css'
+import {
+  getGoalsByChildId,
+  deleteGoalById,
+} from '../commonComponents/goals/goalSlice'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
+  const dispatch = useDispatch()
+  const childId = 2
   // selectGoals == state.goal.goals
 
   useEffect(() => {
@@ -18,12 +24,19 @@ export default function ChildDashboardPage() {
     console.table(goals)
   }, [goals])
 
+  useEffect(() => {
+    dispatch(getGoalsByChildId(childId))
+  }, [])
+
   return (
     <div className={styles.appChildView}>
       <Header />
       <div className={styles.childDashContain}>
         <div className={styles.goalListChildContain}>
-          <GoalList goals={goals} />
+          <GoalList
+            goals={goals}
+            onDelete={(id) => dispatch(deleteGoalById(id, childId))}
+          />
           <div className={styles.goalCompleteBtn}>
             <GoalCompleteBtn />
           </div>
@@ -31,7 +44,7 @@ export default function ChildDashboardPage() {
         <div className={styles.prizeBinContain}>
           <PrzBnPointBalance />
           <div className={styles.prizeListContainer}>
-            <PrizesList id={goals.child_id}/>
+            <PrizesList id={goals.child_id} />
           </div>
           <div className={styles.przRedemption}>
             <PrzBinRedeemModal />
