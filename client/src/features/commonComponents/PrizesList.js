@@ -10,8 +10,15 @@ import {
   prizesAsync,
 } from './prizeBin/prizeSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import request from '../../utils/request'
+
+
 
 export default function PrizeList(id) {
+  const yourPrizes = request.get('/prizes/:childId')
+  console.log(yourPrizes)
+
+
   const prizes = useSelector(selectPrizes)
   const dispatch = useDispatch()
 

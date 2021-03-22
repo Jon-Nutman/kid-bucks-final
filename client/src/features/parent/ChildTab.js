@@ -8,7 +8,7 @@ import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 import { useSelector } from 'react-redux'
 import { selectGoals } from '../commonComponents/goals/goalSlice'
-
+import request from '../../utils/request'
 
 const { TabPane } = Tabs
 
@@ -40,7 +40,6 @@ const customStyles = {
   },
 }
 export default function ChildTab() {
-
   const goals = useSelector(selectGoals)
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
