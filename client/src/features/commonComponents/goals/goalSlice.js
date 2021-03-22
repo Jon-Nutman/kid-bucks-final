@@ -29,7 +29,7 @@ export const getGoalsByChildId = (childId) => async (dispatch) => {
 
 export const deleteGoalById = (goalId, childId) => async (dispatch) => {
   await request.delete(`/goals/${goalId}`)
-  getGoalsByChildId(getGoalsByChildId(childId))
+  dispatch(getGoalsByChildId(childId))
 }
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
