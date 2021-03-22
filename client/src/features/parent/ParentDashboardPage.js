@@ -5,6 +5,7 @@ import ChildTab from './ChildTab'
 import { Tabs } from 'antd'
 import styles from './ParentDashboard.module.css'
 export default function ParentDashboardPage() {
+
   return (
     <div className={styles.container}>
       <div>

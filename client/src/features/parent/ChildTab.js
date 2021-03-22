@@ -6,6 +6,9 @@ import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
+import { useSelector } from 'react-redux'
+import { selectGoals } from '../commonComponents/goals/goalSlice'
+
 
 const { TabPane } = Tabs
 
@@ -37,6 +40,8 @@ const customStyles = {
   },
 }
 export default function ChildTab() {
+
+  const goals = useSelector(selectGoals)
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
@@ -57,7 +62,7 @@ export default function ChildTab() {
           <div>
             <AddGoalModal />
             <h1>Goal List</h1>
-            <GoalList />
+            <GoalList goals={goals} />
           </div>
           <div>
             <AddPrizeModal />
