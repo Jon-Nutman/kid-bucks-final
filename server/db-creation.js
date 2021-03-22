@@ -123,9 +123,10 @@ async function main() {
     const now = new Date()
     now.setDate(now.getDate() + 7)
     const dd = now.getDate()
-    const mm = now.getMonth()
+    const mm = now.getMonth() + 1
     const y = now.getFullYear()
-    return y + '-' + mm + '-' + dd
+    const newDate = mm + '-' + dd + '-' + y
+    return mm + '-' + dd + '-' + y
   }
   const deadline = getDateAWeekFromNow()
   await conn('goals').insert({
@@ -136,7 +137,7 @@ async function main() {
     status: 'not_started',
     parent_id: 1,
     child_id: 2,
-    // deadline: deadline,
+    deadline: deadline,
   })
   await conn('prize_bins').insert({
     id: 1,
