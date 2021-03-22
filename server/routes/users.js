@@ -7,6 +7,15 @@ router.get('/users', async (request, response) => {
   const users = await conn.raw(`SELECT * FROM users;`)
   response.json(users.rows)
 })
+
+router.get('/users-children', async (request, response) => {
+  const parentId = request.users.id
+  const usersChildren = await conn.raw(`SELECT * FROM users
+  WHERE is_admin = false AND parent_id = ?;`,
+  [parentId])
+  response.json(usersChildren.rows)
+})
+
 router.get('/test-user', async (request, response) => {
   console.log(request.user)
   response.json(request.user)
