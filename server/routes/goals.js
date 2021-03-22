@@ -22,11 +22,11 @@ router.get("/goals/:childId", async (req, res) => {
 router.delete("/goals/:goalId", async (req, res) => {
   const goalId = req.params.goalId;
   await db.raw(
-    (`
+    `
     DELETE FROM goals
     WHERE id=?
     `,
-    [goalId])
+    [goalId]
   );
   res.json({ message: "goal deleted!" });
 });
