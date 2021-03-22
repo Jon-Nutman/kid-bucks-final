@@ -41,13 +41,13 @@ router.patch('/goals/:goalId', async (req, res) => {
 // POST REQ
 
 router.post('/goals', async (req, res) => {
-  const { title, description, points, deadline, status, child_id } = req.body
+  const { title, description, points, status, child_id } = req.body
   await knex.raw(
     `
-    INSERT INTO goals (title, description, deadline, points, status, parent_id, child_id)
-    VALUES (?,?,?,?,?,?,?);
+    INSERT INTO goals (title, description, points, status, parent_id, child_id)
+    VALUES (?,?,?,?,?,?);
     `,
-    [title, description, deadline, points, status, req.user.id, child_id]
+    [title, description, points, status, req.user.id, child_id]
   )
   res.json({ message: 'Your minions have been informed about their tasks' })
 })

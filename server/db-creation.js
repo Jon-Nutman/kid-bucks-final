@@ -39,7 +39,7 @@ async function main() {
     table.string('title', 45)
     table.string('description', 250)
     table.timestamp('created_at').defaultTo(conn.fn.now())
-    table.timestamp('deadline')
+    // table.timestamp('deadline')
     table.integer('points').unsigned()
     table.enu('status', ['complete', 'not_started', 'active'])
     table.integer('parent_id').unsigned()
