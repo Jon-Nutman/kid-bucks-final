@@ -126,7 +126,7 @@ async function main() {
     const mm = now.getMonth() + 1
     const y = now.getFullYear()
     const newDate = mm + '-' + dd + '-' + y
-    return mm + '-' + dd + '-' + y
+    return newDate
   }
   const deadline = getDateAWeekFromNow()
   await conn('goals').insert({
