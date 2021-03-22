@@ -6,8 +6,9 @@ import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
+import { useSelector } from 'react-redux'
+import { selectGoals } from '../commonComponents/goals/goalSlice'
 import request from '../../utils/request'
-
 
 const { TabPane } = Tabs
 
@@ -39,17 +40,28 @@ const customStyles = {
   },
 }
 export default function ChildTab() {
-  const yourChildren = request.get('/users-children')
-  console.log(yourChildren)
-  
+  const goals = useSelector(selectGoals)
+  const [modalIsOpen, setIsOpen] = React.useState(false)
+  function openModal() {
+    setIsOpen(true)
+  }
+  function handleSubmit(e) {
+    e.preventDefault()
+    const obj = {
+      name: '',
+    }
+    console.log(obj)
+
+    // request.post('/goals', obj)
+  }
   return (
     <div>
       <Tabs onChange={callback} type="card">
         <TabPane className={styles.componentContainer} tab="Child 1" key="1">
           <div>
             <AddGoalModal />
-            <h1>Goal test List</h1>
-            <GoalList />
+            <h1>Goal List</h1>
+            <GoalList goals={goals} />
           </div>
           <div>
             <AddPrizeModal />

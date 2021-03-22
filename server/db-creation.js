@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ['goals', 'prizes', 'prize_bins', 'users']
+const tables = ['transactions', 'goals', 'prizes', 'prize_bins', 'users']
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -39,7 +39,7 @@ async function main() {
     table.string('title', 45)
     table.string('description', 250)
     table.timestamp('created_at').defaultTo(conn.fn.now())
-    // table.timestamp('deadline')
+    table.timestamp('deadline')
     table.integer('points').unsigned()
     table
       .enu('status', ['complete', 'not_started', 'active', 'reported'])
