@@ -15,9 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-
-const tables = ['goals', 'prizes', 'prize_bins', 'users', 'prizes_redemption']
-
+const tables = ['goals', 'prizes', 'prize_bins', 'users', 'prize_redemption']
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -44,7 +42,7 @@ async function main() {
     table.timestamp('created_at').defaultTo(conn.fn.now())
     table.timestamp('deadline')
     table.integer('points').unsigned()
-    table.enu('status', ['not_complete', 'complete', 'reported', 'redeemed'])
+    table.enu('status', ['complete', 'not_started', 'active'])
     table.integer('parent_id').unsigned()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
     table.integer('child_id').unsigned()
@@ -81,7 +79,6 @@ async function main() {
       .foreign("prizes_id")
       .references("prizes.id")
       .onDelete("cascade");
-  })
 
 
   // this is a big thing.  Just notes for now.
@@ -137,7 +134,7 @@ async function main() {
     title: 'wash and dress',
     description: 'Wash your face, brush your teeth, dress your best.',
     points: 5,
-    status: 'not_complete',
+    status: 'not_started',
     parent_id: 1,
     child_id: 2,
     deadline: deadline,
@@ -153,15 +150,8 @@ async function main() {
     description: '1000 robux',
     prize_thumbnail:
       'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
-    prizes_persist: true,
     prize_bin_id: 1,
   })
-
-  await conn('prizes_redemption').insert({
-    id: 1,
-    prizes_id: 1,
-  })
-
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
 }
