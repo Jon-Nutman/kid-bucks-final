@@ -22,9 +22,14 @@ export const prizesAsync = (childId) => async (dispatch) => {
   })
 }
 
-export const addPrize = (prize) => async (dispatch) => {
+export const addPrize = (prize, childId) => async (dispatch) => {
   await request.post('/prizes', prize)
-  dispatch(prizesAsync())
+  dispatch(prizesAsync(childId))
+}
+
+export const deletePrize = (prizeId, childId) => async (dispatch) => {
+  await request.delete('/prizes/' + prizeId)
+  dispatch(prizesAsync(childId))
 }
 
 // The function below is called a selector and allows us to select a value from
