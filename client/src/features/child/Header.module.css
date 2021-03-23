@@ -1,13 +1,14 @@
 .header {
-  padding-left: 50px;
-  width: 80vw;
-  border: 2px solid rgba(125, 116, 145, 0.6);
+  /* padding-left: 10px; */
+  /* width: 80vw; */
+  /* border-bottom: 5px solid yellow; */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   flex-shrink: initial;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .avatar {

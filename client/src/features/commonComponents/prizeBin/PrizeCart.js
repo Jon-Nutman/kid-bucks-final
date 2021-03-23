@@ -2,11 +2,18 @@ import React from 'react'
 import Prize from './Prize'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './PrizeCart.module.css'
-import { removePrize, increment, decrement } from './prizeCartSlice'
+import { selectCart, 
+  selectTotal, 
+  selectTotalPoints, 
+  increment, 
+  decrement } from './prizeCartSlice'
 
 export default function PrizeCart({ cart = [] }) {
   const dispatch = useDispatch()
-  const prizeCart = useSelector()
+  const prizeCart = useSelector(selectCart)
+  const total = useSelector(selectTotal)
+  const totalPoints = useSelector(selectTotalPoints)
+
 
   return (
     <div>
@@ -20,7 +27,9 @@ export default function PrizeCart({ cart = [] }) {
             </div>
             <button
               className={styles.delBtn}
-              onClick={() => dispatch(removePrize(prize))}
+              onClick={() => console.log('nevermind')
+                // dispatch(removePrize(prize))
+              }
             >
               X
             </button>
