@@ -67,7 +67,7 @@ router.post('/prizes', async (req, res) => {
 })
 
 // needs to be discussed with thomas
-router.get('/prizes/', async (req, res) => {
+router.get('/prizes', async (req, res) => {
   // console.log(req.user.id)
   const prizes = await knex.raw(
     `

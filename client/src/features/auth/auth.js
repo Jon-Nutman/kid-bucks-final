@@ -1,6 +1,6 @@
 // 1. imports
 import { useSelector, useDispatch } from 'react-redux'
-import request, { AuthService } from '../../utils/request'
+import request, { AuthService, Storage } from '../../utils/request'
 
 // 2. action definitions
 const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
@@ -72,6 +72,6 @@ export function useAuth() {
     dispatch(signupUser(username, password))
   const logout = () => dispatch(logoutUser())
   const testProtected = () => request.get('/dashboard')
-
-  return { login, logout, signup, isAuthenticated, testProtected }
+  const user = AuthService.getUser()
+  return { login, logout, signup, isAuthenticated, testProtected, user }
 }

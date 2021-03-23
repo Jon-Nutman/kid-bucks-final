@@ -2,11 +2,13 @@ import React from 'react'
 import Prize from './Prize'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './PrizeCart.module.css'
-import { selectCart, 
-  selectTotal, 
-  selectTotalPoints, 
-  increment, 
-  decrement } from './prizeCartSlice'
+import {
+  selectCart,
+  selectTotal,
+  selectTotalPoints,
+  increment,
+  decrement,
+} from './prizeCartSlice'
 
 export default function PrizeCart({ cart = [] }) {
   const dispatch = useDispatch()
@@ -14,12 +16,11 @@ export default function PrizeCart({ cart = [] }) {
   const total = useSelector(selectTotal)
   const totalPoints = useSelector(selectTotalPoints)
 
-
   return (
     <div>
       <ul>
         {prizeCart.map((prize) => (
-          <li key={'prize-' + prize.id} className={styles.prizeCartPrize}>
+          <li key={'prize-cart-' + prize.id} className={styles.prizeCartPrize}>
             <img className={styles.imgThumb} src={prize.prize_thumbnail} />
             <div className={styles.prizeCartpTag}>
               <p>{prize.title}</p>
@@ -27,7 +28,8 @@ export default function PrizeCart({ cart = [] }) {
             </div>
             <button
               className={styles.delBtn}
-              onClick={() => console.log('nevermind')
+              onClick={
+                () => console.log('nevermind')
                 // dispatch(removePrize(prize))
               }
             >

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Tabs } from 'antd'
 import AddGoalModal from '../parent/AddGoalModal'
 import AddPrizeModal from '../parent/AddPrizeModal'
@@ -6,9 +6,13 @@ import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
-import { useSelector } from 'react-redux'
-import { selectGoals } from '../commonComponents/goals/goalSlice'
-import request from '../../utils/request'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  selectGoals,
+  getChildren,
+  selectChildren,
+  getGoalsByChildId,
+} from '../common/goalSlice'
 
 const { TabPane } = Tabs
 
@@ -41,7 +45,13 @@ const customStyles = {
 }
 export default function ChildTab() {
   const goals = useSelector(selectGoals)
+  const children = useSelector(selectChildren)
+  const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
+
+  useEffect(() => {
+    dispatch(getChildren())
+  }, [])
   function openModal() {
     setIsOpen(true)
   }
@@ -54,34 +64,35 @@ export default function ChildTab() {
 
     // request.post('/goals', obj)
   }
+  function handleChange(childId) {
+    if (childId !== 'newChild') {
+      dispatch(getGoalsByChildId(childId))
+    }
+  }
   return (
     <div>
-      <Tabs onChange={callback} type="card">
-        <TabPane className={styles.componentContainer} tab="Child 1" key="1">
-          <div>
-            <AddGoalModal />
-            <h1>Goal List</h1>
-            <GoalList goals={goals} />
-          </div>
-          <div>
-            <AddPrizeModal />
-            <h1>Prize List</h1>
-            <PrizesList />
-          </div>
-        </TabPane>
-        <TabPane className={styles.componentContainer} tab="Child 2" key="2">
-          <div>
-            <AddGoalModal />
-            <h1>Goal List</h1>
-            <GoalList />
-          </div>
-          <div>
-            <AddPrizeModal />
-            <h1>Prize List</h1>
-            <PrizesList />
-          </div>
-        </TabPane>
-        <TabPane className={styles.componentContainer} tab="+" key="3">
+      <Tabs type="card" onChange={handleChange}>
+        {children.map((child, index) => {
+          return (
+            <TabPane
+              className={styles.componentContainer}
+              tab={index + 1}
+              key={child.id}
+            >
+              <div>
+                <AddGoalModal />
+                <h1>Goal List</h1>
+                <GoalList goals={goals} />
+              </div>
+              <div>
+                <AddPrizeModal />
+                <h1>Prize List</h1>
+                <PrizesList />
+              </div>
+            </TabPane>
+          )
+        })}
+        <TabPane className={styles.componentContainer} tab="+" key="newChild">
           <div>
             <AddChild />
           </div>

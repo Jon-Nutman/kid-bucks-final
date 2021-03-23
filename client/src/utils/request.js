@@ -92,6 +92,14 @@ export class AuthService {
     })
   }
 
+  static getUser = () => {
+    try {
+      return JSON.parse(atob(Storage.getItem('authToken').split('.')?.[1]))
+    } catch (err) {
+      return {}
+    }
+  }
+
   static checkToken(token) {}
 
   static isAuthenticated = () => !!Storage.getItem('authToken')
