@@ -2,7 +2,7 @@ import React from 'react'
 import Checkbox from '../componentParts/CmpntCheckbox'
 import { useDispatch } from 'react-redux'
 import { useAuth } from '../../auth/auth'
-import { updateGoalStatusById } from '../../common/goalSlice'
+import { updateGoalStatusById, deleteGoalById } from '../../common/goalSlice'
 import styles from './GoalItem.module.css'
 
 export default function GoalItem(props) {
@@ -19,6 +19,9 @@ export default function GoalItem(props) {
               dispatch(updateGoalStatusById(goal.id, user.id, e.target.checked))
             }
           />
+          {user.is_admin ? (
+            <span onClick={() => dispatch(deleteGoalById(goal.id, 2))}>x</span>
+          ) : null}
           <div className={styles.goalCard}>
             <div className={styles.flexColumn}>
               <span className={styles.goalTitle}>{goal.title}</span>

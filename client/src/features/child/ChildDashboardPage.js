@@ -10,11 +10,7 @@ import { PrzBnPointBalance } from './PrzBnPointBalance'
 import styles from './ChildDashboardPage.module.css'
 
 import { getGoalsByChildId, deleteGoalById } from '../common/goalSlice'
-import {
-  addPrizeToCart,
-  selectPrizes,
-  prizesAsync,
-} from '../commonComponents/prizeBin/prizeSlice'
+import { addPrizeToCart, selectPrizes, prizesAsync } from '../common/prizeSlice'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
