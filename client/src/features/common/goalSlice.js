@@ -29,6 +29,11 @@ export const getGoalsByChildId = (childId) => async (dispatch) => {
   dispatch(setGoals(goalsArray.data))
 }
 
+export const addGoal = (goal) => async (dispatch) => {
+  await request.post('/goals', goal)
+  dispatch(getGoalsByChildId(goal.child_id))
+}
+
 export const getChildren = () => async (dispatch) => {
   const children = await request.get(`/users-children`)
   dispatch(setChildren(children.data))

@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectGoals } from '../common/goalSlice'
+import {
+  selectGoals,
+  getGoalsByChildId,
+  deleteGoalById,
+} from '../common/goalSlice'
+import { selectPrizes } from '../common/prizeSlice'
 import Header from './Header'
 import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'

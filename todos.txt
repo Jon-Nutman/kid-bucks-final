@@ -3,3 +3,16 @@ migrate to slice:
 request.post goals
 request.post prizes
 request.post child
+
+request.get('prize-bins/:childId')
+request.delete('prizes/:prizeId')
+request.patch('prizes/:prizeId')
+
+request.delete('/users/child/:childId')
+
+Todos:
+
+transactions
+
+GET transactions (based on child)
+PATCH transactions (based on child)
