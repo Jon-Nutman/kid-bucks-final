@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import styles from './Header.module.css'
+import { PrzBnPointBalance } from './PrzBnPointBalance'
 
 export default function Header() {
   const [userName, setUserName] = useState('Kiddo')
@@ -8,11 +9,14 @@ export default function Header() {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.avatar}>K</div>
-        <div className={styles.headerGreet}>
-          <h2>Hey {userName}!</h2>
-          <h3>You are ready to achieve.</h3>
+
+        <span className={styles.headerGreet}>
+          <h1>{userName},</h1> your goals await...
+        </span>
+        <div>
+        <PrzBnPointBalance />
         </div>
+        {/* <div className={styles.avatar}>K</div> */}
       </div>
     </>
   )

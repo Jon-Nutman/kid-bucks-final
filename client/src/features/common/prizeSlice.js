@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import request from '../../../utils/request'
+import request from '../../utils/request'
 
 export const prizeSlice = createSlice({
   name: 'prize',
@@ -16,9 +16,15 @@ export const prizeSlice = createSlice({
 
 export const { setPrizes } = prizeSlice.actions
 
-export const prizesAsync = (id) => (dispatch) => {
-  request.get('/prize-bins/'+id).then((response) => {
+export const prizesAsync = () => async (dispatch) => {
+  await request.get('/prizes').then((response) => {
     dispatch(setPrizes(response.data))
+  })
+}
+
+export const addPrizes = () => async (dispatch) => {
+  await request.post('/prizes', {}).then((response) => {
+    dispatch(prizesAsync())
   })
 }
 

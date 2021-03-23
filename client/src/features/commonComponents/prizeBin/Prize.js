@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
-import styles from './PrzBinRedeemModal.module.css'
+import styles from './Prize.module.css'
 import { useDispatch } from 'react-redux'
-import { addPrizeToCart, selectPrizes } from './prizeCartSlice'
+import { addPrizeToCart } from './prizeCartSlice'
+import { FaPlus } from 'react-icons/fa'
 
 export default function Prize(props) {
   const dispatch = useDispatch()
 
   return (
-    <ul className={styles.prizeCard}>
-      <li key={props.id}>
-        <img className={styles.imgThumb} src={props.prize.img.normal} /> <br />
-        <p>{props.prize.title}</p> <br />
-        {<p className={styles.yellowline}></p>}
-        {<span className={styles.points}>{props.prize.points}</span>} <br />
+    <>
+    <button type="submit" className={styles.prizeCard}>
+      <span key={props.id}>
+        <p>{props.title}</p>
+        <span className={styles.points}>{props.points}</span> <br />
         <button
-          className={styles.addBtn}
-          onClick={() => dispatch(addPrizeToCart(props.prize))}
+          className={styles.prizeCard}
+          onClick={() => dispatch(addPrizeToCart(props.id))}
         >
-          Add Prize
+          <FaPlus /> Prize to Cart
         </button>
-      </li>
-    </ul>
+      </span>
+      </button>
+      </>
   )
 }

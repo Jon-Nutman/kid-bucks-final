@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { selectGoals } from '../commonComponents/goals/goalSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectGoals } from '../common/goalSlice'
 import Header from './Header'
 import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
-import { PrzBnPointBalance } from './PrzBnPointBalance'
 import styles from './ChildDashboardPage.module.css'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
+  const prizes = useSelector(selectPrizes)
+  const dispatch = useDispatch()
+  const childId = 2
   // selectGoals == state.goal.goals
 
   useEffect(() => {
@@ -18,20 +20,31 @@ export default function ChildDashboardPage() {
     console.table(goals)
   }, [goals])
 
+  useEffect(() => {
+    dispatch(getGoalsByChildId(childId))
+  }, [])
+
   return (
-    <div className={styles.appChildView}>
-      <Header />
-      <div className={styles.childDashContain}>
-        <div className={styles.goalListChildContain}>
-          <GoalList goals={goals} />
-          <div className={styles.goalCompleteBtn}>
-            <GoalCompleteBtn />
+    <div className={styles.main}>
+      <div className={styles.childDashGlass}>
+        <div className={styles.circle1}></div>
+        <div className={styles.circle2}></div>
+        <Header />
+
+        <div className={styles.childDashFlexbox}>
+          <div className={styles.childDashGoalsContain}>
+            <GoalList
+              goals={goals}
+              onDelete={(id) => dispatch(deleteGoalById(id, childId))}
+            />
+            <div className={styles.goalCompleteBtn}>
+              <GoalCompleteBtn />
+            </div>
           </div>
         </div>
         <div className={styles.prizeBinContain}>
-          <PrzBnPointBalance />
           <div className={styles.prizeListContainer}>
-            <PrizesList id={goals.child_id}/>
+            <PrizesList prizes={prizes} />
           </div>
           <div className={styles.przRedemption}>
             <PrzBinRedeemModal />

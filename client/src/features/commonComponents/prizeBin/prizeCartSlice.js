@@ -73,9 +73,9 @@ export const {
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCart = (state) => state.cart.cart
-export const selectTotal = (state) => state.total.total
-export const selecttotalPoints = (state) => state.total.totalPrice
+export const selectCart = (state) => state.prizeCart.cart
+export const selectTotal = (state) => state.prizeCart.total
+export const selectTotalPoints = (state) => state.prizeCart.totalPoints
 // export const selectCartVisibility = (state) => state.cartV.cartVisibility;
 
 export default prizeCartSlice.reducer

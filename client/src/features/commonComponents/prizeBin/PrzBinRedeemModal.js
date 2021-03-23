@@ -66,8 +66,9 @@ export default function PrzBinRedeemModal() {
 
   return (
     <div>
-      <Button onClick={openModal}>Redeem Points +</Button>
-
+      <div className={styles.buttonWrap}>
+      <Button onClick={openModal}>Redeem Prizes</Button>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

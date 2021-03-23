@@ -15,7 +15,7 @@ function createSalt(len = 20) {
 // const { createSalt } = require('./utils/auth')
 // NOTE this order does not matter if cascade deletion is set otherwise this is the order it'd need to be
 // due to foreign key reference issue during deletion
-const tables = ['goals', 'prizes', 'prize_bins', 'users']
+const tables = ['transactions', 'goals', 'prizes', 'prize_bins', 'users']
 async function main() {
   for (let table of tables) {
     const hasTable = await conn.schema.hasTable(table)
@@ -39,9 +39,11 @@ async function main() {
     table.string('title', 45)
     table.string('description', 250)
     table.timestamp('created_at').defaultTo(conn.fn.now())
-    // table.timestamp('deadline')
+    table.timestamp('deadline')
     table.integer('points').unsigned()
-    table.enu('status', ['complete', 'not_started', 'active'])
+    table
+      .enu('status', ['complete', 'not_started', 'active', 'reported'])
+      .defaultTo('not_started')
     table.integer('parent_id').unsigned()
     table.foreign('parent_id').references('users.id').onDelete('cascade')
     table.integer('child_id').unsigned()
@@ -50,6 +52,7 @@ async function main() {
 
   await conn.schema.createTable(`prize_bins`, (table) => {
     table.increments('id')
+    table.integer('balance').unsigned().defaultTo(0)
     table.integer('user_id').unsigned()
     table.foreign('user_id').references('users.id').onDelete('cascade')
     //table.integer("prizes_id").unsigned() <--- do we need this?
@@ -58,7 +61,7 @@ async function main() {
 
   await conn.schema.createTable(`prizes`, (table) => {
     table.increments('id')
-    table.string('points', 20)
+    table.integer('points')
     table.string('title', 128)
     table.string('description', 250)
     table.string('prize_thumbnail', 255)
@@ -67,6 +70,19 @@ async function main() {
       .foreign('prize_bin_id')
       .references('prize_bins.id')
       .onDelete('cascade')
+  })
+
+  await conn.schema.createTable(`transactions`, (table) => {
+    table.increments('id')
+    table.integer('prize_id').unsigned()
+    table.foreign('prize_id').references('prizes.id').onDelete('cascade')
+    table.integer('user_id').unsigned()
+    table.foreign('user_id').references('users.id').onDelete('cascade')
+    table.integer('points').unsigned()
+    table.integer('quantity').unsigned()
+    table
+      .enu('status', ['denied', 'approved', 'requested'])
+      .defaultTo('requested')
   })
 
   // DOTTIES NOTES: The table below will allow as a relationship table
@@ -151,6 +167,12 @@ async function main() {
     prize_thumbnail:
       'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
     prize_bin_id: 1,
+  })
+  await conn('transactions').insert({
+    prize_id: 1,
+    user_id: 2,
+    points: 5,
+    quantity: 2,
   })
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
