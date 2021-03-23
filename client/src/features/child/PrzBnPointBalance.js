@@ -5,8 +5,8 @@ export const PrzBnPointBalance = () => {
   return (
     <>
       <div className={styles.balanceWrapper}>
-        <h4>Point Balance</h4>
-        <h1 className={styles.balance}>50 pts</h1>
+      <h1>50</h1>
+        <h4>points</h4>
       </div>
     </>
   )

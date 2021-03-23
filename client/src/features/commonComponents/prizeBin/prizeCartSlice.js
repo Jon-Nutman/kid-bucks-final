@@ -75,7 +75,7 @@ export const {
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectCart = (state) => state.cart.cart
 export const selectTotal = (state) => state.total.total
-export const selecttotalPoints = (state) => state.total.totalPrice
+export const selectTotalPoints = (state) => state.total.totalPrice
 // export const selectCartVisibility = (state) => state.cartV.cartVisibility;
 
 export default prizeCartSlice.reducer

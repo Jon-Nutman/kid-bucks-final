@@ -8,11 +8,11 @@ export default function Header() {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.avatar}>K</div>
+
         <div className={styles.headerGreet}>
-          <h2>Hey {userName}!</h2>
-          <h3>You are ready to achieve.</h3>
+          <h1>{userName}</h1>
         </div>
+        {/* <div className={styles.avatar}>K</div> */}
       </div>
     </>
   )

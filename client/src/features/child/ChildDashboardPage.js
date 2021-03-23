@@ -8,13 +8,20 @@ import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
 import { PrzBnPointBalance } from './PrzBnPointBalance'
 import styles from './ChildDashboardPage.module.css'
+
 import {
   getGoalsByChildId,
   deleteGoalById,
 } from '../commonComponents/goals/goalSlice'
+import {
+  addPrizeToCart,
+  selectPrizes,
+  prizesAsync,
+} from '../commonComponents/prizeBin/prizeSlice'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
+  const prizes= useSelector(selectPrizes)
   const dispatch = useDispatch()
   const childId = 2
   // selectGoals == state.goal.goals
@@ -29,10 +36,14 @@ export default function ChildDashboardPage() {
   }, [])
 
   return (
-    <div className={styles.appChildView}>
+  <div className={styles.main}>
+    <div className={styles.childDashGlass}>
+      <div className={styles.circle1}></div>
+      <div className={styles.circle2}></div>
       <Header />
-      <div className={styles.childDashContain}>
-        <div className={styles.goalListChildContain}>
+
+      <div className={styles.childDashFlexbox}>
+        <div className={styles.childDashGoalsContain}>
           <GoalList
             goals={goals}
             onDelete={(id) => dispatch(deleteGoalById(id, childId))}
@@ -44,7 +55,7 @@ export default function ChildDashboardPage() {
         <div className={styles.prizeBinContain}>
           <PrzBnPointBalance />
           <div className={styles.prizeListContainer}>
-            <PrizesList id={goals.child_id} />
+            <PrizesList prizes={prizes} />
           </div>
           <div className={styles.przRedemption}>
             <PrzBinRedeemModal />
@@ -52,5 +63,6 @@ export default function ChildDashboardPage() {
         </div>
       </div>
     </div>
+  </div>
   )
 }

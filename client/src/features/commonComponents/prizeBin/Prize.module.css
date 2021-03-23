@@ -1,0 +1,32 @@
+.prizeCard{
+    border: 0;
+    outline: 0;
+    font-size: 9px;
+    border-radius: 8px;
+    padding: 4px;
+    text-transform: uppercase;
+    color: rgb(45, 1, 1);
+    background-color:#eeeded;
+    text-shadow: 1px 1px 0 #FFF;
+    margin-bottom: 6px;
+    box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+}
+    
+.prizeCard:hover {
+    box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+    
+.prizeCard:active {
+    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.points{
+font-size:12px;
+color: #000;
+
+}
