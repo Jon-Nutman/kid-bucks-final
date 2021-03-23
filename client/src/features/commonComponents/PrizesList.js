@@ -31,9 +31,9 @@ export default function PrizeList(id) {
   return (
     <div className={styles.prizeListWrap}>
         {prizes.map((prize) => (
-          <button type="submit" className={styles.prizeCard}>
-            <span key={prize.id}>
-              <p>{prize.title}</p>
+          <div className={styles.prizeCard}>
+            <span key={`prizeList` + prize.id}>
+              <div className={styles.prizeCardTitle}>{prize.title}</div>
             <button
               className={styles.prizeCard}
               onClick={() => console.log('you really need to finish the prize cart Dottie')}
@@ -43,7 +43,7 @@ export default function PrizeList(id) {
               </div>
             </button>
           </span>
-          </button>
+          </div>
         ))}
     </div>
   )
