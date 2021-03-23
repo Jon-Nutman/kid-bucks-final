@@ -7,12 +7,8 @@ import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  selectGoals,
-  getChildren,
-  selectChildren,
-  getGoalsByChildId,
-} from '../common/goalSlice'
+import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
+import { getChildren, selectChildren } from './userSlice'
 
 const { TabPane } = Tabs
 
@@ -76,7 +72,7 @@ export default function ChildTab() {
           return (
             <TabPane
               className={styles.componentContainer}
-              tab={index + 1}
+              tab={child.username}
               key={child.id}
             >
               <div>
@@ -87,7 +83,7 @@ export default function ChildTab() {
               <div>
                 <AddPrizeModal />
                 <h1>Prize List</h1>
-                <PrizesList />
+                <PrizesList childId={child.id} />
               </div>
             </TabPane>
           )

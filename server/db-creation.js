@@ -156,8 +156,10 @@ async function main() {
     deadline: deadline,
   })
   await conn('prize_bins').insert({
-    id: 1,
     user_id: 2,
+  })
+  await conn('prize_bins').insert({
+    user_id: 3,
   })
   await conn('prizes').insert({
     id: 1,

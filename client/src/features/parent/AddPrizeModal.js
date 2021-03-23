@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addPrize } from '../common/prizeSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
@@ -17,7 +19,7 @@ const customStyles = {
 }
 
 export default function AddPrizeModal() {
-  var subtitle
+  const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
@@ -42,10 +44,10 @@ export default function AddPrizeModal() {
       points: prizePoints,
       description: prizeDescription,
       prize_thumbnail: 'https://placedog.net/500',
+      child_id: 2,
     }
-    console.log(obj)
-
-    request.post('/prizes', obj)
+    dispatch(addPrize(obj))
+    // request.post('/prizes', obj)
   }
 
   return (

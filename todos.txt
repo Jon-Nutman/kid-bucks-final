@@ -1,7 +1,7 @@
 migrate to slice:
 
-request.post goals
-request.post prizes
+x request.post goals
+x request.post prizes
 request.post child
 
 request.get('prize-bins/:childId')

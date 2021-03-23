@@ -9,7 +9,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import request from '../../utils/request'
 import { FaPlus } from 'react-icons/fa'
 
-export default function PrizeList(id) {
+export default function PrizeList(props) {
+  console.log(props)
   // const yourPrizes = request.get('/prizes/:childId')
   // console.log(yourPrizes)
 
@@ -19,15 +20,15 @@ export default function PrizeList(id) {
   console.table(prizes)
 
   useEffect(() => {
-    dispatch(prizesAsync(id))
-  }, [])
+    dispatch(prizesAsync(props.childId))
+  }, [props.childId])
 
   return (
     <div className={styles.prizeListWrap}>
-        {prizes.map((prize) => (
-          <div className={styles.prizeCard}>
-            <span key={`prizeList` + prize.id}>
-              <div className={styles.prizeCardTitle}>{prize.title}</div>
+      {prizes.map((prize) => (
+        <div className={styles.prizeCard}>
+          <span key={`prizeList` + prize.id}>
+            <div className={styles.prizeCardTitle}>{prize.title}</div>
             <button
               className={styles.prizeCard}
               onClick={() =>
@@ -42,8 +43,8 @@ export default function PrizeList(id) {
               </div>
             </button>
           </span>
-          </div>
-        ))}
+        </div>
+      ))}
     </div>
   )
 }
