@@ -1,0 +1,5 @@
+migrate to slice:
+
+request.post goals
+request.post prizes
+request.post child

@@ -67,14 +67,23 @@ router.post('/prizes', async (req, res) => {
 })
 
 // needs to be discussed with thomas
-router.get('/prizes', async (req, res) => {
+router.get('/prizes/:childId', async (req, res) => {
   // console.log(req.user.id)
+  // find prize bin
+  const prizeBin = await knex.raw(
+    `
+    SELECT * FROM prize_bins
+    WHERE user_id = ?
+    `,
+    [req.params.childId]
+  )
+  const prizeBinId = prizeBin.rows[0].id
   const prizes = await knex.raw(
     `
     SELECT * FROM prizes
-
+    WHERE prize_bin_id = ?
     `,
-    []
+    [prizeBinId]
   )
   res.json(prizes.rows)
 })
