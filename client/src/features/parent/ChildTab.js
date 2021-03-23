@@ -7,7 +7,7 @@ import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 import { useSelector } from 'react-redux'
-import { selectGoals } from '../commonComponents/goals/goalSlice'
+import { selectGoals } from '../common/goalSlice'
 import request from '../../utils/request'
 
 const { TabPane } = Tabs

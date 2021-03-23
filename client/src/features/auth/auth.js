@@ -72,6 +72,7 @@ export function useAuth() {
     dispatch(signupUser(username, password))
   const logout = () => dispatch(logoutUser())
   const testProtected = () => request.get('/dashboard')
+  const user = { id: 2 }
 
-  return { login, logout, signup, isAuthenticated, testProtected }
+  return { login, logout, signup, isAuthenticated, testProtected, user }
 }
