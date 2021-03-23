@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit'
 // import counterReducer from '../features/counter/counterSlice'
 import usersReducer from '../features/users/usersSlice'
 import authReducer from '../features/auth/auth'
-import goalReducer from '../features/commonComponents/goals/goalSlice'
-import prizeReducer from '../features/commonComponents/prizeBin/prizeSlice'
+import goalReducer from '../features/common/goalSlice'
+import prizeReducer from '../features/common/prizeSlice'
+import prizeCartReducer from '../features/commonComponents/prizeBin/prizeCartSlice'
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     auth: authReducer,
     goal: goalReducer,
     prize: prizeReducer,
+    prizeCart: prizeCartReducer,
   },
 })
