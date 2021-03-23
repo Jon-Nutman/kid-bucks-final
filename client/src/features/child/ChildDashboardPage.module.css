@@ -24,7 +24,7 @@
   /* border-left: 2px solid rgba(0, 0, 0, 0.42); */
   width: 35%;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 .prizeListContainer {
   padding-right: 5px;

@@ -1,30 +1,18 @@
 .header {
   /* padding-left: 10px; */
-  /* width: 80vw; */
+  width: 100%;
   /* border-bottom: 5px solid yellow; */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: space-between;
   flex-shrink: initial;
   align-items: center;
   text-transform: uppercase;
 }
 
-.avatar {
-  /* flex-grow: 1; */
-  margin: 24px 24px 24px 8px;
-  width: 100px;
-  height: 100px;
-  color: azure;
-  background-color: rgb(37, 16, 81);
-  border-radius: 50%;
-  text-align: center;
-  text-justify: center;
-  font-size: 48pt;
-}
-
 .headerGreet {
+  color: #b17a14;
   flex-grow: 3;
   margin: 16px;
 }

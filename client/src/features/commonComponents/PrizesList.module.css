@@ -61,3 +61,10 @@
   align-items: center;
 }
 
+.prizeCardTitle{
+  
+  font-size: 12px;
+  height: 30px;
+  color:rgb(45, 1, 1)
+}
+

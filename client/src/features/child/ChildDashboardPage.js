@@ -6,11 +6,7 @@ import GoalList from '../commonComponents/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
-import { PrzBnPointBalance } from './PrzBnPointBalance'
 import styles from './ChildDashboardPage.module.css'
-
-import { getGoalsByChildId, deleteGoalById } from '../common/goalSlice'
-import { addPrizeToCart, selectPrizes, prizesAsync } from '../common/prizeSlice'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
@@ -45,14 +41,13 @@ export default function ChildDashboardPage() {
               <GoalCompleteBtn />
             </div>
           </div>
-          <div className={styles.prizeBinContain}>
-            <PrzBnPointBalance />
-            <div className={styles.prizeListContainer}>
-              <PrizesList prizes={prizes} />
-            </div>
-            <div className={styles.przRedemption}>
-              <PrzBinRedeemModal />
-            </div>
+        </div>
+        <div className={styles.prizeBinContain}>
+          <div className={styles.prizeListContainer}>
+            <PrizesList prizes={prizes} />
+          </div>
+          <div className={styles.przRedemption}>
+            <PrzBinRedeemModal />
           </div>
         </div>
       </div>

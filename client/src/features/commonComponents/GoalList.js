@@ -9,9 +9,6 @@ export default function GoalList(props) {
   const dispatch = useDispatch()
   return (
     <>
-      <div>
-        <h1>your goals await...</h1>
-      </div>
       {props.goals.map((goal) => (
         <GoalItem
           key={'goal-' + goal.id}

@@ -24,14 +24,10 @@ export default function PrizeList(id) {
 
   return (
     <div className={styles.prizeListWrap}>
-      {prizes.map((prize) => (
-        <button
-          key={'prize-' + prize.id}
-          type="submit"
-          className={styles.prizeCard}
-        >
-          <span>
-            <p>{prize.title}</p>
+        {prizes.map((prize) => (
+          <div className={styles.prizeCard}>
+            <span key={`prizeList` + prize.id}>
+              <div className={styles.prizeCardTitle}>{prize.title}</div>
             <button
               className={styles.prizeCard}
               onClick={() =>
@@ -46,8 +42,8 @@ export default function PrizeList(id) {
               </div>
             </button>
           </span>
-        </button>
-      ))}
+          </div>
+        ))}
     </div>
   )
 }
