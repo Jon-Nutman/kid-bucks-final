@@ -28,6 +28,10 @@ export const addChild = (child) => async (dispatch) => {
   dispatch(getChildren())
 }
 
+export const deleteChild = (childId) => async (dispatch) => {
+  await request.delete('/users/child/' + childId)
+  dispatch(getChildren())
+}
 export const selectChildren = (state) => state.users.children
 
 export default userSlice.reducer

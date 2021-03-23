@@ -8,7 +8,7 @@ import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
-import { getChildren, selectChildren } from './userSlice'
+import { getChildren, selectChildren , deleteChild} from './userSlice'
 
 const { TabPane } = Tabs
 
