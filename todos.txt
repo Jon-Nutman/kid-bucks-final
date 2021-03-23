@@ -2,7 +2,7 @@ migrate to slice:
 
 x request.post goals
 x request.post prizes
-request.post child
+x request.post child
 
 request.get('prize-bins/:childId')
 request.delete('prizes/:prizeId')
