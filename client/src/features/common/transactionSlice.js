@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import request from '../../utils/request'
 
 export const transaction = createSlice({
   name: 'transaction',
@@ -7,13 +8,19 @@ export const transaction = createSlice({
   },
   reducers: {
     setTransactions: (state, action) => {
-      //////
+      state.transactions = action.payload
     },
   },
 })
 
 export const { setTransactions } = transaction.actions
 
+export const getTransactions = (childId) => async (dispatch) => {
+  await request.get('/transactions/' + childId).then((response) => {
+    dispatch(setTransactions(response.data))
+    console.log(response.data)
+  })
+}
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
@@ -27,6 +34,6 @@ export const { setTransactions } = transaction.actions
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = (state) => state.transaction.value
+export const selectTransactions = (state) => state.transaction.transactions
 
 export default transaction.reducer

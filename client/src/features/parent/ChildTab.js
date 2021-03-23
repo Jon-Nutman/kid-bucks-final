@@ -9,6 +9,7 @@ import AddChild from './AddChildModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
 import { getChildren, selectChildren , deleteChild} from './userSlice'
+import { getTransactions, selectTransactions } from '../common/transactionSlice' 
 
 const { TabPane } = Tabs
 
@@ -42,11 +43,15 @@ const customStyles = {
 export default function ChildTab() {
   const goals = useSelector(selectGoals)
   const children = useSelector(selectChildren)
+  const transactions = useSelector(selectTransactions)
+  console.log(transactions)
   const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
+  
 
   useEffect(() => {
     dispatch(getChildren())
+    dispatch(getTransactions(2))
   }, [])
   function openModal() {
     setIsOpen(true)
