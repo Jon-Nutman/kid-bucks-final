@@ -1,6 +1,26 @@
+.componentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.leftContainer {
+  flex-grow: 2;
+}
+.rightContainer {
+  flex-grow: 1;
+}
+
+.tabMain {
+  margin: 20px;
+}
 
 
-.childDashGlass {
+
+
+/* .childDashGlass {
   width: 80%;
   height: fit-content;
   margin: 0 auto;
@@ -11,17 +31,13 @@
 }
 
 .childDashFlexbox {
-  /* border: 3px solid rgb(66, 57, 85, 0.6); */
   display: flex;
   justify-content: space-between;
-  /* width: 80vw; */
 }
 
 .prizeBinContain {
   display: flex;
   flex-direction: column;
-  /* -webkit-box-shadow: inset 0px 0px 0px 2px rgba(0, 0, 0, 0.42); */
-  /* border-left: 2px solid rgba(0, 0, 0, 0.42); */
   width: 35%;
   justify-content: flex-start;
   align-items: flex-end;
@@ -46,4 +62,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
