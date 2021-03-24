@@ -3,21 +3,6 @@ import db from '../db.js'
 import knex from '../db.js'
 const router = express.Router()
 
-// prizes that belong to prize bin
-router.get('/prize-bins/:childId', async (req, res) => {
-  const childId = req.params.childId
-  console.log(childId)
-  const prize_bins = await knex.raw(
-    `
-    SELECT p.title, p.description, p.points, p.prize_thumbnail, u.is_admin, u.id as child_id, pb.id as prize_bin_id from prize_bins pb	
-    INNER JOIN users u ON pb.user_id= u.id
-    INNER JOIN prizes p ON pb.id= p.prize_bin_id
-    WHERE u.id = ?
-    `,
-    [childId]
-  )
-  res.json(prize_bins.rows)
-})
 
 // this delete is not deleting the prizes from the database.  SQL works in beekeeper.
 router.delete('/prizes/:prizeId', async (req, res) => {
@@ -88,7 +73,5 @@ router.get('/prizes/:childId', async (req, res) => {
   res.json(prizes.rows)
 })
 
-// prize requested/redeemed placeholder
-router.get('/prizes/requested', async (req, res) => {})
 
 export default router
