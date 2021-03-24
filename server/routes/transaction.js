@@ -25,7 +25,6 @@ router.patch('/transactions/:transactionId', async (request, response) => {
 
 router.post('/transactions', async (req, res) => {
   const { prize_id, points, quantity } = req.body
-  console.log(req.body)
   await conn.raw(
     `
     INSERT INTO transactions (user_id, prize_id, points, quantity)
