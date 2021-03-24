@@ -42,6 +42,7 @@ router.patch('/goals/:goalId', async (req, res) => {
 
 router.post('/goals', async (req, res) => {
   const { title, description, points, status, child_id } = req.body
+  console.log(req.body)
   await knex.raw(
     `
     INSERT INTO goals (title, description, points, status, parent_id, child_id)

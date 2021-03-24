@@ -4,8 +4,8 @@ import styles from './GoalCompleteBtn.module.css'
 
 export default function GoalCompleteBtn() {
   return (
-    <div className={styles.completeBtn}>
-      <Button>Mark Goals As Complete</Button>
-    </div>
+    <>
+      <Button className={styles.completeBtn}>Mark Goals As Complete</Button>
+    </>
   )
 }

@@ -10,7 +10,6 @@ import prizeCartReducer from '../features/commonComponents/prizeBin/prizeCartSli
 
 export default configureStore({
   reducer: {
-    // counter: counterReducer,
     users: usersReducer,
     auth: authReducer,
     goal: goalReducer,

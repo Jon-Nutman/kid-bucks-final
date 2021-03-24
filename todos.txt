@@ -16,3 +16,4 @@ transactions
 
 GET transactions (based on child)
 PATCH transactions (based on child)
+POST transactions (based on child)
