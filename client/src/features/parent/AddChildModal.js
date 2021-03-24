@@ -56,35 +56,35 @@ export default function AddChild() {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={['user', 'name']}
-            label="Name"
+            // name={['user', 'name']}
+            // label="Name"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input onChange={(e) => setChildName(e.target.value)} />
+            <Input placeholder='Name' onChange={(e) => setChildName(e.target.value)} />
           </Form.Item>
 
           <Form.Item
-            label="Username"
-            name="username"
+            // label="Username"
+            // name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input onChange={(e) => setUsername(e.target.value)} />
+            <Input placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
           </Form.Item>
           <Form.Item
-            label="Password"
-            name="password"
+            // label="Password"
+            // name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password onChange={(e) => setPassword(e.target.value)} />
+            <Input.Password placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
 
           <Form.Item
-            name={['user', 'age']}
-            label="Age(optional)"
+            // name={['user', 'age']}
+            // label="Age(optional)"
             rules={[
               {
                 type: 'number',
@@ -93,7 +93,7 @@ export default function AddChild() {
               },
             ]}
           >
-            <InputNumber />
+            <InputNumber placeholder='Age' />
           </Form.Item>
           <Form.Item
             wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
