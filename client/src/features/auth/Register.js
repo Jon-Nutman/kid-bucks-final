@@ -75,6 +75,10 @@ export default function Register(props) {
 
   return (
     <div>
+       <div>
+      <h1>Register Form</h1>
+      <p>Fill out this form to create an account as an admin. </p>
+      </div>
       <Form className={styles.theForm} onFinish={handleSubmit}>
         {/* <label
           htmlFor="name"
@@ -92,13 +96,11 @@ export default function Register(props) {
           onChange={(e) => setFirstName(e.target.value)}
         /> */}
          <Form.Item
-            label="First Name"
             name="firstname"
-            placeholder = "First Name"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your First Name!' }]}
            
           >
-            <Input onChange={(e) => setFirstName(e.target.value)} />
+            <Input placeholder ="First Name" onChange={(e) => setFirstName(e.target.value)} />
           </Form.Item>
 {/* 
         <label
@@ -116,14 +118,12 @@ export default function Register(props) {
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         /> */}
-         <Form.Item
-            label="Last Name"
+         <Form.Item        
             name="lastname"
-            placeholder = "Last Name"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your Last Name!' }]}
            
           >
-            <Input onChange={(e) => setLastName(e.target.value)} />
+            <Input placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
           </Form.Item>
 
         {/* <label
@@ -143,13 +143,11 @@ export default function Register(props) {
         /> */}
 
           <Form.Item
-            label="Username"
             name="username"
-            placeholder = "Create username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your Username!' }]}
            
           >
-            <Input onChange={(e) => setUserName(e.target.value)} />
+            <Input placeholder="Create username" onChange={(e) => setUserName(e.target.value)} />
           </Form.Item>
 
         {/* <label
@@ -168,13 +166,11 @@ export default function Register(props) {
           onChange={(e) => setPassword(e.target.value)}
         /> */}
          <Form.Item
-            label="Password"
             name="Password"
-            placeholder = "Password"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your Password!' }]}
            
           >
-            <Input onChange={(e) => setPassword(e.target.value)} />
+            <Input placeholder = "Password" onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
 
         {/* <label
@@ -196,13 +192,11 @@ export default function Register(props) {
         /> */}
 
           <Form.Item
-            label="Confirm Password"
             name="confirm-password"
-            placeholder = "Confirm Password"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please confirm your Password!' }]}
            
           >
-            <Input onChange={(e) => setConfirmPassword(e.target.value)} />
+            <Input placeholder = "Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} />
           </Form.Item>
 
         {/* <label
@@ -222,13 +216,11 @@ export default function Register(props) {
         /> */}
 
           <Form.Item
-            label="Email"
             name="email"
-            placeholder = "Email"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your Email!' }]}
            
           >
-            <Input onChange={(e) => setEmail(e.target.value)} />
+            <Input placeholder = "Email" onChange={(e) => setEmail(e.target.value)} />
           </Form.Item>
         <div>
         <Button

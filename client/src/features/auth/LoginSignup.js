@@ -65,7 +65,9 @@ export function LoginSignup() {
   }
   return (
     <div>
-   
+   <div>
+      <p>Please enter your username and password login. </p>
+      </div>
       <div>
         <Form
           {...layout}
@@ -76,21 +78,17 @@ export function LoginSignup() {
         
 
           <Form.Item
-            label="Username"
             name="username"
-            placeholder = "Username"
             rules={[{ required: true, message: 'Please input your username!' }]}
            
           >
-            <Input onChange={(e) => setUsername(e.target.value)} />
+            <Input placeholder = "Username" onChange={(e) => setUsername(e.target.value)} />
           </Form.Item>
           <Form.Item
-            label="Password"
             name="password"
-            placeholder="Password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password onChange={(e) => setPassword(e.target.value)} />
+            <Input.Password placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
 
           
