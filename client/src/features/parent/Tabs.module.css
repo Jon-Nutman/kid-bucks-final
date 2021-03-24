@@ -7,8 +7,9 @@
 .componentContainer {
   display: flex;
   flex-direction: row;
-  /* margin: 20px; */
   justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .leftContainer {
