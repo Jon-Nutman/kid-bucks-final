@@ -8,17 +8,29 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
+}
+.componentContainerAddChild {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-left: 5%;
   margin-right: 5%;
 }
 
+
 .leftContainer {
   flex-grow: 2;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .rightContainer {
   flex-grow: 1;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .tabMain {
   margin: 20px;
 }
+
