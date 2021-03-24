@@ -92,7 +92,7 @@ export default function ChildTab() {
             </TabPane>
           )
         })}
-        <TabPane className={styles.componentContainer} tab="+" key="newChild">
+        <TabPane className={styles.componentContainerAddChild} tab="+" key="newChild">
           <div>
             <AddChild />
           </div>
