@@ -3,11 +3,21 @@ import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../auth/auth'
 
 export default function Navbar() {
-  const { logout } = useAuth()
+  const { logout, login } = useAuth()
   const history = useHistory()
   function handleLogout() {
     logout().then(() => {
       history.push('/login')
+    })
+  }
+  const loginParent = (e) => {
+    login('parent', 'test').then((r) => {
+      history.push('/parent-dashboard')
+    })
+  }
+  const loginChild = (e) => {
+    login('child', 'test').then((r) => {
+      history.push('/child-dashboard')
     })
   }
   return (
@@ -17,10 +27,10 @@ export default function Navbar() {
           <Link to="/">Login</Link>
         </li>
         <li>
-          <Link to="/parent-dashboard">Pavlovs</Link>
+          <p onClick={loginParent}>parent</p>
         </li>
         <li>
-          <Link to="/child-dashboard">and the Dogs</Link>
+          <p onClick={loginChild}>child</p>
         </li>
         <li onClick={handleLogout}>logout</li>
       </ul>
