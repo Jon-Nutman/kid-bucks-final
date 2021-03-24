@@ -8,12 +8,22 @@ x request.get('prize-bins/:childId')
 x request.delete('prizes/:prizeId')
 request.patch('prizes/:prizeId')
 
-request.delete('/users/child/:childId')
+x request.delete('/users/child/:childId')
+
+request.post prize-bins to handle balances (dottie)
+request.patch prize-bind to handle balances (dottie)
 
 Todos:
 
 transactions
 
-GET transactions (based on child)
+x GET transactions (based on child)
 PATCH transactions (based on child)
 POST transactions (based on child)
+
+SQL Queries:
+
+x post transactions (dottie)
+x patch transactions (dottie)
+> post to prize-bin (dottie)  <-- have to talk to thomas and group about this.
+> patch to prize-bin (dottie)
