@@ -7,12 +7,9 @@ import PrizesList from '../commonComponents/PrizesList'
 import styles from '../parent/Tabs.module.css'
 import AddChild from './AddChildModal'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  selectGoals,
-  getChildren,
-  selectChildren,
-  getGoalsByChildId,
-} from '../common/goalSlice'
+import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
+import { getChildren, selectChildren , deleteChild} from './userSlice'
+import { getTransactions, selectTransactions } from '../common/transactionSlice' 
 
 const { TabPane } = Tabs
 
@@ -46,11 +43,15 @@ const customStyles = {
 export default function ChildTab() {
   const goals = useSelector(selectGoals)
   const children = useSelector(selectChildren)
+  const transactions = useSelector(selectTransactions)
+  console.log(transactions)
   const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
+  
 
   useEffect(() => {
     dispatch(getChildren())
+    dispatch(getTransactions(2))
   }, [])
   function openModal() {
     setIsOpen(true)
@@ -76,7 +77,7 @@ export default function ChildTab() {
           return (
             <TabPane
               className={styles.componentContainer}
-              tab={index + 1}
+              tab={child.username}
               key={child.id}
             >
               <div>
@@ -87,7 +88,7 @@ export default function ChildTab() {
               <div>
                 <AddPrizeModal />
                 <h1>Prize List</h1>
-                <PrizesList />
+                <PrizesList childId={child.id} />
               </div>
             </TabPane>
           )
