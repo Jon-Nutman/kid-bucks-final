@@ -7,5 +7,17 @@
 .componentContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* margin: 20px; */
+  justify-content: space-between;
+}
+
+.leftContainer {
+  flex-grow: 2;
+}
+.rightContainer {
+  flex-grow: 1;
+}
+
+.tabMain {
+  margin: 20px;
 }
