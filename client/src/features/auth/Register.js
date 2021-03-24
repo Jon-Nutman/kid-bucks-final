@@ -23,35 +23,35 @@ export default function Register(props) {
   const [emailError, setEmailError] = useState('')
 
   function handleSubmit(e) {
-    console.log('a')
-    if (firstName === '') {
-      setFirstNameError('must be entered')
-    } else {
-      setFirstNameError('')
-    }
-    if (lastName === '') {
-      setLastNameError('must be entered')
-    } else {
-      setLastNameError('')
-    }
+    // console.log('a')
+    // if (firstName === '') {
+    //   setFirstNameError('must be entered')
+    // } else {
+    //   setFirstNameError('')
+    // }
+    // if (lastName === '') {
+    //   setLastNameError('must be entered')
+    // } else {
+    //   setLastNameError('')
+    // }
 
-    if (userName === '') {
-      setUserNameError('must be entered')
-    } else {
-      setUserNameError('')
-    }
+    // if (userName === '') {
+    //   setUserNameError('must be entered')
+    // } else {
+    //   setUserNameError('')
+    // }
 
-    if (password === '') {
-      setPasswordError('must be entered')
-    } else {
-      setPasswordError('')
-    }
+    // if (password === '') {
+    //   setPasswordError('must be entered')
+    // } else {
+    //   setPasswordError('')
+    // }
 
-    if (confirmPassword !== password) {
-      setConfirmPasswordError('passwords must match')
-    } else {
-      setConfirmPasswordError('')
-    }
+    // if (confirmPassword !== password) {
+    //   setConfirmPasswordError('passwords must match')
+    // } else {
+    //   setConfirmPasswordError('')
+    // }
 
     signup(userName, password).then(() => {
       props.onSignup()
@@ -64,19 +64,23 @@ export default function Register(props) {
     // }
   }
 
-  function handleClick() {
-    setFirstName('')
-    setLastName('')
-    setUserName('')
-    setPassword('')
-    setConfirmPassword('')
-    setEmail('')
-  }
+  // function handleClick() {
+  //   setFirstName('')
+  //   setLastName('')
+  //   setUserName('')
+  //   setPassword('')
+  //   setConfirmPassword('')
+  //   setEmail('')
+  // }
 
   return (
     <div>
+       <div>
+      <h1>Register Form</h1>
+      <p>Fill out this form to create an account as an admin. </p>
+      </div>
       <Form className={styles.theForm} onFinish={handleSubmit}>
-        <label
+        {/* <label
           htmlFor="name"
           className={
             styles.firstNameError ? 'text-label text-label-red' : 'text-label'
@@ -90,8 +94,15 @@ export default function Register(props) {
           name="name"
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
-        />
-
+        /> */}
+         <Form.Item
+            name="firstname"
+            rules={[{ required: true, message: 'Please input your First Name!' }]}
+           
+          >
+            <Input placeholder ="First Name" onChange={(e) => setFirstName(e.target.value)} />
+          </Form.Item>
+{/* 
         <label
           htmlFor="lastname"
           className={
@@ -106,9 +117,16 @@ export default function Register(props) {
           name="name"
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
-        />
+        /> */}
+         <Form.Item        
+            name="lastname"
+            rules={[{ required: true, message: 'Please input your Last Name!' }]}
+           
+          >
+            <Input placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
+          </Form.Item>
 
-        <label
+        {/* <label
           htmlFor="username"
           className={
             styles.userNameError ? 'text-label text-label-red' : 'text-label'
@@ -122,9 +140,17 @@ export default function Register(props) {
           name="username"
           placeholder="Create username"
           onChange={(e) => setUserName(e.target.value)}
-        />
+        /> */}
 
-        <label
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Please input your Username!' }]}
+           
+          >
+            <Input placeholder="Create username" onChange={(e) => setUserName(e.target.value)} />
+          </Form.Item>
+
+        {/* <label
           htmlFor="password"
           className={
             styles.passwordError ? 'text-label text-label-red' : 'text-label'
@@ -138,9 +164,16 @@ export default function Register(props) {
           name="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-        />
+        /> */}
+         <Form.Item
+            name="Password"
+            rules={[{ required: true, message: 'Please input your Password!' }]}
+           
+          >
+            <Input placeholder = "Password" onChange={(e) => setPassword(e.target.value)} />
+          </Form.Item>
 
-        <label
+        {/* <label
           htmlFor="confirmpassword"
           className={
             styles.confirmPasswordError
@@ -156,9 +189,17 @@ export default function Register(props) {
           name="confirm-password"
           placeholder="Confirm password"
           onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+        /> */}
 
-        <label
+          <Form.Item
+            name="confirm-password"
+            rules={[{ required: true, message: 'Please confirm your Password!' }]}
+           
+          >
+            <Input placeholder = "Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} />
+          </Form.Item>
+
+        {/* <label
           htmlFor="email"
           className={
             styles.emailError ? 'text-label text-label-red' : 'text-label'
@@ -172,9 +213,24 @@ export default function Register(props) {
           name="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-        />
+        /> */}
+
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: 'Please input your Email!' }]}
+           
+          >
+            <Input placeholder = "Email" onChange={(e) => setEmail(e.target.value)} />
+          </Form.Item>
         <div>
-          <Button htmlType="submit">Submit</Button>
+        <Button
+        onClick={handleSubmit}
+        type="submit"
+        type="primary"
+        htmlType="submit"
+      >
+        Sign up
+      </Button>
         </div>
       </Form>
     </div>
