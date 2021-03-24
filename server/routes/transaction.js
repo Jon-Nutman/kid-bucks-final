@@ -17,10 +17,6 @@ router.get('/transactions/:childId', async (request, response) => {
 router.patch('/transactions/:transactionId', async (request, response) => {
   const transactionId = request.params.transactionId
   const updateTransaction = request.body
-  const updateTransactionTable = await db
-    .table('transactions')
-    .where({ id: transactionId })
-    .update(updateTransaction)
   const currentTransaction = await db
     .table('transactions')
     .where({ id: transactionId })
@@ -28,8 +24,13 @@ router.patch('/transactions/:transactionId', async (request, response) => {
   if (currentTransaction.status === 'approved') {
     response.json({ message: 'transaction already approved' })
   }
+  const updateTransactionTable = await db
+    .table('transactions')
+    .where({ id: transactionId })
+    .update(updateTransaction)
+  const qty = currentTransaction.quantity
   const currentUserId = currentTransaction.user_id
-  const pointsToDeduct = currentTransaction.points
+  const pointsToDeduct = currentTransaction.points * qty
   const prizeBin = await db
     .table('prize_bins')
     .where({ user_id: currentUserId })

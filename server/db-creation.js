@@ -157,7 +157,7 @@ async function main() {
   })
   await conn('prize_bins').insert({
     user_id: 2,
-    balance: 10,
+    balance: 100,
   })
   await conn('prize_bins').insert({
     user_id: 3,
