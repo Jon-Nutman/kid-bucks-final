@@ -39,6 +39,9 @@ router.patch('/goals/:goalId', async (req, res) => {
     .where({ id: goalId })
     .update(updateGoals)
   const goal = await db.table('goals').where({ id: goalResult }).first()
+  if (goal.status === 'complete') {
+    response.json({ message: 'goal already completed' })
+  }
   const childId = goal.child_id
   const pointsToAdd = goal.points
   const prizeBin = await db
