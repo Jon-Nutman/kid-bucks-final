@@ -34,7 +34,29 @@ router.delete('/goals/:goalId', async (req, res) => {
 router.patch('/goals/:goalId', async (req, res) => {
   const updateGoals = req.body
   const goalId = req.params.goalId
-  await db.table('goals').where({ id: goalId }).update(updateGoals)
+  const goalResult = await db
+    .table('goals')
+    .where({ id: goalId })
+    .update(updateGoals)
+  const goal = await db.table('goals').where({ id: goalResult }).first()
+  const childId = goal.child_id
+  const pointsToAdd = goal.points
+  const prizeBin = await db
+    .table('prize_bins')
+    .where({ user_id: childId })
+    .first()
+  const prizeBinFound = await db
+    .table('prize_bins')
+    .where({ id: prizeBin.id })
+    .first()
+  const currentBalance = prizeBinFound.balance
+  const newBalance = currentBalance + pointsToAdd
+  await db
+    .table('prize_bins')
+    .where({ id: prizeBin.id })
+    .update({ balance: newBalance })
+  // find the prize bin of the user
+  // update the prize bin with the new balance
   res.json({ message: 'your goal has been updated' })
 })
 
