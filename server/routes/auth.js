@@ -17,21 +17,14 @@ router.post('/registration/child', async (req, res) => {
   if (userExists) {
     res.status(400).json({ message: 'username already exists' })
   } else {
-    const addUserSql = `
-        INSERT INTO users (username, password, salt, parent_id, is_admin)
-        VALUES (?, ?, ?, ?, ?);
-    `
-    const insertedUser = await conn.raw(addUserSql, [
+    const child = await conn.table('users').returning(['id']).insert({
       username,
-      hashedPassword,
+      password: hashedPassword,
       salt,
-      userId,
-      false,
-    ])
-    // childId...
-    // const addPrizeBinSQL = `INSERT INTO prize_bins (user_id) VALUES (?)`
-    // conn.raw(addPrizeBinSQL, [childId])
-    // prizeBin addition based on newChild
+      parent_id: userId,
+      is_admin: false,
+    })
+    await conn.table('prize_bins').insert({ user_id: child[0].id })
     res.status(201).json({ message: 'user successfully created' })
   }
 })
