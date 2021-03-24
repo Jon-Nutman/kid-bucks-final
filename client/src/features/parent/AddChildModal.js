@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
-import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
-import request from '../../utils/request'
+import { useDispatch } from 'react-redux'
+import { addChild } from './userSlice'
 
 const layout = {
   // labelCol: {
@@ -24,6 +23,7 @@ const validateMessages = {
 }
 
 export default function AddChild() {
+  const dispatch = useDispatch()
   const [childName, setChildName] = useState('')
   const [childUsername, setUsername] = useState('')
   const [childPassword, setPassword] = useState('')
@@ -34,13 +34,14 @@ export default function AddChild() {
   function handleSubmit(e) {
     e.preventDefault()
     const obj = {
-      name: childName,
       username: childUsername,
       password: childPassword,
     }
     console.log(obj)
 
-    request.post('/registration/child', obj)
+    dispatch(addChild(obj))
+
+    // request.post('/registration/child', obj)
   }
 
   return (

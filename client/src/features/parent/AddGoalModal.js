@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addGoal } from '../common/goalSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import SwitchablePicker from './SwitchablePicker'
@@ -18,7 +20,7 @@ const customStyles = {
 }
 
 export default function AddGoalModal(props) {
-  var subtitle
+  const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
@@ -51,8 +53,8 @@ export default function AddGoalModal(props) {
       child_id: 2,
     }
     console.log(obj)
-
-    request.post('/goals', obj)
+    dispatch(addGoal(obj))
+    // request.post('/goals', obj)
   }
 
   return (

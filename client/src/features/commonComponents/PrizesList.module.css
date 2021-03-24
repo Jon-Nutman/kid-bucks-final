@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-.prizeCard{
+.prizeCard {
   border: 0;
   outline: 0;
   font-size: 9px;
@@ -12,23 +12,23 @@
   padding: 4px;
   text-transform: uppercase;
   color: rgb(45, 1, 1);
-  background-color:#eeeded;
-  text-shadow: 1px 1px 0 #FFF;
+  background-color: #eeeded;
+  text-shadow: 1px 1px 0 #fff;
   margin-bottom: 6px;
-  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
   appearance: none;
   -webkit-appearance: none;
 }
-  
+
 .prizeCard:hover {
-  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
 }
-  
+
 .prizeCard:active {
-  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
 }
 
 .pointPrizeAvatar {
@@ -42,15 +42,15 @@
   text-justify: center;
 }
 
-.points{
+.points {
   margin-right: 5px;
   margin-top: 5px;
   font-size: 10px;
-  color:rgb(45, 1, 1)
+  color: rgb(45, 1, 1);
 }
-.addToCart{
+.addToCart {
   font-size: 8px;
-  color:rgb(45, 1, 1);
+  color: rgb(45, 1, 1);
   margin-bottom: 3px;
 }
 
@@ -61,10 +61,8 @@
   align-items: center;
 }
 
-.prizeCardTitle{
-  
+.prizeCardTitle {
   font-size: 12px;
   height: 30px;
-  color:rgb(45, 1, 1)
+  color: rgb(45, 1, 1);
 }
-
