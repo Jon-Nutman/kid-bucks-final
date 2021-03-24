@@ -162,12 +162,6 @@ async function main() {
   await conn('prize_bins').insert({
     user_id: 3,
   })
-  await conn('transactions').insert({
-    prize_id: 1,
-    user_id: 2,
-    points: 5,
-    quantity: 2,
-  })
   await conn('prizes').insert({
     id: 1,
     points: 5,
@@ -176,6 +170,12 @@ async function main() {
     prize_thumbnail:
       'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
     prize_bin_id: 1,
+  })
+  await conn('transactions').insert({
+    prize_id: 1,
+    user_id: 2,
+    points: 5,
+    quantity: 2,
   })
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
