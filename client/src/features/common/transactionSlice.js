@@ -5,19 +5,30 @@ export const transaction = createSlice({
   name: 'transaction',
   initialState: {
     transactions: [],
+    balance: 0,
   },
   reducers: {
     setTransactions: (state, action) => {
       state.transactions = action.payload
     },
+    setBalance: (state, action) => {
+      state.balance = action.payload
+    },
   },
 })
 
-export const { setTransactions } = transaction.actions
+export const { setTransactions, setBalance } = transaction.actions
+
 
 export const getTransactions = (childId) => async (dispatch) => {
   await request.get('/transactions/' + childId).then((response) => {
     dispatch(setTransactions(response.data))
+    console.log(response.data)
+  })
+}
+export const getBalanceByChildId = (childId) => async (dispatch) => {
+  await request.get('/balance/' + childId).then((response) => {
+    dispatch(setBalance(response.data.balance))
     console.log(response.data)
   })
 }
@@ -35,5 +46,7 @@ export const getTransactions = (childId) => async (dispatch) => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectTransactions = (state) => state.transaction.transactions
+export const selectBalance = (state) => state.transaction.balance
 
 export default transaction.reducer
+
