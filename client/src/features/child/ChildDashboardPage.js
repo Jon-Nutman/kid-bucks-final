@@ -5,19 +5,21 @@ import {
   getGoalsByChildId,
   deleteGoalById,
 } from '../common/goalSlice'
-import { selectPrizes } from '../common/prizeSlice'
+import { selectPrizes, prizesAsync } from '../common/prizeSlice'
 import Header from './Header'
 import GoalList from '../commonComponents/goals/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
 import styles from './ChildDashboardPage.module.css'
+import { useAuth, UseAuth } from '../auth/auth'
 
 export default function ChildDashboardPage() {
   const goals = useSelector(selectGoals)
   const prizes = useSelector(selectPrizes)
   const dispatch = useDispatch()
-  const childId = 2
+  const { user } = useAuth()
+  console.log(user)
   // selectGoals == state.goal.goals
 
   useEffect(() => {
@@ -26,8 +28,12 @@ export default function ChildDashboardPage() {
   }, [goals])
 
   useEffect(() => {
-    dispatch(getGoalsByChildId(childId))
+    dispatch(getGoalsByChildId(user.id))
+    dispatch(prizesAsync(user.id))
   }, [])
+
+
+
 
   return (
 
@@ -40,7 +46,7 @@ export default function ChildDashboardPage() {
         </div>
         <div className={styles.rightContainer}>
           <PrzBinRedeemModal />
-          <PrizesList childId={childId.id} />
+          <PrizesList childId={user.id} />
         </div>
       </div>
     </div>
