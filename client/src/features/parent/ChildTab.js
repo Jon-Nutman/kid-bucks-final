@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
 import { getChildren, selectChildren, deleteChild } from './userSlice'
 import { getTransactions, selectTransactions } from '../common/transactionSlice'
+import TransactionModal from '../commonComponents/TransactionModal'
 
 const { TabPane } = Tabs
 
@@ -85,9 +86,13 @@ export default function ChildTab() {
                 <GoalList goals={goals} />
               </div>
               <div className={styles.rightContainer}>
-                <AddPrizeModal childId={child.id}/>
+                <div className={styles.modalButtonContainer}>
+                <AddPrizeModal />
+                <TransactionModal />
+                </div>
                 <h1>Prize List</h1>
                 <PrizesList childId={child.id} />
+                
               </div>
             </TabPane>
           )

@@ -23,6 +23,7 @@ export default function Register(props) {
   const [emailError, setEmailError] = useState('')
 
   function handleSubmit(e) {
+  
     // console.log('a')
     // if (firstName === '') {
     //   setFirstNameError('must be entered')
@@ -62,9 +63,11 @@ export default function Register(props) {
     // } else {
     //   setEmailError("Please enter a valid email");
     // }
+  
+    
   }
 
-  // function handleClick() {
+  // function handleSubmit() {
   //   setFirstName('')
   //   setLastName('')
   //   setUserName('')
@@ -74,6 +77,7 @@ export default function Register(props) {
   // }
 
   return (
+    
     <div>
        <div>
       <h1>Register Form</h1>
@@ -222,6 +226,7 @@ export default function Register(props) {
           >
             <Input placeholder = "Email" onChange={(e) => setEmail(e.target.value)} />
           </Form.Item>
+          
         <div>
         <Button
         onClick={handleSubmit}
