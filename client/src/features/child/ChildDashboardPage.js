@@ -7,7 +7,7 @@ import {
 } from '../common/goalSlice'
 import { selectPrizes } from '../common/prizeSlice'
 import Header from './Header'
-import GoalList from '../commonComponents/GoalList'
+import GoalList from '../commonComponents/goals/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
@@ -35,8 +35,8 @@ export default function ChildDashboardPage() {
         <Header />
         <div className={styles.componentContainer}>
         <div className={styles.leftContainer}>
-          <GoalCompleteBtn />
           <GoalList goals={goals} />
+          <GoalCompleteBtn />
         </div>
         <div className={styles.rightContainer}>
           <PrzBinRedeemModal />

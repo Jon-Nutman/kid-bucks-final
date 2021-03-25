@@ -27,7 +27,7 @@ SQL Queries:
 
 x post transactions (dottie)
 x patch transactions (dottie)
-> post to prize-bin (dottie)  <-- have to talk to thomas and group about this.
+> post to prize-bin (dottie)
 > patch to prize-bin (dottie)
 
 
