@@ -20,9 +20,9 @@ export default function PrizeList(props) {
 
   console.table(prizes)
 
-  useEffect(() => {
-    dispatch(prizesAsync(props.childId))
-  }, [props.childId])
+  // useEffect(() => {
+  //   dispatch(prizesAsync(props.childId))
+  // }, [props.childId])
 
   return (
     <List>

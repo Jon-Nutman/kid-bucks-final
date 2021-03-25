@@ -18,7 +18,7 @@ const customStyles = {
   },
 }
 
-export default function AddPrizeModal() {
+export default function AddPrizeModal(props) {
   const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
@@ -44,7 +44,7 @@ export default function AddPrizeModal() {
       points: prizePoints,
       description: prizeDescription,
       prize_thumbnail: 'https://placedog.net/500',
-      child_id: 2,
+      child_id: props.childId
     }
     dispatch(addPrize(obj))
     // request.post('/prizes', obj)
