@@ -95,9 +95,8 @@ export function LoginSignup() {
           <Form.Item
             wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
           ></Form.Item>
-        </Form>
-      </div>
-      <Button
+          <div>
+          <Button
         onClick={handleSubmit}
         type="submit"
         type="primary"
@@ -105,6 +104,9 @@ export function LoginSignup() {
       >
         Login
       </Button>
+      </div>
+        </Form>
+      </div>
     </div>
   )
 }
