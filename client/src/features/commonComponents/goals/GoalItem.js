@@ -11,7 +11,6 @@ export default function GoalItem(props) {
   const { user } = useAuth()
   return (
     <>
-      <button type="submit" className={styles.goalBtn}>
         <div className={styles.goalItemWrapper}>
           <Checkbox
             checked={goal.status !== 'not_started'}
@@ -30,7 +29,6 @@ export default function GoalItem(props) {
             <div className={styles.pointGoalAvatar}>{goal.points}</div>
           </div>
         </div>
-      </button>
     </>
   )
 }

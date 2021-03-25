@@ -6,10 +6,11 @@ import styles from './PrizesList.module.css'
 import Checkbox from './componentParts/CmpntCheckbox.js'
 import { selectPrizes, prizesAsync, deletePrize } from '../common/prizeSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import request from '../../utils/request'
 import { FaPlus } from 'react-icons/fa'
 
 export default function PrizeList(props) {
+
+  
   console.log(props)
   // const yourPrizes = request.get('/prizes/:childId')
   // console.log(yourPrizes)
