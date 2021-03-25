@@ -5,6 +5,7 @@ import { store } from './ProviderCommon'
 import styles from './PrizesList.module.css'
 import Checkbox from './componentParts/CmpntCheckbox.js'
 import { selectPrizes, prizesAsync, deletePrize } from '../common/prizeSlice'
+import { addPrizeToCart } from './prizeBin/prizeCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaPlus } from 'react-icons/fa'
 
@@ -37,13 +38,18 @@ export default function PrizeList(props) {
               >
                 delete
               </a>,
-              <a key="list-loadmore-more">more</a>,
+              <a 
+              href="#"
+              key="list-loadmore-more"
+              onClick={() => dispatch(addPrizeToCart(item.id, props.childId))}
+              >
+                + to cart </a>,
             ]}
           >
             <List.Item.Meta
               avatar={<Avatar src={item.prize_thumbnail} />}
               title={<a href="https://ant.design">{item.title}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              description={<span>{item.points} points</span>}
             />
           </List.Item>
         )
