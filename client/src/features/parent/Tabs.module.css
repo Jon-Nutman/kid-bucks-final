@@ -34,3 +34,8 @@
   margin: 20px;
 }
 
+.modalButtonContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
