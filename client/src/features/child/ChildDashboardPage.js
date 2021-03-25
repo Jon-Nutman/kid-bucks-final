@@ -42,7 +42,6 @@ export default function ChildDashboardPage() {
         <div className={styles.componentContainer}>
         <div className={styles.leftContainer}>
           <GoalList goals={goals} />
-          <GoalCompleteBtn />
         </div>
         <div className={styles.rightContainer}>
           <PrzBinRedeemModal />
