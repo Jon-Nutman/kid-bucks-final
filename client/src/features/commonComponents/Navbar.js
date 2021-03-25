@@ -1,6 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../auth/auth'
+import logo from './logo/Logo'
+
+
+
+
 
 export default function Navbar() {
   const { logout, login } = useAuth()
@@ -22,6 +27,9 @@ export default function Navbar() {
   }
   return (
     <nav>
+      <div>
+      <img src={logo} height="200px" />
+      </div>
       <ul>
         <li>
           <Link to="/">Login</Link>

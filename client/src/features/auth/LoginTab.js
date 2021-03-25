@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Tabs } from 'antd'
 import styles from './LoginSignup.module.css'
 import Register from './Register'
+// import Registercopy from './Registercopy'
 import { LoginSignup } from './LoginSignup'
 // import styles from "./Tabs.module.css"
 
