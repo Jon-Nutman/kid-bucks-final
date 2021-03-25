@@ -9,9 +9,9 @@ export default function GoalList(props) {
   const dispatch = useDispatch()
 
 
-  useEffect(() => {
-    dispatch(getGoalsByChildId(props.childId))
-  }, [props.childId])
+  // useEffect(() => {
+  //   dispatch(getGoalsByChildId(props.childId))
+  // }, [props.childId])
 
 
   const columns = [
@@ -37,8 +37,7 @@ export default function GoalList(props) {
   
   return (
     <>
-      {props.goals.map((goal) => (
-          <Table
+     <Table
           columns={columns}
           expandable={{
             expandedRowRender: goal => <p style={{ margin: 0 }}>{goal.description}</p>,
@@ -47,7 +46,6 @@ export default function GoalList(props) {
           dataSource={goals}
         />
       
-      ))}
     </>
   )
 }
