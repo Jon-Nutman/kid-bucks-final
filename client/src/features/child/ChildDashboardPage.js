@@ -7,7 +7,7 @@ import {
 } from '../common/goalSlice'
 import { selectPrizes } from '../common/prizeSlice'
 import Header from './Header'
-import GoalList from '../commonComponents/GoalList'
+import GoalList from '../commonComponents/goals/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
 import GoalCompleteBtn from '../commonComponents/goals/GoalCompleteBtn'
@@ -30,30 +30,17 @@ export default function ChildDashboardPage() {
   }, [])
 
   return (
-    <div className={styles.main}>
-      <div className={styles.childDashGlass}>
-        <div className={styles.circle1}></div>
-        <div className={styles.circle2}></div>
-        <Header />
 
-        <div className={styles.childDashFlexbox}>
-          <div className={styles.childDashGoalsContain}>
-            <GoalList
-              goals={goals}
-              onDelete={(id) => dispatch(deleteGoalById(id, childId))}
-            />
-            <div className={styles.goalCompleteBtn}>
-              <GoalCompleteBtn />
-            </div>
-          </div>
+      <div className={styles.tabMain}>
+        <Header />
+        <div className={styles.componentContainer}>
+        <div className={styles.leftContainer}>
+          <GoalList goals={goals} />
+          <GoalCompleteBtn />
         </div>
-        <div className={styles.prizeBinContain}>
-          <div className={styles.prizeListContainer}>
-            <PrizesList prizes={prizes} />
-          </div>
-          <div className={styles.przRedemption}>
-            <PrzBinRedeemModal />
-          </div>
+        <div className={styles.rightContainer}>
+          <PrzBinRedeemModal />
+          <PrizesList childId={childId.id} />
         </div>
       </div>
     </div>

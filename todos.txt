@@ -27,7 +27,7 @@ SQL Queries:
 
 x post transactions (dottie)
 x patch transactions (dottie)
-> post to prize-bin (dottie)  <-- have to talk to thomas and group about this.
+> post to prize-bin (dottie)
 > patch to prize-bin (dottie)
 
 
@@ -35,3 +35,14 @@ x patch transactions (dottie)
 
 CRUD
 
+<div className={styles.leftContainer}>
+<GoalCompleteBtn />
+<h1>Goal List</h1>
+<GoalList goals={goals} />
+<GoalCompleteBtn />
+</div>
+<div className={styles.rightContainer}>
+<PrzBinRedeemModal />
+<h1>Prize List</h1>
+<PrizesList childId={child.id} />
+<PrzBinRedeemModal />
