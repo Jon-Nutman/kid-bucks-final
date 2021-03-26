@@ -99,7 +99,6 @@ export default function PrzBinRedeemModal() {
             </li>
           ))}
         </ul>
-        {totalPoints}
         <Button
           type="primary"
           htmlType="submit"
