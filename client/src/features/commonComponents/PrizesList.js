@@ -1,12 +1,17 @@
 import { useEffect } from 'react'
 import { List, Avatar } from 'antd'
-import { selectPrizes, getPrizesByChildId, deletePrize } from '../common/prizeSlice'
+import {
+  selectPrizes,
+  getPrizesByChildId,
+  deletePrize,
+} from '../common/prizeSlice'
 import { addPrizeToCart } from './prizeBin/prizeCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useAuth } from '../auth/auth'
 
 export default function PrizeList(props) {
-
-  
+  const { user } = useAuth()
+  const isAdmin = user.is_admin
   console.log(props)
   // const yourPrizes = request.get('/prizes/:childId')
   // console.log(yourPrizes)
@@ -20,25 +25,31 @@ export default function PrizeList(props) {
     dispatch(getPrizesByChildId(props.childId))
   }, [props.childId])
 
+  function prizeActions(item, childId, isAdmin) {
+    const childActions = [
+      <a
+        key="list-loadmore-more"
+        onClick={() => dispatch(addPrizeToCart(item))}
+      >
+        + to cart{' '}
+      </a>,
+    ]
+    const parentActions = [
+      <a
+        key="list-loadmore-edit"
+        onClick={() => dispatch(deletePrize(item.id, childId))}
+      >
+        delete
+      </a>,
+    ]
+    return isAdmin ? parentActions : childActions
+  }
+
   return (
     <List>
       {prizes.map((item) => {
         return (
-          <List.Item
-            actions={[
-              <a
-                key="list-loadmore-edit"
-                onClick={() => dispatch(deletePrize(item.id, props.childId))}
-              >
-                delete
-              </a>,
-              <a 
-              key="list-loadmore-more"
-              onClick={() => dispatch(addPrizeToCart(item))}
-              >
-                + to cart </a>,
-            ]}
-          >
+          <List.Item actions={prizeActions(item, props.childId, isAdmin)}>
             <List.Item.Meta
               avatar={<Avatar src={item.prize_thumbnail} />}
               title={<a href="https://www.amazon.com/">{item.title}</a>}
