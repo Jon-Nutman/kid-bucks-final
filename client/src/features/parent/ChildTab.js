@@ -81,7 +81,7 @@ export default function ChildTab() {
               key={child.id}
             >
               <div className={styles.leftContainer}>
-                <AddGoalModal />
+                <AddGoalModal childId={child.id} />
                 <h1>Goal List</h1>
                 <GoalList goals={goals} />
               </div>

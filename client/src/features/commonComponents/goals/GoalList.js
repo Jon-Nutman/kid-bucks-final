@@ -25,7 +25,8 @@ export default function GoalList(props) {
       title: 'Action Parent',
       dataIndex: '',
       key: 'x',
-      render: () => <a>Delete</a>,
+      render: (item) => <a
+      onClick={() => dispatch(deleteGoalById(item.id, item.child_id))}>Delete</a>,
     },
     {
       title: 'Action Parent',
@@ -46,7 +47,10 @@ export default function GoalList(props) {
       title: 'Action Child',
       dataIndex: '',
       key: 'x',
-      render: () => <a>Redeem to Parents</a>,
+      render: (item) => <a
+      onClick={() =>
+        dispatch(updateGoalStatusById(item.id, item.child_id, 'reported'))
+      }>Redeem to Parents</a>,
     },
   ]
 
