@@ -1,10 +1,10 @@
-/* .prizeCartHeader {
+.prizeCartHeader {
   width: 90%;
   height: 60px;
   text-align: center;
   margin-top: 30px;
   font-size: 25px;
-} */
+}
 
 .prizeCartlist {
   height: 550px;
@@ -14,13 +14,13 @@
   height: 150px;
   margin: 10px 0 10px 0;
   padding-left: 20px;
-  color: whitesmoke;
+  color: black;
   display: flex;
 }
-/* .prizeCartpTag {
+.prizeCartpTag {
   display: flex;
   flex-direction: column;
-} */
+}
 .imgThumb {
   width: 50px;
   height: 50px;

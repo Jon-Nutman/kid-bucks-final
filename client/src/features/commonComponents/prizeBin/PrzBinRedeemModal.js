@@ -3,6 +3,17 @@ import React from 'react'
 import Modal from 'react-modal'
 import { Button } from 'antd'
 import styles from './PrzBinRedeemModal.module.css'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  selectCart,
+  selectTotal,
+  selectTotalPoints,
+  removePrize,
+  increment,
+  decrement,
+  createTransactions,
+} from './prizeCartSlice'
+import { selectBalance } from '../../common/transactionSlice'
 import PrizeCart from './PrizeCart'
 
 export default function PrzBinRedeemModal() {
@@ -16,6 +27,11 @@ export default function PrzBinRedeemModal() {
       transform: 'translate(-50%, -50%)',
     },
   }
+  const balance = useSelector(selectBalance)
+  const prizeCart = useSelector(selectCart)
+  const total = useSelector(selectTotal)
+  const totalPoints = useSelector(selectTotalPoints)
+  const dispatch = useDispatch()
 
   // const onFinish = (values) => {
   //   console.log(values);
@@ -34,40 +50,16 @@ export default function PrzBinRedeemModal() {
     setIsOpen(false)
   }
 
-  const prizeCart = [
-    {
-      id: 1,
-      points: 5,
-      title: 'robux',
-      description: '1000 robux',
-      prize_thumbnail:
-        'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
-      prize_bin_id: 1,
-    },
-    {
-      id: 2,
-      points: 5,
-      title: 'robux',
-      description: '1000 robux',
-      prize_thumbnail:
-        'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
-      prize_bin_id: 1,
-    },
-    {
-      id: 3,
-      points: 5,
-      title: 'robux',
-      description: '1000 robux',
-      prize_thumbnail:
-        'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
-      prize_bin_id: 1,
-    },
-  ]
+  function sendTransactions() {
+    dispatch(createTransactions(prizeCart)).then(() => {
+      closeModal()
+    })
+  }
 
   return (
     <div>
       <div className={styles.buttonWrap}>
-      <Button onClick={openModal}>Redeem Prizes</Button>
+        <Button onClick={openModal}> Your Prize Cart |  {total} prizes in Cart</Button>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -76,9 +68,44 @@ export default function PrzBinRedeemModal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <PrizeCart />
-        <Button type="primary" htmlType="submit" onClick={closeModal}>
-          Submit
+        <ul>
+          {prizeCart.map((prize) => (
+            <li key={'prizeCart-' + prize.id} className={styles.prizeCartPrize}>
+              <img className={styles.imgThumb} src={prize.prize_thumbnail} />
+              <div className={styles.prizeCartpTag}>
+                <p>
+                  {prize.title} | {prize.quantity}
+                </p>
+                <br />
+              </div>
+              <button
+                className={styles.delBtn}
+                onClick={() => dispatch(removePrize(prize))}
+              >
+                X
+              </button>
+              <button
+                className={styles.btn}
+                onClick={() => dispatch(decrement(prize))}
+              >
+                -
+              </button>
+              <button
+                className={styles.btn}
+                onClick={() => dispatch(increment(prize))}
+              >
+                +
+              </button>
+            </li>
+          ))}
+        </ul>
+        <Button
+          type="primary"
+          htmlType="submit"
+          disabled={balance < totalPoints}
+          onClick={sendTransactions}
+        >
+          Send this to the parents
         </Button>
       </Modal>
     </div>

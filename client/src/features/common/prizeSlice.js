@@ -16,20 +16,20 @@ export const prizeSlice = createSlice({
 
 export const { setPrizes } = prizeSlice.actions
 
-export const prizesAsync = (childId) => async (dispatch) => {
+export const getPrizesByChildId = (childId) => async (dispatch) => {
   await request.get('/prizes/' + childId).then((response) => {
     dispatch(setPrizes(response.data))
   })
 }
 
-export const addPrize = (prize, childId) => async (dispatch) => {
+export const addPrize = (prize) => async (dispatch) => {
   await request.post('/prizes', prize)
-  dispatch(prizesAsync(childId))
+  dispatch(getPrizesByChildId(prize.child_id))
 }
 
 export const deletePrize = (prizeId, childId) => async (dispatch) => {
   await request.delete('/prizes/' + prizeId)
-  dispatch(prizesAsync(childId))
+  dispatch(getPrizesByChildId(childId))
 }
 
 // The function below is called a selector and allows us to select a value from
