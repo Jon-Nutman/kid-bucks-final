@@ -30,13 +30,12 @@ export const addGoal = (goal) => async (dispatch) => {
   dispatch(getGoalsByChildId(goal.child_id))
 }
 
-export const updateGoalStatusById = (goalId, childId, status) => async (
-  dispatch
-) => {
-  const statusChecked = status ? 'reported' : 'not_started'
-  await request.patch(`/goals/${goalId}`, { status: statusChecked })
+export const updateGoalStatusById = (goalId, childId, status) => async (dispatch) => {
+  // const statusChecked = status ? 'reported' : 'not_started'
+  await request.patch(`/goals/${goalId}`, { status: status })
   dispatch(getGoalsByChildId(childId))
 }
+
 
 export const deleteGoalById = (goalId, childId) => async (dispatch) => {
   await request.delete(`/goals/${goalId}`)
