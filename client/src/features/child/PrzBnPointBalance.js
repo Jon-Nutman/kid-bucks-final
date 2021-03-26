@@ -3,12 +3,15 @@ import { FaAdd } from 'react-icons'
 import styles from './PrzBnPointBalance.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBalanceByChildId, selectBalance } from '../common/transactionSlice'
+import { useAuth } from '../auth/auth'
 
 export const PrzBnPointBalance = () => {
   const dispatch = useDispatch()
   const balance = useSelector(selectBalance)
+  const { user } = useAuth()
+  console.log(user)
   useEffect(() => {
-    dispatch(getBalanceByChildId(2))
+    dispatch(getBalanceByChildId(user.id))
   }, [])
   return (
     <>
