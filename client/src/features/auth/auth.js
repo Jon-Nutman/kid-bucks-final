@@ -37,6 +37,7 @@ function loginUser(username, password) {
       dispatch({
         type: LOGIN_SUCCESS,
       })
+      return resp
     })
   }
 }
