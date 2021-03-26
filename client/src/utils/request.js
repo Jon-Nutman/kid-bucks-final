@@ -109,8 +109,6 @@ export class AuthService {
   static isAuthenticated = () => !!Storage.getItem('authToken')
 }
 
-window.AuthService = AuthService
-
 const api = new Request()
 api.login = AuthService.login
 api.signup = AuthService.signup
