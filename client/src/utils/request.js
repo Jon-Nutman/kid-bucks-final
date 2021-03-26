@@ -77,6 +77,10 @@ export class AuthService {
     })
   }
 
+  static decodeTokenPayload = (token) => {
+    return JSON.parse(atob(token.split('.')?.[1]))
+  }
+
   static signup = (username, password) => {
     const userToRegister = {
       username: username,
@@ -94,7 +98,7 @@ export class AuthService {
 
   static getUser = () => {
     try {
-      return JSON.parse(atob(Storage.getItem('authToken').split('.')?.[1]))
+      return AuthService.decodeTokenPayload(Storage.getItem('authToken'))
     } catch (err) {
       return {}
     }
@@ -104,6 +108,8 @@ export class AuthService {
 
   static isAuthenticated = () => !!Storage.getItem('authToken')
 }
+
+window.AuthService = AuthService
 
 const api = new Request()
 api.login = AuthService.login

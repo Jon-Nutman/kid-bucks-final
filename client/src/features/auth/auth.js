@@ -73,5 +73,14 @@ export function useAuth() {
   const logout = () => dispatch(logoutUser())
   const testProtected = () => request.get('/dashboard')
   const user = AuthService.getUser()
-  return { login, logout, signup, isAuthenticated, testProtected, user }
+  const decodeUser = (token) => AuthService.decodeTokenPayload(token)
+  return {
+    login,
+    logout,
+    signup,
+    isAuthenticated,
+    testProtected,
+    user,
+    decodeUser,
+  }
 }
