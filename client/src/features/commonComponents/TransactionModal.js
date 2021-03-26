@@ -4,6 +4,7 @@ import { addPrize } from '../common/prizeSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
+import {approveTransaction , getTransactions} from '../common/transactionSlice'
 
 const { TextArea } = Input
 
@@ -23,6 +24,8 @@ export default function AddPrizeModal() {
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
+    dispatch(getTransactions())
+    console.log()
   }
 
   function afterOpenModal() {
@@ -32,18 +35,15 @@ export default function AddPrizeModal() {
   function closeModal() {
     setIsOpen(false)
   }
-  const [prizeTitle, setPrizeTitle] = useState('')
   
 
   function handleSubmit(e) {
     e.preventDefault()
     const obj = {
-      
+      status: 'approved'
     }
-    // dispatch(approveTransaction(obj))
-    // request.post('/prizes', obj)
+    dispatch(approveTransaction(obj))
   }
-
   return (
     <div>
       <Button onClick={openModal}>View Prize Requests</Button>
