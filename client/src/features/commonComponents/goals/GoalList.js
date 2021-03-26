@@ -6,27 +6,25 @@ import {
   deleteGoalById,
   getGoalsByChildId,
   selectGoals,
-  updateGoalStatusById
+  updateGoalStatusById,
 } from '../../common/goalSlice'
-
+import { useAuth } from '../../auth/auth'
 
 export default function GoalList(props) {
   const dispatch = useDispatch()
+  const { user } = useAuth()
+  const isAdmin = user.is_admin
 
-  // useEffect(() => {
-  //   dispatch(getGoalsByChildId(props.childId))
-  // }, [props.childId])
-
-  const columns = [
-    { title: 'Goal', dataIndex: 'title', key: 'title' },
-    { title: 'Points', dataIndex: 'points', key: 'age' },
-    { title: 'Status', dataIndex: 'status', key: 'address' },
+  const parentActions = [
     {
       title: 'Action Parent',
       dataIndex: '',
       key: 'x',
-      render: (item) => <a
-      onClick={() => dispatch(deleteGoalById(item.id, item.child_id))}>Delete</a>,
+      render: (item) => (
+        <a onClick={() => dispatch(deleteGoalById(item.id, item.child_id))}>
+          Delete
+        </a>
+      ),
     },
     {
       title: 'Action Parent',
@@ -42,16 +40,32 @@ export default function GoalList(props) {
         </a>
       ),
     },
+  ]
 
+  const childActions = [
     {
       title: 'Action Child',
       dataIndex: '',
       key: 'x',
-      render: (item) => <a
-      onClick={() =>
-        dispatch(updateGoalStatusById(item.id, item.child_id, 'reported'))
-      }>Redeem to Parents</a>,
+      render: (item) => (
+        <a
+          onClick={() =>
+            dispatch(updateGoalStatusById(item.id, item.child_id, 'reported'))
+          }
+        >
+          Redeem to Parents
+        </a>
+      ),
     },
+  ]
+
+  const userActions = isAdmin ? parentActions : childActions
+
+  const columns = [
+    { title: 'Goal', dataIndex: 'title', key: 'title' },
+    { title: 'Points', dataIndex: 'points', key: 'age' },
+    { title: 'Status', dataIndex: 'status', key: 'address' },
+    ...userActions,
   ]
 
   const goals = useSelector(selectGoals)
