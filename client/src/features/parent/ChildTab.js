@@ -88,7 +88,7 @@ export default function ChildTab() {
               <div className={styles.rightContainer}>
                 <div className={styles.modalButtonContainer}>
                   <AddPrizeModal childId={child.id} />
-                  <TransactionModal />
+                  <TransactionModal childId={child.id} />
                 </div>
                 <h1>Prize List</h1>
                 <PrizesList childId={child.id} />
