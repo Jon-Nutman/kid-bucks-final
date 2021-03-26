@@ -34,8 +34,8 @@ export const getBalanceByChildId = (childId) => async (dispatch) => {
 }
 
 export const approveTransaction = (transactionId) => async (dispatch) => {
-  await request.patch('/transactions/' + transactionId).then((response) => {
-    dispatch(setTransactions(response.data))
+  await request.patch('/transactions/' + transactionId, {status: 'approved'}).then((response) => {
+    dispatch(getTransactions(response.data))
   })
 }
 

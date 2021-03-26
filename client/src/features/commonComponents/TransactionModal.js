@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addPrize } from '../common/prizeSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
-import {approveTransaction , getTransactions} from '../common/transactionSlice'
+import {approveTransaction , selectTransactions} from '../common/transactionSlice'
+
 
 const { TextArea } = Input
 
@@ -19,14 +20,15 @@ const customStyles = {
   },
 }
 
-export default function AddPrizeModal() {
+export default function TransactionModal(props) {
   const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
-    dispatch(getTransactions(transaction))
+    // dispatch(getTransactions(props))
     // can map with with info
     console.log()
+
   }
 
   function afterOpenModal() {
@@ -45,6 +47,9 @@ export default function AddPrizeModal() {
     }
     dispatch(approveTransaction(obj))
   }
+
+  const transactions = useSelector(selectTransactions)
+
   return (
     <div>
       <Button onClick={openModal}>View Prize Requests</Button>
@@ -60,15 +65,15 @@ export default function AddPrizeModal() {
           <h1>Prize Requests</h1>
           <Form>
             <ul>
-                <li>
-                    prize 1
-                </li>
-                <li>
-                    prize 2
-                </li>
+            {transactions.map((item) => {
+              console.log(item)
+             return (   <li>
+                 {item.id}
+                </li>)
+                 })}
             </ul>
           </Form>
-        </div>
+          </div>
         <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
          Approve
         </Button>
