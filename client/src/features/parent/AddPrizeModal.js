@@ -47,6 +47,7 @@ export default function AddPrizeModal(props) {
       prize_thumbnail: 'https://placedog.net/500',
       child_id: props.childId,
     }
+    setIsOpen(false)
     dispatch(addPrize(obj))
     // request.post('/prizes', obj)
   }
@@ -83,9 +84,9 @@ export default function AddPrizeModal(props) {
         <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
           Add Prize
         </Button>
-        <Button type type="primary" htmlType="submit" onClick={closeModal}>
+        {/* <Button type type="primary" htmlType="submit" onClick={closeModal}>
           Close
-        </Button>
+        </Button> */}
       </Modal>
     </div>
   )

@@ -54,6 +54,7 @@ export default function AddGoalModal(props) {
     }
     console.log(obj)
     dispatch(addGoal(obj))
+    setIsOpen(false)
     // request.post('/goals', obj)
   }
 
@@ -91,9 +92,9 @@ export default function AddGoalModal(props) {
         <Button type="primary" onClick={handleSubmit}>
           Add Goal
         </Button>
-        <Button type="primary" onClick={closeModal}>
+        {/* <Button type="primary" onClick={closeModal}>
           Close
-        </Button>
+        </Button> */}
       </Modal>
     </div>
   )
