@@ -87,17 +87,20 @@ export default function ChildTab() {
               </div>
               <div className={styles.rightContainer}>
                 <div className={styles.modalButtonContainer}>
-                <AddPrizeModal />
-                <TransactionModal />
+                  <AddPrizeModal childId={child.id} />
+                  <TransactionModal />
                 </div>
                 <h1>Prize List</h1>
                 <PrizesList childId={child.id} />
-                
               </div>
             </TabPane>
           )
         })}
-        <TabPane className={styles.componentContainerAddChild} tab="+" key="newChild">
+        <TabPane
+          className={styles.componentContainerAddChild}
+          tab="+"
+          key="newChild"
+        >
           <div>
             <AddChild />
           </div>

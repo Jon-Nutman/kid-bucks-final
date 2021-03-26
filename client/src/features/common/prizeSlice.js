@@ -22,9 +22,9 @@ export const getPrizesByChildId = (childId) => async (dispatch) => {
   })
 }
 
-export const addPrize = (prize, childId) => async (dispatch) => {
+export const addPrize = (prize) => async (dispatch) => {
   await request.post('/prizes', prize)
-  dispatch(getPrizesByChildId(childId))
+  dispatch(getPrizesByChildId(prize.child_id))
 }
 
 export const deletePrize = (prizeId, childId) => async (dispatch) => {
