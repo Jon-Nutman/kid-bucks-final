@@ -1,13 +1,8 @@
 import { useEffect } from 'react'
-import { useContext } from 'react'
-import { List, Avatar, Space } from 'antd'
-import { store } from './ProviderCommon'
-import styles from './PrizesList.module.css'
-import Checkbox from './componentParts/CmpntCheckbox.js'
-import { selectPrizes, prizesAsync, deletePrize } from '../common/prizeSlice'
+import { List, Avatar } from 'antd'
+import { selectPrizes, getPrizesByChildId, deletePrize } from '../common/prizeSlice'
 import { addPrizeToCart } from './prizeBin/prizeCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaPlus } from 'react-icons/fa'
 
 export default function PrizeList(props) {
 
@@ -21,9 +16,9 @@ export default function PrizeList(props) {
 
   console.table(prizes)
 
-  // useEffect(() => {
-  //   dispatch(prizesAsync(props.childId))
-  // }, [props.childId])
+  useEffect(() => {
+    dispatch(getPrizesByChildId(props.childId))
+  }, [props.childId])
 
   return (
     <List>
@@ -32,23 +27,21 @@ export default function PrizeList(props) {
           <List.Item
             actions={[
               <a
-                href="#"
                 key="list-loadmore-edit"
                 onClick={() => dispatch(deletePrize(item.id, props.childId))}
               >
                 delete
               </a>,
               <a 
-              href="#"
               key="list-loadmore-more"
-              onClick={() => dispatch(addPrizeToCart(item.id, props.childId))}
+              onClick={() => dispatch(addPrizeToCart(item))}
               >
                 + to cart </a>,
             ]}
           >
             <List.Item.Meta
               avatar={<Avatar src={item.prize_thumbnail} />}
-              title={<a href="https://ant.design">{item.title}</a>}
+              title={<a href="https://www.amazon.com/">{item.title}</a>}
               description={<span>{item.points} points</span>}
             />
           </List.Item>

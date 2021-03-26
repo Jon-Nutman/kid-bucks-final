@@ -51,14 +51,16 @@ router.patch('/transactions/:transactionId', async (request, response) => {
 })
 
 router.post('/transactions', async (req, res) => {
-  const { prize_id, points, quantity } = req.body
-  await conn.raw(
-    `
-    INSERT INTO transactions (user_id, prize_id, points, quantity)
-    VALUES (?,?,?,?);
-    `,
-    [req.user.id, prize_id, points, quantity]
-  )
+
+  console.log(req.body)
+  // const { prize_id, points, quantity } = req.body
+  // await conn.raw(
+  //   `
+  //   INSERT INTO transactions (user_id, prize_id, points, quantity)
+  //   VALUES (?,?,?,?);
+  //   `,
+  //   [req.user.id, prize_id, points, quantity]
+  // )
   res.json({ message: 'Your minions want you to spend money' })
 })
 

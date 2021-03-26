@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import request from '../../../utils/request'
 
 export const prizeCartSlice = createSlice({
   name: 'cart',
@@ -17,7 +18,7 @@ export const prizeCartSlice = createSlice({
     addPrizeToCart: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id === prize.id)
-
+      console.log(prize)
       if (!foundPrize) {
         state.cart.push({ ...prize, qty: 1 })
         state.total += 1
@@ -58,6 +59,13 @@ export const {
   decrement,
   increment,
 } = prizeCartSlice.actions
+
+export const createTransactions = (cart) => async (dispatch) => {
+  console.log(cart)
+  await request.post('/transactions', cart)
+
+}
+
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
