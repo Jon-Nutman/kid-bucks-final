@@ -4,7 +4,7 @@ import Modal from 'react-modal'
 import { Button } from 'antd'
 import styles from './PrzBinRedeemModal.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { 
+import {
   selectCart,
   selectTotal,
   selectTotalPoints,
@@ -13,6 +13,7 @@ import {
   decrement,
   createTransactions,
 } from './prizeCartSlice'
+import { selectBalance } from '../../common/transactionSlice'
 import PrizeCart from './PrizeCart'
 
 export default function PrzBinRedeemModal() {
@@ -26,10 +27,10 @@ export default function PrzBinRedeemModal() {
       transform: 'translate(-50%, -50%)',
     },
   }
-
-  const prizeCart = useSelector(selectCart);
-  const total = useSelector(selectTotal);
-  const totalPrice = useSelector(selectTotalPoints);
+  const balance = useSelector(selectBalance)
+  const prizeCart = useSelector(selectCart)
+  const total = useSelector(selectTotal)
+  const totalPoints = useSelector(selectTotalPoints)
   const dispatch = useDispatch()
 
   // const onFinish = (values) => {
@@ -50,14 +51,15 @@ export default function PrzBinRedeemModal() {
   }
 
   function sendTransactions() {
-    console.log('yooooo')
-    dispatch(createTransactions(prizeCart))
+    dispatch(createTransactions(prizeCart)).then(() => {
+      closeModal()
+    })
   }
 
   return (
     <div>
       <div className={styles.buttonWrap}>
-      <Button onClick={openModal}>Your Prize Cart</Button>
+        <Button onClick={openModal}>Your Prize Cart</Button>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -66,39 +68,44 @@ export default function PrzBinRedeemModal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-      <ul>
-        {prizeCart.map((prize) => (
-          <li key={'prizeCart-' + prize.id} className={styles.prizeCartPrize}>
-            <img className={styles.imgThumb} src={prize.prize_thumbnail} />
-            <div className={styles.prizeCartpTag}>
-              <p>{prize.title} | {prize.qty}</p>
-              <br />
-            </div>
-            <button
-              className={styles.delBtn}
-              onClick={
-                () => dispatch(removePrize(prize))
-              }
-            >
-              X
-            </button>
-            <button
-              className={styles.btn}
-              onClick={() => dispatch(decrement(prize))}
-            >
-              -
-            </button>
-            <button
-              className={styles.btn}
-              onClick={() => dispatch(increment(prize))}
-            >
-              +
-            </button>
-          </li>
-        ))}
-      </ul>
-
-        <Button type="primary" htmlType="submit" onClick={sendTransactions}>
+        <ul>
+          {prizeCart.map((prize) => (
+            <li key={'prizeCart-' + prize.id} className={styles.prizeCartPrize}>
+              <img className={styles.imgThumb} src={prize.prize_thumbnail} />
+              <div className={styles.prizeCartpTag}>
+                <p>
+                  {prize.title} | {prize.quantity}
+                </p>
+                <br />
+              </div>
+              <button
+                className={styles.delBtn}
+                onClick={() => dispatch(removePrize(prize))}
+              >
+                X
+              </button>
+              <button
+                className={styles.btn}
+                onClick={() => dispatch(decrement(prize))}
+              >
+                -
+              </button>
+              <button
+                className={styles.btn}
+                onClick={() => dispatch(increment(prize))}
+              >
+                +
+              </button>
+            </li>
+          ))}
+        </ul>
+        {totalPoints}
+        <Button
+          type="primary"
+          htmlType="submit"
+          disabled={balance < totalPoints}
+          onClick={sendTransactions}
+        >
           Send this to the parents
         </Button>
       </Modal>

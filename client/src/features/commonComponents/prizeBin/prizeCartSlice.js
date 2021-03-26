@@ -18,16 +18,15 @@ export const prizeCartSlice = createSlice({
     addPrizeToCart: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id === prize.id)
-      console.log(prize)
       if (!foundPrize) {
-        state.cart.push({ ...prize, qty: 1 })
+        state.cart.push({ ...prize, quantity: 1 })
         state.total += 1
         state.totalPoints += prize.points
         console.log('test')
       } else {
-        foundPrize.qty = foundPrize.qty + 1
+        foundPrize.quantity = foundPrize.quantity + 1
         state.total += 1
-        state.totalPoints += foundPrize.price
+        state.totalPoints += foundPrize.points
       }
       //   console.log(state.total);
       //   logger(state);
@@ -36,19 +35,25 @@ export const prizeCartSlice = createSlice({
     decrement: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id == prize.id)
-      foundPrize.qty -= 1
-      state.totalPoints -= prize.price
+      foundPrize.quantity -= 1
+      state.totalPoints -= prize.points
     },
     increment: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id == prize.id)
-      foundPrize.qty += 1
-      state.totalPoints += prize.price
+      foundPrize.quantity += 1
+      state.totalPoints += prize.points
     },
     removePrize: (state, action) => {
-      const removePrize = action.payload
-      console.log(removePrize)
-      state.cart = state.cart.filter((item) => item.id != removePrize.id)
+      const productToRemove = action.payload
+      console.log(productToRemove)
+      state.totalPoints -= productToRemove.points * productToRemove.quantity
+      state.cart = state.cart.filter((item) => item.id != productToRemove.id)
+    },
+    clearCart: (state) => {
+      state.cart = []
+      state.total = 0
+      state.totalPoints = 0
     },
   },
 })
@@ -58,14 +63,13 @@ export const {
   removePrize,
   decrement,
   increment,
+  clearCart,
 } = prizeCartSlice.actions
 
 export const createTransactions = (cart) => async (dispatch) => {
-  console.log(cart)
   await request.post('/transactions', cart)
-
+  dispatch(clearCart())
 }
-
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
