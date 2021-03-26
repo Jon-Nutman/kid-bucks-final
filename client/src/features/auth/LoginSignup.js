@@ -40,7 +40,8 @@ export function LoginSignup() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
-  const { login } = useAuth()
+  const { login, decodeUser } = useAuth()
+  
 
   const onFinish = (values) => {
     console.log(values)
@@ -60,7 +61,14 @@ export function LoginSignup() {
     console.log('submitted', password, username)
     // e.preventDefault();
     login(username, password).then((r) => {
-      history.push('/parent-dashboard')
+      const user = decodeUser(r.data.token)
+      console.log(user)
+      // if(user.is_admin == true){
+      //   history.push('/parent-dashboard')
+      // } else {
+      //   history.push('/child-dashboard')
+      // }
+      {user.is_admin ?  history.push('/parent-dashboard') : history.push('/child-dashboard')}
     })
   }
   return (
