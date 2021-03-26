@@ -10,17 +10,19 @@ import {
   decrement,
 } from './prizeCartSlice'
 
-export default function PrizeCart({ cart = [] }) {
+export default function PrizeCart(props) {
   const dispatch = useDispatch()
   const prizeCart = useSelector(selectCart)
   const total = useSelector(selectTotal)
   const totalPoints = useSelector(selectTotalPoints)
 
+  console.log(props)
+
   return (
     <div>
       <ul>
         {prizeCart.map((prize) => (
-          <li key={'prize-cart-' + prize.id} className={styles.prizeCartPrize}>
+          <li key={'prizeCart-' + prize.id} className={styles.prizeCartPrize}>
             <img className={styles.imgThumb} src={prize.prize_thumbnail} />
             <div className={styles.prizeCartpTag}>
               <p>{prize.title}</p>
