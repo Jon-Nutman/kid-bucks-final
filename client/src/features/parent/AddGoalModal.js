@@ -4,7 +4,7 @@ import { addGoal } from '../common/goalSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import SwitchablePicker from './SwitchablePicker'
-import request from '../../utils/request'
+
 
 const { TextArea } = Input
 
@@ -50,7 +50,7 @@ export default function AddGoalModal(props) {
       points: todoPoints,
       status: 'not_started',
       parent_id: 1,
-      child_id: 2,
+      child_id: props.childId,
     }
     console.log(obj)
     dispatch(addGoal(obj))
