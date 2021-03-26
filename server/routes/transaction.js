@@ -6,10 +6,13 @@ const router = express.Router()
 
 router.get('/transactions/:childId', async (request, response) => {
   const transactionSQL = `
-  SELECT * FROM transactions
+  SELECT
+  t.id as id, prize_id, status, user_id,
+  title, t.points, description, prize_thumbnail
+  FROM transactions t
   INNER JOIN prizes
-  ON prizes.id = transactions.prize_id
-  WHERE user_id = ? AND transactions.status = 'requested';`
+  ON prizes.id = prize_id
+  WHERE user_id = ? AND status = 'requested';`
   const transactions = await conn.raw(transactionSQL, [request.params.childId])
   response.json(transactions.rows)
 })

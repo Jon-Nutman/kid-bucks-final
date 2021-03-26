@@ -4,8 +4,10 @@ import { addPrize } from '../common/prizeSlice'
 import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
-import {approveTransaction , selectTransactions} from '../common/transactionSlice'
-
+import {
+  approveTransaction,
+  selectTransactions,
+} from '../common/transactionSlice'
 
 const { TextArea } = Input
 
@@ -21,6 +23,7 @@ const customStyles = {
 }
 
 export default function TransactionModal(props) {
+  const transactions = useSelector(selectTransactions)
   const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
@@ -28,7 +31,6 @@ export default function TransactionModal(props) {
     // dispatch(getTransactions(props))
     // can map with with info
     console.log()
-
   }
 
   function afterOpenModal() {
@@ -38,17 +40,14 @@ export default function TransactionModal(props) {
   function closeModal() {
     setIsOpen(false)
   }
-  
 
   function handleSubmit(e) {
     e.preventDefault()
     const obj = {
-      status: 'approved'
+      status: 'approved',
     }
     dispatch(approveTransaction(obj))
   }
-
-  const transactions = useSelector(selectTransactions)
 
   return (
     <div>
@@ -65,17 +64,26 @@ export default function TransactionModal(props) {
           <h1>Prize Requests</h1>
           <Form>
             <ul>
-            {transactions.map((item) => {
-              console.log(item)
-             return (   <li>
-                 {item.id}
-                </li>)
-                 })}
+              {transactions.map((item) => {
+                console.log(item)
+                return (
+                  <li>
+                    {item.id}{' '}
+                    <button
+                      onClick={() =>
+                        dispatch(approveTransaction(item.id, props.childId))
+                      }
+                    >
+                      approve
+                    </button>
+                  </li>
+                )
+              })}
             </ul>
           </Form>
-          </div>
+        </div>
         <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
-         Approve
+          Approve
         </Button>
         <Button type type="primary" htmlType="submit" onClick={closeModal}>
           Close

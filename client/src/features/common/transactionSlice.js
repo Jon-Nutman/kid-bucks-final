@@ -19,7 +19,6 @@ export const transaction = createSlice({
 
 export const { setTransactions, setBalance } = transaction.actions
 
-
 export const getTransactions = (childId) => async (dispatch) => {
   await request.get('/transactions/' + childId).then((response) => {
     dispatch(setTransactions(response.data))
@@ -33,12 +32,12 @@ export const getBalanceByChildId = (childId) => async (dispatch) => {
   })
 }
 
-export const approveTransaction = (transactionId) => async (dispatch) => {
-  await request.patch('/transactions/' + transactionId, {status: 'approved'}).then((response) => {
-    dispatch(getTransactions(response.data))
-  })
+export const approveTransaction = (transactionId, childId) => async (
+  dispatch
+) => {
+  await request.patch('/transactions/' + transactionId, { status: 'approved' })
+  dispatch(getTransactions(childId))
 }
-
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -56,6 +55,4 @@ export const approveTransaction = (transactionId) => async (dispatch) => {
 export const selectTransactions = (state) => state.transaction.transactions
 export const selectBalance = (state) => state.transaction.balance
 
-
 export default transaction.reducer
-
