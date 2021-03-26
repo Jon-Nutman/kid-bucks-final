@@ -59,7 +59,7 @@ export default function PrzBinRedeemModal() {
   return (
     <div>
       <div className={styles.buttonWrap}>
-        <Button onClick={openModal}>Your Prize Cart</Button>
+        <Button onClick={openModal}> Your Prize Cart |  {total} prizes in Cart</Button>
       </div>
       <Modal
         isOpen={modalIsOpen}
