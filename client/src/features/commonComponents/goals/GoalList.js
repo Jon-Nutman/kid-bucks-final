@@ -19,17 +19,25 @@ export default function GoalList(props) {
     { title: 'Points', dataIndex: 'points', key: 'age' },
     { title: 'Status', dataIndex: 'status', key: 'address' },
     {
-      title: 'Action',
+      title: 'Action Parent',
       dataIndex: '',
       key: 'x',
       render: () => <a>Delete</a>,
     },
     {
-      title: 'Action',
+      title: 'Action Parent',
       dataIndex: '',
       key: 'x',
-      render: () => <a>Redeem</a>,
+      render: () => <a>Approved</a>,
     },
+
+    {
+      title: 'Action Child',
+      dataIndex: '',
+      key: 'x',
+      render: () => <a>Redeem to Parents</a>,
+    },
+
   ];
   
   const goals = useSelector(selectGoals)
