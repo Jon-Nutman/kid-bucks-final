@@ -24,7 +24,8 @@ export default function AddPrizeModal() {
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
-    dispatch(getTransactions())
+    dispatch(getTransactions(transaction))
+    // can map with with info
     console.log()
   }
 
