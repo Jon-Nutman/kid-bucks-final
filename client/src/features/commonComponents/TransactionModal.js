@@ -9,6 +9,8 @@ import {
   selectTransactions,
 } from '../common/transactionSlice'
 
+import styles from './TransactionModal.module.css'
+
 const { TextArea } = Input
 
 const customStyles = {
@@ -63,28 +65,28 @@ export default function TransactionModal(props) {
         <div>
           <h1>Prize Requests</h1>
           <Form>
-            <ul>
+            <ul className={styles.list}>
               {transactions.map((item) => {
                 console.log(item)
                 return (
-                  <li>
-                    {item.id}{' '}
-                    <button
+                  <li className={styles.list_item} >
+                    {item.title}{' '}{item.points}points
+                    <Button
                       onClick={() =>
                         dispatch(approveTransaction(item.id, props.childId))
                       }
                     >
                       approve
-                    </button>
+                    </Button>
                   </li>
                 )
               })}
             </ul>
           </Form>
         </div>
-        <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
+        {/* <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
           Approve
-        </Button>
+        </Button> */}
         <Button type type="primary" htmlType="submit" onClick={closeModal}>
           Close
         </Button>
