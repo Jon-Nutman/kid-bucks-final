@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
 
+
 const { TextArea } = Input
 
 const customStyles = {
@@ -81,7 +82,7 @@ export default function AddPrizeModal(props) {
             />
           </Form>
         </div>
-        <Button type type="primary" htmlType="submit" onClick={handleSubmit}>
+        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           Add Prize
         </Button>
         {/* <Button type type="primary" htmlType="submit" onClick={closeModal}>

@@ -38,6 +38,12 @@ export const approveTransaction = (transactionId, childId) => async (
   await request.patch('/transactions/' + transactionId, { status: 'approved' })
   dispatch(getTransactions(childId))
 }
+export const denyTransaction = (transactionId, childId) => async (
+  dispatch
+) => {
+  await request.patch('/transactions/' + transactionId, { status: 'denied' })
+  dispatch(getTransactions(childId))
+}
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
