@@ -6,7 +6,7 @@ import {
   useParams,
 } from 'react-router-dom'
 import { useAuth } from '../auth/auth'
-import Logo from './Logo/Logo'
+import Logo from './Logo/logo'
 import styles from './Navbar.module.css'
 
 export default function Navbar(props) {
