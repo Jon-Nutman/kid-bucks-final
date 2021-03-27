@@ -1,60 +1,91 @@
 // This all was moved to Prize Redeem Modal
 
 
-// import React from 'react'
-// import Prize from './Prize'
-// import { useSelector, useDispatch } from 'react-redux'
-// import styles from './PrizeCart.module.css'
-// import {
-//   selectCart,
-//   selectTotal,
-//   selectTotalPoints,
-//   increment,
-//   decrement,
-// } from './prizeCartSlice'
+import React from 'react'
+import { Table } from 'antd'
+import Prize from './Prize'
+import { useSelector, useDispatch } from 'react-redux'
+import styles from './PrizeCart.module.css'
+import {
+  selectCart,
+  selectTotal,
+  selectTotalPoints,
+  increment,
+  decrement,
+  removePrize,
+  clearCart
+} from './prizeCartSlice'
 
-// export default function PrizeCart(props) {
-//   const dispatch = useDispatch()
-//   const prizeCart = useSelector(selectCart)
-//   const total = useSelector(selectTotal)
-//   const totalPoints = useSelector(selectTotalPoints)
+export default function PrizeCart(props) {
+  const dispatch = useDispatch()
+  const prizeCart = useSelector(selectCart)
+  const total = useSelector(selectTotal)
+  const totalPoints = useSelector(selectTotalPoints)
 
-//   console.log(props)
+  const userActions = [
+    {
+        title: '',
+        dataIndex: '',
+        key: 'x',
+        render: (prize) => (
+            <a
+            onClick={() => dispatch(decrement(prize))}
+            >
+            -
+            </a>
+        ),
+    },
+    {
+        title: '',
+        dataIndex: '',
+        key: 'x',
+        render: (prize) => (
+            <a
+            onClick={() => dispatch(increment(prize))}
+            >
+            +
+            </a>
+        ),
+    },
+    {
+        title: '',
+        dataIndex: '',
+        key: 'x',
+        render: (prize) => (
+          <a onClick={() => dispatch(removePrize(prize))}>
+            Remove
+          </a>
+        ),
+      },
+  
+  ]
 
-//   return (
-//     <div>
-//       <ul>
-//         {prizeCart.map((prize) => (
-//           <li key={'prizeCart-' + prize.id} className={styles.prizeCartPrize}>
-//             <img className={styles.imgThumb} src={prize.prize_thumbnail} />
-//             <div className={styles.prizeCartpTag}>
-//               <p>{prize.title}</p>
-//               <br />
-//             </div>
-//             <button
-//               className={styles.delBtn}
-//               onClick={
-//                 () => console.log('nevermind')
-//                 // dispatch(removePrize(prize))
-//               }
-//             >
-//               X
-//             </button>
-//             <button
-//               className={styles.btn}
-//               onClick={() => dispatch(decrement(prize))}
-//             >
-//               -
-//             </button>
-//             <button
-//               className={styles.btn}
-//               onClick={() => dispatch(increment(prize))}
-//             >
-//               +
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   )
-// }
+
+  console.log(props)
+
+  const columns = [
+    { title: 'Quantity', dataIndex: 'quantity', key: 'quantity' },
+    { title: 'Prize', dataIndex: 'title', key: 'title' },
+    { title: 'Points', dataIndex: 'points', key: 'points' },
+    { title: 'Total Points', dataIndex: 'total', key: 'total' },
+
+    ...userActions,
+  ]
+
+  const cart = useSelector(selectCart)
+
+  return (
+    <>
+      <Table
+        columns={columns}
+        expandable={{
+          expandedRowRender: (prizeCart) => (
+            <p style={{ margin: 0 }}>{prizeCart.description}</p>
+          ),
+          rowExpandable: (prizeCart) => prizeCart.name !== 'Not Expandable',
+        }}
+        dataSource={prizeCart}
+      />
+    </>
+  )
+}
