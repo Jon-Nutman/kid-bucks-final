@@ -6,6 +6,7 @@ import {
 } from '../common/goalSlice'
 import { selectPrizes, getPrizesByChildId } from '../common/prizeSlice'
 import Header from './Header'
+import { Space } from 'antd'
 import GoalList from '../commonComponents/goals/GoalList'
 import PrizesList from '../commonComponents/PrizesList'
 import PrzBinRedeemModal from '../commonComponents/prizeBin/PrzBinRedeemModal'
@@ -37,12 +38,15 @@ export default function ChildDashboardPage() {
         <Header />
         <div className={styles.componentContainer}>
         <div className={styles.leftContainer}>
+        <Space>
           <GoalList goals={goals} />
+        </Space>
         </div>
         <div className={styles.rightContainer}>
           <PrzBinRedeemModal />
           <PrizesList prizes={prizes} childId={user.id} />
         </div>
+        {/* </Space> */}
       </div>
     </div>
   )
