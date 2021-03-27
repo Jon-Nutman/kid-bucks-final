@@ -78,10 +78,10 @@ export default function AddGoalModal(props) {
             />
             <InputNumber
               onChange={setTodoPoints}
-              placeholder="How many points is this goal worth?"
+              placeholder="Points"
             />
 
-            <SwitchablePicker type={type} onChange={setType} />
+            {/* <SwitchablePicker type={type} onChange={setType} /> */}
             <TextArea
               onChange={(e) => setTodoDescription(e.target.value)}
               rows={4}
