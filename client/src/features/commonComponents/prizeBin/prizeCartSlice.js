@@ -10,10 +10,9 @@ export const prizeCartSlice = createSlice({
   },
 
   reducers: {
-    // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    // doesn't actually mutate the state because it uses the Immer library,
-    // which detects changes to a "draft state" and produces a brand new
-    // immutable state based off those changes
+
+    // Function for when the child adds a prize from the array displayed 
+    // on the PrizesList Component
 
     addPrizeToCart: (state, action) => {
       const prize = { ...action.payload }
@@ -22,16 +21,16 @@ export const prizeCartSlice = createSlice({
         state.cart.push({ ...prize, quantity: 1 })
         state.total += 1
         state.totalPoints += prize.points
-        console.log('test')
       } else {
         foundPrize.quantity = foundPrize.quantity + 1
         state.total += 1
         state.totalPoints += foundPrize.points
       }
-      //   console.log(state.total);
-      //   logger(state);
-      // const logger=(v) =>consloe.log(JSON.parse(JSON.stringify(v)))
+
     },
+
+    // Actions for items once they are in the cart on the PrizeCart Component:
+
     decrement: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id == prize.id)
@@ -50,6 +49,8 @@ export const prizeCartSlice = createSlice({
       state.totalPoints -= productToRemove.points * productToRemove.quantity
       state.cart = state.cart.filter((item) => item.id != productToRemove.id)
     },
+
+    // this clears the cart once the child submits their order in PrizeCart.js
     clearCart: (state) => {
       state.cart = []
       state.total = 0
@@ -70,17 +71,6 @@ export const createTransactions = (cart) => async (dispatch) => {
   await request.post('/transactions', cart)
   dispatch(clearCart())
 }
-
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-
-// export const cartAsync = () => (dispatch) => {
-//   setTimeout(() => {
-//     dispatch(addCart());
-//   }, 1000);
-// };
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

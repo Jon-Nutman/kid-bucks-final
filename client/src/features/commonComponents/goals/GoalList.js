@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { List, Avatar, Space, Table } from 'antd'
+import { SmileTwoTone, CheckCircleOutlined, DeleteOutlined } from '@ant-design/icons'
+
 import GoalItem from './GoalItem'
 import {
   deleteGoalById,
@@ -12,22 +14,24 @@ import { useAuth } from '../../auth/auth'
 
 export default function GoalList(props) {
   const dispatch = useDispatch()
+  const goals = useSelector(selectGoals)
   const { user } = useAuth()
   const isAdmin = user.is_admin
 
+
   const parentActions = [
     {
-      title: 'Action Parent',
+      title: 'Delete this Goal?',
       dataIndex: '',
       key: 'x',
       render: (item) => (
         <a onClick={() => dispatch(deleteGoalById(item.id, item.child_id))}>
-          Delete
+          <DeleteOutlined />
         </a>
       ),
     },
     {
-      title: 'Action Parent',
+      title: 'Accomplished?',
       dataIndex: '',
       key: 'x',
       render: (item) => (
@@ -36,7 +40,7 @@ export default function GoalList(props) {
             dispatch(updateGoalStatusById(item.id, item.child_id, 'complete'))
           }
         >
-          Approved
+          <CheckCircleOutlined />
         </a>
       ),
     },
@@ -44,7 +48,7 @@ export default function GoalList(props) {
 
   const childActions = [
     {
-      title: 'Action Child',
+      title: 'Mark this goal accomplished?',
       dataIndex: '',
       key: 'x',
       render: (item) => (
@@ -53,7 +57,7 @@ export default function GoalList(props) {
             dispatch(updateGoalStatusById(item.id, item.child_id, 'reported'))
           }
         >
-          Redeem to Parents
+          <SmileTwoTone /> done!
         </a>
       ),
     },
@@ -67,8 +71,6 @@ export default function GoalList(props) {
     { title: 'Status', dataIndex: 'status', key: 'address' },
     ...userActions,
   ]
-
-  const goals = useSelector(selectGoals)
 
   return (
     <>
@@ -84,13 +86,4 @@ export default function GoalList(props) {
       />
     </>
   )
-}
-
-{
-  /* <GoalItem
-key={'goal-' + goal.id}
-goal={goal}
-onDelete={(id) => dispatch(deleteGoalById(id))}
-onStatusChange={props.onStatusChange}
-/> */
 }
