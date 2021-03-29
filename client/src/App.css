@@ -1,12 +1,14 @@
 @import '~antd/dist/antd.less';
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+#root h1 {
+  margin-bottom: 0;
+}
 
 div {
   margin: 15px;
@@ -25,6 +27,6 @@ form {
   margin-right: 10%;
 }
 
-.logo{
+.logo {
   width: 100px;
 }

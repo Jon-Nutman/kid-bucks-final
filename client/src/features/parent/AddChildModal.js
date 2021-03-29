@@ -40,6 +40,9 @@ export default function AddChild() {
     console.log(obj)
 
     dispatch(addChild(obj))
+    setChildName('')
+    setUsername('')
+    setPassword('')
 
     // request.post('/registration/child', obj)
   }
@@ -52,7 +55,6 @@ export default function AddChild() {
         <Form
           {...layout}
           name="nest-messages"
-          onFinish={onFinish}
           validateMessages={validateMessages}
         >
           <Form.Item
@@ -64,7 +66,11 @@ export default function AddChild() {
               },
             ]}
           >
-            <Input placeholder='Name' onChange={(e) => setChildName(e.target.value)} />
+            <Input
+              placeholder="Name"
+              value={childName}
+              onChange={(e) => setChildName(e.target.value)}
+            />
           </Form.Item>
 
           <Form.Item
@@ -72,14 +78,22 @@ export default function AddChild() {
             // name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
+            <Input
+              placeholder="Username"
+              value={childUsername}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </Form.Item>
           <Form.Item
             // label="Password"
             // name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
+            <Input.Password
+              placeholder="Password"
+              value={childPassword}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Form.Item>
 
           <Form.Item
@@ -92,20 +106,10 @@ export default function AddChild() {
                 max: 99,
               },
             ]}
-          >
-            <InputNumber placeholder='Age' />
-          </Form.Item>
-          <Form.Item
-            wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
           ></Form.Item>
         </Form>
       </div>
-      <Button
-        onClick={handleSubmit}
-        type="submit"
-        type="primary"
-        htmlType="submit"
-      >
+      <Button htmlType="submit" type="primary" onClick={handleSubmit}>
         Add Child
       </Button>
     </div>

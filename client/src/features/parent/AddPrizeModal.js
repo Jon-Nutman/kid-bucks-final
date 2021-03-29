@@ -5,7 +5,6 @@ import Modal from 'react-modal'
 import { Form, Input, InputNumber, Button } from 'antd'
 import request from '../../utils/request'
 
-
 const { TextArea } = Input
 
 const customStyles = {
@@ -64,22 +63,28 @@ export default function AddPrizeModal(props) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>
+        <div style={{ width: '800px' }}>
           <h1>Add Prize</h1>
           <Form>
-            <Input
-              onChange={(e) => setPrizeTitle(e.target.value)}
-              placeholder="Add Prize Name Here"
-            />
-            <Input
-              onChange={(e) => setPrizePoints(e.target.value)}
-              placeholder="Points"
-            />
-            <TextArea
-              onChange={(e) => setPrizeDescription(e.target.value)}
-              rows={4}
-              placeholder="description..."
-            />
+            <div className="mb-2">
+              <Input
+                onChange={(e) => setPrizeTitle(e.target.value)}
+                placeholder="Add Prize Name Here"
+              />
+            </div>
+            <div className="mb-2">
+              <Input
+                onChange={(e) => setPrizePoints(e.target.value)}
+                placeholder="Points"
+              />
+            </div>
+            <div className="mb-2">
+              <TextArea
+                onChange={(e) => setPrizeDescription(e.target.value)}
+                rows={4}
+                placeholder="description..."
+              />
+            </div>
           </Form>
         </div>
         <Button type="primary" htmlType="submit" onClick={handleSubmit}>

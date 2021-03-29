@@ -11,6 +11,7 @@ import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
 import { getChildren, selectChildren, deleteChild } from './userSlice'
 import { getTransactions, selectTransactions } from '../common/transactionSlice'
 import TransactionModal from '../commonComponents/TransactionModal'
+import { Space } from 'antd'
 
 const { TabPane } = Tabs
 
@@ -81,16 +82,23 @@ export default function ChildTab() {
               key={child.id}
             >
               <div className={styles.leftContainer}>
-                <AddGoalModal childId={child.id} />
-                <h1>Goal List</h1>
+                <div className={styles.goalHeader}>
+                  <h1>Goal List</h1>
+                  <AddGoalModal childId={child.id} />
+                </div>
+
                 <GoalList goals={goals} />
               </div>
               <div className={styles.rightContainer}>
-                <div className={styles.modalButtonContainer}>
-                  <AddPrizeModal childId={child.id} />
-                  <TransactionModal childId={child.id} />
+                <div className={styles.goalHeader}>
+                  <h1>Prize List</h1>
+                  <div className={styles.modalButtonContainer}>
+                    <AddPrizeModal childId={child.id} />
+                    <div style={{ marginLeft: '20px' }}>
+                      <TransactionModal childId={child.id} />
+                    </div>
+                  </div>
                 </div>
-                <h1>Prize List</h1>
                 <PrizesList childId={child.id} />
               </div>
             </TabPane>

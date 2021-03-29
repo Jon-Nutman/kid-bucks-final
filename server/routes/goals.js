@@ -13,6 +13,7 @@ router.get('/goals/:childId', async (req, res) => {
     `
     SELECT * FROM goals
     WHERE child_id=?
+    ORDER BY id
     `,
     [childId]
   )
@@ -42,25 +43,29 @@ router.patch('/goals/:goalId', async (req, res) => {
   if (goal.status === 'complete') {
     res.json({ message: 'goal already completed' })
   }
-  const childId = goal.child_id
-  const pointsToAdd = goal.points
-  const prizeBin = await db
-    .table('prize_bins')
-    .where({ user_id: childId })
-    .first()
-  const prizeBinFound = await db
-    .table('prize_bins')
-    .where({ id: prizeBin.id })
-    .first()
-  const currentBalance = prizeBinFound.balance
-  const newBalance = currentBalance + pointsToAdd
-  await db
-    .table('prize_bins')
-    .where({ id: prizeBin.id })
-    .update({ balance: newBalance })
-  // find the prize bin of the user
-  // update the prize bin with the new balance
-  res.json({ message: 'your goal has been updated' })
+  if (updateGoals.status === 'complete') {
+    const childId = goal.child_id
+    const pointsToAdd = goal.points
+    const prizeBin = await db
+      .table('prize_bins')
+      .where({ user_id: childId })
+      .first()
+    const prizeBinFound = await db
+      .table('prize_bins')
+      .where({ id: prizeBin.id })
+      .first()
+    const currentBalance = prizeBinFound.balance
+    const newBalance = currentBalance + pointsToAdd
+    await db
+      .table('prize_bins')
+      .where({ id: prizeBin.id })
+      .update({ balance: newBalance })
+    // find the prize bin of the user
+    // update the prize bin with the new balance
+    res.json({ message: 'your goal has been updated' })
+  }
+
+  res.json({ message: 'goal updated' })
 })
 
 // POST REQ

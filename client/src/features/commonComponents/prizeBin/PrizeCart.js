@@ -1,6 +1,5 @@
 // This all was moved to Prize Redeem Modal
 
-
 import React from 'react'
 import { Table } from 'antd'
 import Prize from './Prize'
@@ -13,7 +12,7 @@ import {
   increment,
   decrement,
   removePrize,
-  clearCart
+  clearCart,
 } from './prizeCartSlice'
 import { selectBalance } from '../../common/transactionSlice'
 
@@ -28,45 +27,40 @@ export default function PrizeCart(props) {
 
   const userActions = [
     {
-        title: '',
-        dataIndex: '',
-        key: 'x',
-        render: (prize) => (
-            <a
-            disabled={prizeCart.quantity <= 0}
-            onClick={() => dispatch(decrement(prize))}
-            >
-            -
-            </a>
-        ),
+      title: '',
+      dataIndex: '',
+      key: 'x',
+      render: (prize) => (
+        <a
+          disabled={prizeCart.quantity <= 0}
+          onClick={() => dispatch(decrement(prize))}
+        >
+          -
+        </a>
+      ),
     },
     {
-        title: '',
-        dataIndex: '',
-        key: 'x',
-        render: (prize) => (
-            <a
-            disabled={balance < totalPoints}
-            onClick={() => dispatch(increment(prize))}
-            >
-            +
-            </a>
-        ),
+      title: '',
+      dataIndex: '',
+      key: 'x',
+      render: (prize) => (
+        <a
+          disabled={balance < totalPoints}
+          onClick={() => dispatch(increment(prize))}
+        >
+          +
+        </a>
+      ),
     },
     {
-        title: '',
-        dataIndex: '',
-        key: 'x',
-        render: (prize) => (
-          <a
-          onClick={() => dispatch(removePrize(prize))}>
-            Remove
-          </a>
-        ),
-      },
-  
+      title: '',
+      dataIndex: '',
+      key: 'x',
+      render: (prize) => (
+        <a onClick={() => dispatch(removePrize(prize))}>Remove</a>
+      ),
+    },
   ]
-
 
   console.log(props)
 
@@ -83,6 +77,7 @@ export default function PrizeCart(props) {
 
   return (
     <>
+      <h2>Cart</h2>
       <Table
         columns={columns}
         expandable={{

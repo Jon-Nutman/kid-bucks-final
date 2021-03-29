@@ -5,10 +5,6 @@ import request from '../../utils/request'
 import { Form, Input, Button } from 'antd'
 import { useAuth } from './auth'
 
-
-
-
-
 const layout = {
   // labelCol: {
   //   span: 8,
@@ -41,7 +37,6 @@ export function LoginSignup() {
   const [password, setPassword] = useState('')
   const history = useHistory()
   const { login, decodeUser } = useAuth()
-  
 
   const onFinish = (values) => {
     console.log(values)
@@ -56,7 +51,7 @@ export function LoginSignup() {
   //   console.log(obj)
 
   //   request.post('/registration/child', obj)
-  
+
   const handleSubmit = (e) => {
     console.log('submitted', password, username)
     // e.preventDefault();
@@ -68,13 +63,17 @@ export function LoginSignup() {
       // } else {
       //   history.push('/child-dashboard')
       // }
-      {user.is_admin ?  history.push('/parent-dashboard') : history.push('/child-dashboard')}
+      {
+        user.is_admin
+          ? history.push('/parent-dashboard')
+          : history.push('/child-dashboard')
+      }
     })
   }
   return (
     <div>
-   <div>
-      <p>Please enter your username and password login. </p>
+      <div>
+        <p>Please enter your username and password login. </p>
       </div>
       <div>
         <Form
@@ -83,42 +82,39 @@ export function LoginSignup() {
           onFinish={onFinish}
           validateMessages={validateMessages}
         >
-        
-
           <Form.Item
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
-           
           >
-            <Input placeholder = "Username" onChange={(e) => setUsername(e.target.value)} />
+            <Input
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </Form.Item>
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <Input.Password
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Form.Item>
-
-          
-          <Form.Item
-            wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
-          ></Form.Item>
           <div>
-          <Button
-        onClick={handleSubmit}
-        type="submit"
-        type="primary"
-        htmlType="submit"
-      >
-        Login
-      </Button>
-      </div>
+            <Button
+              onClick={handleSubmit}
+              type="submit"
+              type="primary"
+              htmlType="submit"
+            >
+              Login
+            </Button>
+          </div>
         </Form>
       </div>
     </div>
   )
 }
-
 
 // export function LoginSignup() {
 //   const [username, setUsername] = useState('')

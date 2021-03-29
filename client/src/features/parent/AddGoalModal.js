@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addGoal } from '../common/goalSlice'
 import Modal from 'react-modal'
-import { Form, Input, InputNumber, Button } from 'antd'
+import { Form, Input, InputNumber, Button, Space } from 'antd'
 import SwitchablePicker from './SwitchablePicker'
-
 
 const { TextArea } = Input
 
@@ -69,24 +68,26 @@ export default function AddGoalModal(props) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>
+        <div style={{ width: '800px' }}>
           <h1>Add Goal Modal</h1>
           <Form onSubmit={handleSubmit}>
-            <Input
-              onChange={(e) => setTodoTitle(e.target.value)}
-              placeholder="What do you want you minion to accomplish?"
-            />
-            <InputNumber
-              onChange={setTodoPoints}
-              placeholder="Points"
-            />
-
+            <div className="mb-2">
+              <Input
+                onChange={(e) => setTodoTitle(e.target.value)}
+                placeholder="What do you want you minion to accomplish?"
+              />
+            </div>
+            <div className="mb-2">
+              <InputNumber onChange={setTodoPoints} placeholder="Points" />
+            </div>
             {/* <SwitchablePicker type={type} onChange={setType} /> */}
-            <TextArea
-              onChange={(e) => setTodoDescription(e.target.value)}
-              rows={4}
-              placeholder="Instructions..."
-            />
+            <div className="mb-2">
+              <TextArea
+                onChange={(e) => setTodoDescription(e.target.value)}
+                rows={4}
+                placeholder="Instructions..."
+              />
+            </div>
           </Form>
         </div>
         <Button type="primary" onClick={handleSubmit}>
