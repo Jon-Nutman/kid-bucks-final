@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { List, Avatar } from 'antd'
+import { selectBalance } from '../common/transactionSlice'
 import {
   selectPrizes,
   getPrizesByChildId,
   deletePrize,
 } from '../common/prizeSlice'
-import { addPrizeToCart } from './prizeBin/prizeCartSlice'
+import { addPrizeToCart, selectTotalPoints } from './prizeBin/prizeCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth } from '../auth/auth'
 
@@ -13,12 +14,14 @@ export default function PrizeList(props) {
   const { user } = useAuth()
   const isAdmin = user.is_admin
   console.log(props)
-  // const yourPrizes = request.get('/prizes/:childId')
-  // console.log(yourPrizes)
-
-  const prizes = useSelector(selectPrizes)
   const dispatch = useDispatch()
+  // const yourPrizes = request.get('/prizes/:childId')
+  const balance = useSelector(selectBalance)
+  const prizes = useSelector(selectPrizes)
+  // const total = useSelector(selectTotal)
+  const totalPoints = useSelector(selectTotalPoints)
 
+  
   console.table(prizes)
 
   useEffect(() => {
@@ -29,6 +32,7 @@ export default function PrizeList(props) {
     const childActions = [
       <a
         key="list-loadmore-more"
+        disabled={balance <= totalPoints}
         onClick={() => dispatch(addPrizeToCart(item))}
       >
         + to cart{' '}
