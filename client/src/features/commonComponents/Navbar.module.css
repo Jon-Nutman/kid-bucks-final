@@ -1,16 +1,16 @@
 .nav{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .list{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-left: 35%;
     width: 30%;
     list-style: none;
-    
-   
 }
 
 .logo{

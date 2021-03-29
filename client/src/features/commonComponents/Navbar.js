@@ -38,12 +38,12 @@ export default function Navbar(props) {
           <Link to="/">Login</Link>
         </li>
         <li>
-          <p onClick={loginParent}>parent</p>
+          <Link onClick={loginParent}>Parent</Link>
         </li>
         <li>
-          <p onClick={loginChild}>child</p>
+          <Link onClick={loginChild}>Child</Link>
         </li>
-        <li onClick={handleLogout}>logout</li>
+        <Link onClick={handleLogout}>Logout</Link>
       </ul>
     </nav>
   )
