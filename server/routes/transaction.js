@@ -8,6 +8,7 @@ router.get('/transactions/:childId', async (request, response) => {
   const transactionSQL = `
   SELECT
   t.id as id, prize_id, status, user_id,
+  t.quantity as quantity,
   title, t.points, description, prize_thumbnail
   FROM transactions t
   INNER JOIN prizes
@@ -31,26 +32,30 @@ router.patch('/transactions/:transactionId', async (request, response) => {
     .table('transactions')
     .where({ id: transactionId })
     .update(updateTransaction)
-  const qty = currentTransaction.quantity
-  const currentUserId = currentTransaction.user_id
-  const pointsToDeduct = currentTransaction.points * qty
-  const prizeBin = await db
-    .table('prize_bins')
-    .where({ user_id: currentUserId })
-    .first()
-  const prizeBinFound = await db
-    .table('prize_bins')
-    .where({ id: prizeBin.id })
-    .first()
-  const currentBalance = prizeBinFound.balance
-  const newBalance = currentBalance - pointsToDeduct
-  if (newBalance >= 0) {
-    await db
+  if (updateTransactionTable.status === 'approved') {
+    const qty = currentTransaction.quantity
+    const currentUserId = currentTransaction.user_id
+    const pointsToDeduct = currentTransaction.points * qty
+    const prizeBin = await db
+      .table('prize_bins')
+      .where({ user_id: currentUserId })
+      .first()
+    const prizeBinFound = await db
       .table('prize_bins')
       .where({ id: prizeBin.id })
-      .update({ balance: newBalance })
+      .first()
+    const currentBalance = prizeBinFound.balance
+    const newBalance = currentBalance - pointsToDeduct
+    if (newBalance >= 0) {
+      await db
+        .table('prize_bins')
+        .where({ id: prizeBin.id })
+        .update({ balance: newBalance })
+    }
+    response.json({ message: 'your transaction has been updated' })
+  } else {
+    response.json({ message: 'your transaction has been denied' })
   }
-  response.json({ message: 'your transaction has been updated' })
 })
 
 router.post('/transactions', async (req, res) => {

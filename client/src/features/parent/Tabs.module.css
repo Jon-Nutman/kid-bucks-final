@@ -8,34 +8,39 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
 .componentContainerAddChild {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 5%;
+  margin-left: 2%;
   margin-right: 5%;
 }
 
-
 .leftContainer {
   flex-grow: 2;
-  margin-left: 5%;
+  margin-top: 1%;
+  margin-left: 2%;
   margin-right: 5%;
 }
 .rightContainer {
   flex-grow: 1;
-  margin-left: 5%;
+  margin-top: 1%;
   margin-right: 5%;
+}
+
+.goalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .tabMain {
   margin: 20px;
 }
 
-.modalButtonContainer{
+.modalButtonContainer {
   display: flex;
   justify-content: space-between;
 }
-

@@ -63,36 +63,45 @@ export default function TransactionModal(props) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>
+        <div style={{ width: '800px' }}>
           <h1>Prize Requests</h1>
           <Form>
-          <List>
-      {transactions.map((item) => {
-        return (
-          <List.Item
-            actions={[
-              <a
-                key="list-loadmore-edit"
-                onClick={() => dispatch(approveTransaction(item.id, props.childId))}
-              >
-                approve
-              </a>,
-              <a 
-              key="list-loadmore-more"
-              onClick={() => dispatch(denyTransaction(item.id, props.childId)) }
-              >
-                deny </a>,
-            ]}
-          >
-            <List.Item.Meta
-              // avatar={<Avatar src={item.prize_thumbnail} />}
-              title={<a>{item.title}</a>}
-              description={<span>{item.points} points</span>}
-            />
-          </List.Item>
-        )
-      })}
-    </List>
+            <List>
+              {transactions.map((item) => {
+                return (
+                  <List.Item
+                    actions={[
+                      <a
+                        key="list-loadmore-edit"
+                        onClick={() =>
+                          dispatch(approveTransaction(item.id, props.childId))
+                        }
+                      >
+                        approve
+                      </a>,
+                      <a
+                        key="list-loadmore-more"
+                        onClick={() =>
+                          dispatch(denyTransaction(item.id, props.childId))
+                        }
+                      >
+                        deny{' '}
+                      </a>,
+                    ]}
+                  >
+                    <List.Item.Meta
+                      // avatar={<Avatar src={item.prize_thumbnail} />}
+                      title={
+                        <a>
+                          {item.title} | qty: {item.quantity}
+                        </a>
+                      }
+                      description={<span>{item.points} points</span>}
+                    />
+                  </List.Item>
+                )
+              })}
+            </List>
             {/* <ul className={styles.list}>
               {transactions.map((item) => {
                 console.log(item)

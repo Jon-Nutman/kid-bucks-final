@@ -10,8 +10,7 @@ export const prizeCartSlice = createSlice({
   },
 
   reducers: {
-
-    // Function for when the child adds a prize from the array displayed 
+    // Function for when the child adds a prize from the array displayed
     // on the PrizesList Component
 
     addPrizeToCart: (state, action) => {
@@ -26,7 +25,6 @@ export const prizeCartSlice = createSlice({
         state.total += 1
         state.totalPoints += foundPrize.points
       }
-
     },
 
     // Actions for items once they are in the cart on the PrizeCart Component:
@@ -35,18 +33,21 @@ export const prizeCartSlice = createSlice({
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id == prize.id)
       foundPrize.quantity -= 1
+      state.total -= 1
       state.totalPoints -= prize.points
     },
     increment: (state, action) => {
       const prize = { ...action.payload }
       const foundPrize = state.cart.find((item) => item.id == prize.id)
       foundPrize.quantity += 1
+      state.total += 1
       state.totalPoints += prize.points
     },
     removePrize: (state, action) => {
       const productToRemove = action.payload
       console.log(productToRemove)
       state.totalPoints -= productToRemove.points * productToRemove.quantity
+      state.total -= productToRemove.quantity
       state.cart = state.cart.filter((item) => item.id != productToRemove.id)
     },
 
