@@ -33,7 +33,6 @@ export const getBalanceByChildId = (childId) => async (dispatch) => {
   await request.get('/balance/' + childId).then((response) => {
     dispatch(setBalance(response.data.balance))
     dispatch(setDeduction(response.data.deduction))
-    console.log(response.data)
   })
 }
 

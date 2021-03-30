@@ -9,16 +9,15 @@ import {
   selectCart,
   selectTotal,
   selectTotalPoints,
-  removePrize,
-  increment,
-  decrement,
   createTransactions,
-  clearCart,
 } from './prizeCartSlice'
-import { selectBalance } from '../../common/transactionSlice'
+import {
+  selectBalance,
+  getBalanceByChildId,
+} from '../../common/transactionSlice'
 import PrizeCart from './PrizeCart'
 
-export default function PrzBinRedeemModal() {
+export default function PrzBinRedeemModal(props) {
   const customStyles = {
     content: {
       top: '50%',
@@ -34,11 +33,6 @@ export default function PrzBinRedeemModal() {
   const total = useSelector(selectTotal)
   const totalPoints = useSelector(selectTotalPoints)
   const dispatch = useDispatch()
-
-  // const onFinish = (values) => {
-  //   console.log(values);
-  // };
-  var subtitle
   const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
     setIsOpen(true)
@@ -55,6 +49,7 @@ export default function PrzBinRedeemModal() {
   function sendTransactions() {
     dispatch(createTransactions(prizeCart)).then(() => {
       closeModal()
+      dispatch(getBalanceByChildId(props.childId))
     })
   }
 
@@ -68,8 +63,8 @@ export default function PrzBinRedeemModal() {
     <div>
       <div className={styles.buttonWrap}>
         <Button onClick={openModal}>
-        <ShoppingCartOutlined />
-       |  {total} prizes in Cart</Button>
+          <ShoppingCartOutlined />| {total} prizes in Cart
+        </Button>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -80,23 +75,18 @@ export default function PrzBinRedeemModal() {
       >
         <PrizeCart />
         <Space>
-        <Button
-          type="primary"
-          htmlType="submit"
-          disabled={balance < totalPoints}
-          onClick={sendTransactions}
-        >
-          Request Prizes
-        </Button>
-        <Button
-          type="primary"
-          htmlType="submit"
-          onClick={closeModal}
-        >
-          Cancel
-        </Button>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={balance < totalPoints}
+            onClick={sendTransactions}
+          >
+            Request Prizes
+          </Button>
+          <Button type="primary" htmlType="submit" onClick={closeModal}>
+            Cancel
+          </Button>
         </Space>
-        
       </Modal>
     </div>
   )
