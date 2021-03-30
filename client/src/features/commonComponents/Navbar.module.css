@@ -1,20 +1,21 @@
-.nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 70px;
+  margin-right: 90px;
 }
 
-.list{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-left: 35%;
-    width: 30%;
-    list-style: none;
+.list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 35%;
+  width: 30%;
+  list-style: none;
 }
 
-.logo{
-    display: flex;
-    justify-content: center;
+.logo {
+  display: flex;
+  justify-content: center;
 }
-
