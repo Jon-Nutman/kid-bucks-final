@@ -120,7 +120,6 @@ async function main() {
   }
   const deadline = getDateAWeekFromNow()
   await conn('goals').insert({
-    id: 1,
     title: 'Walk the Dog',
     description: 'When you get back from school take the dog around the block',
     points: 10,
@@ -130,7 +129,6 @@ async function main() {
     deadline: deadline,
   })
   await conn('goals').insert({
-    id: 2,
     title: 'Empty the dishwasher',
     description:
       'Put the dirty dishes in the dishwasher after you empty the clean ones.',
@@ -141,7 +139,6 @@ async function main() {
     deadline: deadline,
   })
   await conn('goals').insert({
-    id: 3,
     title: 'Work on science fair project',
     description:
       'For at least 1 hour work on your science fair project and fully document your progress',
@@ -152,7 +149,6 @@ async function main() {
     deadline: deadline,
   })
   await conn('goals').insert({
-    id: 4,
     title: 'Organize your closet ',
     description:
       'Clean the clothes off the floor and make the closet look neat',
@@ -163,10 +159,8 @@ async function main() {
     deadline: deadline,
   })
   await conn('goals').insert({
-    id: 5,
     title: 'Take out the trash ',
-    description:
-      'Take out the recycling too and replace the trash bag',
+    description: 'Take out the recycling too and replace the trash bag',
     points: 30,
     status: 'not_started',
     parent_id: 1,
