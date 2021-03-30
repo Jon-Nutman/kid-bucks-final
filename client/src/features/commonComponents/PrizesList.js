@@ -9,6 +9,7 @@ import {
 import { addPrizeToCart, selectTotalPoints } from './prizeBin/prizeCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth } from '../auth/auth'
+import { SmileTwoTone, CheckCircleOutlined, DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 
 export default function PrizeList(props) {
   const { user } = useAuth()
@@ -20,6 +21,7 @@ export default function PrizeList(props) {
   const prizes = useSelector(selectPrizes)
   // const total = useSelector(selectTotal)
   const totalPoints = useSelector(selectTotalPoints)
+
 
   
   console.table(prizes)
@@ -35,7 +37,7 @@ export default function PrizeList(props) {
         disabled={balance <= totalPoints}
         onClick={() => dispatch(addPrizeToCart(item))}
       >
-        + to cart{' '}
+        + <ShoppingCartOutlined />{' '}
       </a>,
     ]
     const parentActions = [
@@ -43,7 +45,7 @@ export default function PrizeList(props) {
         key="list-loadmore-edit"
         onClick={() => dispatch(deletePrize(item.id, childId))}
       >
-        delete
+        <DeleteOutlined />
       </a>,
     ]
     return isAdmin ? parentActions : childActions
