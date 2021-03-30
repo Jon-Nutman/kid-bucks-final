@@ -18,12 +18,12 @@ export default function Navbar(props) {
     })
   }
   const loginParent = (e) => {
-    login('parent', 'test').then((r) => {
+    login('larry', 'test').then((r) => {
       history.push('/parent-dashboard')
     })
   }
   const loginChild = (e) => {
-    login('child', 'test').then((r) => {
+    login('timmy', 'test').then((r) => {
       history.push('/child-dashboard')
     })
   }

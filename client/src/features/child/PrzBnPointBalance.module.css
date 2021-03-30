@@ -19,16 +19,39 @@ h4 {
 }
 
 .balanceWrapper {
-  margin-top:20px;
+  margin-top: 20px;
   margin-right: 15px;
+  margin-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.balanceText{
-  color: #075b0e;
+.balanceText {
+  color: #1890ff;
   display: flex;
   justify-content: space-between;
+  margin: 0;
+  font-size: 20px;
+}
+
+.deductionText {
+  color: #a82c2c;
+  margin: 0;
+  font-size: 18px;
+}
+
+.resultText {
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: #1890ff;
+  font-size: 18px;
+}
+
+.resultBalance {
+  font-size: 16px;
+  margin-left: 20px;
 }

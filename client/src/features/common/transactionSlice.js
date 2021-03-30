@@ -6,6 +6,7 @@ export const transaction = createSlice({
   initialState: {
     transactions: [],
     balance: 0,
+    deduction: 0,
   },
   reducers: {
     setTransactions: (state, action) => {
@@ -14,10 +15,13 @@ export const transaction = createSlice({
     setBalance: (state, action) => {
       state.balance = action.payload
     },
+    setDeduction: (state, action) => {
+      state.deduction = action.payload
+    },
   },
 })
 
-export const { setTransactions, setBalance } = transaction.actions
+export const { setTransactions, setBalance, setDeduction } = transaction.actions
 
 export const getTransactions = (childId) => async (dispatch) => {
   await request.get('/transactions/' + childId).then((response) => {
@@ -28,7 +32,7 @@ export const getTransactions = (childId) => async (dispatch) => {
 export const getBalanceByChildId = (childId) => async (dispatch) => {
   await request.get('/balance/' + childId).then((response) => {
     dispatch(setBalance(response.data.balance))
-    console.log(response.data)
+    dispatch(setDeduction(response.data.deduction))
   })
 }
 
@@ -38,9 +42,7 @@ export const approveTransaction = (transactionId, childId) => async (
   await request.patch('/transactions/' + transactionId, { status: 'approved' })
   dispatch(getTransactions(childId))
 }
-export const denyTransaction = (transactionId, childId) => async (
-  dispatch
-) => {
+export const denyTransaction = (transactionId, childId) => async (dispatch) => {
   await request.patch('/transactions/' + transactionId, { status: 'denied' })
   dispatch(getTransactions(childId))
 }
@@ -60,5 +62,6 @@ export const denyTransaction = (transactionId, childId) => async (
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectTransactions = (state) => state.transaction.transactions
 export const selectBalance = (state) => state.transaction.balance
+export const selectDeduction = (state) => state.transaction.deduction
 
 export default transaction.reducer

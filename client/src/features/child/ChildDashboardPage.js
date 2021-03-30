@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  selectGoals,
-  getGoalsByChildId,
-} from '../common/goalSlice'
+import { selectGoals, getGoalsByChildId } from '../common/goalSlice'
 import { selectPrizes, getPrizesByChildId } from '../common/prizeSlice'
 import Header from './Header'
 import { Space } from 'antd'
@@ -33,17 +30,16 @@ export default function ChildDashboardPage() {
   }, [])
 
   return (
-
-      <div className={styles.tabMain}>
-        <Header />
-        <div className={styles.componentContainer}>
+    <div className={styles.tabMain}>
+      <Header />
+      <div className={styles.componentContainer}>
         <div className={styles.leftContainer}>
-        <Space>
-          <GoalList goals={goals} />
-        </Space>
+          <Space>
+            <GoalList goals={goals} />
+          </Space>
         </div>
         <div className={styles.rightContainer}>
-          <PrzBinRedeemModal />
+          <PrzBinRedeemModal childId={user.id} />
           <PrizesList prizes={prizes} childId={user.id} />
         </div>
         {/* </Space> */}

@@ -31,8 +31,10 @@ router.patch('/transactions/:transactionId', async (request, response) => {
   const updateTransactionTable = await db
     .table('transactions')
     .where({ id: transactionId })
+    .returning('status')
     .update(updateTransaction)
-  if (updateTransactionTable.status === 'approved') {
+  const status = updateTransactionTable[0]
+  if (status === 'approved') {
     const qty = currentTransaction.quantity
     const currentUserId = currentTransaction.user_id
     const pointsToDeduct = currentTransaction.points * qty
