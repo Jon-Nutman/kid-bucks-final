@@ -87,14 +87,12 @@ async function main() {
 
   const salt = createSalt(20)
   await conn('users').insert({
-    id: 1,
     username: 'larry',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: true,
   })
   await conn('users').insert({
-    id: 2,
     username: 'timmy',
     password: sha512('test' + salt),
     salt: salt,
@@ -102,7 +100,6 @@ async function main() {
     parent_id: 1,
   })
   await conn('users').insert({
-    id: 3,
     username: 'susie',
     password: sha512('test' + salt),
     salt: salt,
@@ -177,7 +174,6 @@ async function main() {
     balance: 100,
   })
   await conn('prizes').insert({
-    id: 1,
     points: 30,
     title: 'Movie Night',
     description: 'You get to pick a movie for the whole family to watch',
@@ -186,7 +182,6 @@ async function main() {
     prize_bin_id: 1,
   })
   await conn('prizes').insert({
-    id: 2,
     points: 20,
     title: 'Ice Cream Sundae',
     description: 'Make your own Ice Cream Sundae, any toppings you want.',
@@ -194,7 +189,6 @@ async function main() {
     prize_bin_id: 1,
   })
   await conn('prizes').insert({
-    id: 3,
     points: 10,
     title: 'Screen Time',
     description: '30 minutes of screen time on any of your devices',
