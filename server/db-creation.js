@@ -85,43 +85,17 @@ async function main() {
       .defaultTo('requested')
   })
 
-  // DOTTIES NOTES: The table below will allow as a relationship table
-  // so that parents can see what prizes their children want to redeem
-
-  // await conn.schema.createTable(`prize_redemption`, (table) => {
-  //   table.increments('id')
-  //   table.foreign("prizes_id").references("prizes.id").onDelete("cascade");
-  //   table
-  //     .foreign("prizes_id")
-  //     .references("prizes.id")
-  //     .onDelete("cascade");
-
-  // this is a big thing.  Just notes for now.
-
-  // await conn.schema.createTable(`prize_orders`, (table) => {
-  //   table.increments("id");
-  //   table.integer("prize_bin_id").unsigned();
-  //   table
-  //     .foreign("prize_bin_id")
-  //     .references("prize_bins.id")
-  //     .onDelete("cascade");
-  //   table.integer("parent_id").unsigned();
-  //   table.foreign("parent_id").references("users.id").onDelete("cascade");
-  //   table.integer("child_id").unsigned();
-  //   table.foreign("child_id").references("users.id").onDelete("cascade");
-  // });
-
   const salt = createSalt(20)
   await conn('users').insert({
     id: 1,
-    username: 'parent',
+    username: 'Larry',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: true,
   })
   await conn('users').insert({
     id: 2,
-    username: 'child',
+    username: 'Timmy',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: false,
@@ -129,7 +103,7 @@ async function main() {
   })
   await conn('users').insert({
     id: 3,
-    username: 'child 2',
+    username: 'Susie',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: false,
@@ -147,36 +121,76 @@ async function main() {
   const deadline = getDateAWeekFromNow()
   await conn('goals').insert({
     id: 1,
-    title: 'wash and dress',
-    description: 'Wash your face, brush your teeth, dress your best.',
-    points: 5,
+    title: 'Walk the Dog',
+    description: 'When you get back from school take the dog around the block',
+    points: 10,
     status: 'not_started',
     parent_id: 1,
     child_id: 2,
     deadline: deadline,
   })
+  await conn('goals').insert({
+    id: 2,
+    title: 'Empty the dishwasher',
+    description: 'Put the dirty dishes in the dishwasher after you empty the clean ones.',
+    points: 10,
+    status: 'not_started',
+    parent_id: 1,
+    child_id: 2,
+    deadline: deadline,
+  })
+  await conn('goals').insert({
+    id: 3,
+    title: 'Work on science fair project',
+    description: 'For at least 1 hour work on your science fair project and fully document your progress',
+    points: 15,
+    status: 'not_started',
+    parent_id: 1,
+    child_id: 2,
+    deadline: deadline,
+  })
+
   await conn('prize_bins').insert({
     user_id: 2,
     balance: 100,
   })
   await conn('prize_bins').insert({
     user_id: 3,
+    balance: 100,
   })
   await conn('prizes').insert({
     id: 1,
-    points: 5,
-    title: 'robux',
-    description: '1000 robux',
+    points: 30,
+    title: 'Movie Night',
+    description: 'You get to pick a movie for the whole family to watch',
     prize_thumbnail:
-      'https://m.media-amazon.com/images/I/71QMkXmLVCL._SY606_.jpg',
+      'https://images.freecreatives.com/wp-content/uploads/2017/10/flat-clapperboard-icon_1063-38.jpg',
     prize_bin_id: 1,
   })
-  await conn('transactions').insert({
-    prize_id: 1,
-    user_id: 2,
-    points: 5,
-    quantity: 2,
+  await conn('prizes').insert({
+    id: 2,
+    points: 20,
+    title: 'Ice Cream Sundae',
+    description: 'Make your own Ice Cream Sundae, any toppings you want.',
+    prize_thumbnail:
+      'https://assets.rbl.ms/21919567/origin.jpg',
+    prize_bin_id: 1,
   })
+  await conn('prizes').insert({
+    id: 3,
+    points: 15,
+    title: 'Screen Time',
+    description: '30 minutes of screen time on any of your devices',
+    prize_thumbnail:
+      'https://static01.nyt.com/images/2019/04/04/smarter-living/04sl-screentime-rgbcolor/04sl-screentime-rgbcolor-superJumbo.jpg',
+    prize_bin_id: 1,
+  })
+  // await conn('transactions').insert({
+  //   prize_id: 1,
+  //   user_id: 2,
+  //   points: 5,
+  //   quantity: 2,
+  // })
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
 }
