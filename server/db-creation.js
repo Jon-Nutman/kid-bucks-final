@@ -151,6 +151,28 @@ async function main() {
     child_id: 2,
     deadline: deadline,
   })
+  await conn('goals').insert({
+    id: 4,
+    title: 'Organize your closet ',
+    description:
+      'Clean the clothes off the floor and make the closet look neat',
+    points: 30,
+    status: 'not_started',
+    parent_id: 1,
+    child_id: 2,
+    deadline: deadline,
+  })
+  await conn('goals').insert({
+    id: 5,
+    title: 'Take out the trash ',
+    description:
+      'Take out the recycling too and replace the trash bag',
+    points: 30,
+    status: 'not_started',
+    parent_id: 1,
+    child_id: 2,
+    deadline: deadline,
+  })
 
   await conn('prize_bins').insert({
     user_id: 2,
@@ -179,19 +201,19 @@ async function main() {
   })
   await conn('prizes').insert({
     id: 3,
-    points: 15,
+    points: 10,
     title: 'Screen Time',
     description: '30 minutes of screen time on any of your devices',
     prize_thumbnail:
       'https://static01.nyt.com/images/2019/04/04/smarter-living/04sl-screentime-rgbcolor/04sl-screentime-rgbcolor-superJumbo.jpg',
     prize_bin_id: 1,
   })
-  // await conn('transactions').insert({
-  //   prize_id: 1,
-  //   user_id: 2,
-  //   points: 5,
-  //   quantity: 2,
-  // })
+  await conn('transactions').insert({
+    prize_id: 3,
+    user_id: 2,
+    points: 15,
+    quantity: 2,
+  })
   // await conn.raw('DELETE FROM users WHERE id = 1')
   process.exit()
 }
