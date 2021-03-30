@@ -88,14 +88,14 @@ async function main() {
   const salt = createSalt(20)
   await conn('users').insert({
     id: 1,
-    username: 'Larry',
+    username: 'larry',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: true,
   })
   await conn('users').insert({
     id: 2,
-    username: 'Timmy',
+    username: 'timmy',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: false,
@@ -103,7 +103,7 @@ async function main() {
   })
   await conn('users').insert({
     id: 3,
-    username: 'Susie',
+    username: 'susie',
     password: sha512('test' + salt),
     salt: salt,
     is_admin: false,
@@ -132,7 +132,8 @@ async function main() {
   await conn('goals').insert({
     id: 2,
     title: 'Empty the dishwasher',
-    description: 'Put the dirty dishes in the dishwasher after you empty the clean ones.',
+    description:
+      'Put the dirty dishes in the dishwasher after you empty the clean ones.',
     points: 10,
     status: 'not_started',
     parent_id: 1,
@@ -142,7 +143,8 @@ async function main() {
   await conn('goals').insert({
     id: 3,
     title: 'Work on science fair project',
-    description: 'For at least 1 hour work on your science fair project and fully document your progress',
+    description:
+      'For at least 1 hour work on your science fair project and fully document your progress',
     points: 15,
     status: 'not_started',
     parent_id: 1,
@@ -172,8 +174,7 @@ async function main() {
     points: 20,
     title: 'Ice Cream Sundae',
     description: 'Make your own Ice Cream Sundae, any toppings you want.',
-    prize_thumbnail:
-      'https://assets.rbl.ms/21919567/origin.jpg',
+    prize_thumbnail: 'https://assets.rbl.ms/21919567/origin.jpg',
     prize_bin_id: 1,
   })
   await conn('prizes').insert({
